@@ -233,7 +233,7 @@ static char *gammalvls[MAXGAMMA][2] =
     { GAMMALVL_N085,  "-0.85" },
     { GAMMALVL_N090,  "-0.90" },
     { GAMMALVL_N095,  "-0.95" },
-    { GAMMALVL_OFF,   "OFF"   },
+    { GAMMALVL_OFF,   "DESL."   },
     { GAMMALVL_010,   "0.1"   },
     { GAMMALVL_020,   "0.2"   },
     { GAMMALVL_030,   "0.3"   },
@@ -267,11 +267,11 @@ static char *gammalvls[MAXGAMMA][2] =
 };
 
 static MenuItem_t MainItems[] = {
-    {ITT_SETMENU, "NEW GAME", SCNetCheck2, 1, MENU_CLASS},
-    {ITT_SETMENU, "OPTIONS", NULL, 0, MENU_ID_MAIN},
-    {ITT_SETMENU, "GAME FILES", NULL, 0, MENU_FILES},
-    {ITT_EFUNC, "INFO", SCInfo, 0, MENU_NONE},
-    {ITT_EFUNC, "QUIT GAME", SCQuitGame, 0, MENU_NONE}
+    {ITT_SETMENU, "NOVO JOGO", SCNetCheck2, 1, MENU_CLASS},
+    {ITT_SETMENU, "OPCOES", NULL, 0, MENU_ID_MAIN},
+    {ITT_SETMENU, "ARQUIVOS DE JOGO", NULL, 0, MENU_FILES},
+    {ITT_EFUNC, "INFORMACOES", SCInfo, 0, MENU_NONE},
+    {ITT_EFUNC, "SAIR DO JOGO", SCQuitGame, 0, MENU_NONE}
 };
 
 static Menu_t MainMenu = {
@@ -284,10 +284,10 @@ static Menu_t MainMenu = {
 };
 
 static MenuItem_t ClassItems[] = {
-    {ITT_EFUNC, "FIGHTER", SCClass, 0, MENU_NONE},
-    {ITT_EFUNC, "CLERIC", SCClass, 1, MENU_NONE},
-    {ITT_EFUNC, "MAGE", SCClass, 2, MENU_NONE},
-    {ITT_EFUNC, "RANDOM", SCClass, 4, MENU_NONE},
+    {ITT_EFUNC, "GUERREIRO", SCClass, 0, MENU_NONE},
+    {ITT_EFUNC, "CLERIGO", SCClass, 1, MENU_NONE},
+    {ITT_EFUNC, "MAGO", SCClass, 2, MENU_NONE},
+    {ITT_EFUNC, "ALEATORIO", SCClass, 4, MENU_NONE},
 };
 
 static Menu_t ClassMenu = {
@@ -300,8 +300,8 @@ static Menu_t ClassMenu = {
 };
 
 static MenuItem_t FilesItems[] = {
-    {ITT_SETMENU, "LOAD GAME", SCNetCheck2, 2, MENU_LOAD},
-    {ITT_EFUNC, "SAVE GAME", SCSaveCheck, 0, MENU_SAVE}
+    {ITT_SETMENU, "CARREGAR JOGO", SCNetCheck2, 2, MENU_LOAD},
+    {ITT_EFUNC, "SALVAR JOGO", SCSaveCheck, 0, MENU_SAVE}
 };
 
 static Menu_t FilesMenu = {
@@ -371,11 +371,11 @@ static Menu_t SkillMenu = {
 };
 
 static MenuItem_t OptionsItems[] = {
-    {ITT_EFUNC, "END GAME", SCEndGame, 0, MENU_NONE},
-    {ITT_EFUNC, "MESSAGES : ", SCMessages, 0, MENU_NONE},
-    {ITT_LRFUNC1, "MOUSE SENSITIVITY", SCMouseSensi, 0, MENU_NONE},
+    {ITT_EFUNC, "ENCERRAR PARTIDA", SCEndGame, 0, MENU_NONE},
+    {ITT_EFUNC, "MENSAGENS : ", SCMessages, 0, MENU_NONE},
+    {ITT_LRFUNC1, "SENSIBILIDADE DO MOUSE", SCMouseSensi, 0, MENU_NONE},
     {ITT_EMPTY, NULL, NULL, 0, MENU_NONE},
-    {ITT_SETMENU, "MORE...", NULL, 0, MENU_OPTIONS2}
+    {ITT_SETMENU, "MAIS...", NULL, 0, MENU_OPTIONS2}
 };
 
 static Menu_t OptionsMenu = {
@@ -388,11 +388,11 @@ static Menu_t OptionsMenu = {
 };
 
 static MenuItem_t Options2Items[] = {
-    { ITT_SLDR,   "SFX VOLUME",   SCSfxVolume,   0, MENU_NONE },
+    { ITT_SLDR,   "VOLUME (EFEITOS)",   SCSfxVolume,   0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
-    { ITT_SLDR,   "MUSIC VOLUME", SCMusicVolume, 0, MENU_NONE },
+    { ITT_SLDR,   "VOLUME (MUSICA)", SCMusicVolume, 0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
-    { ITT_SLDR,   "SCREEN SIZE",  SCScreenSize,  0, MENU_NONE },
+    { ITT_SLDR,   "TAMANHO DA TELA",  SCScreenSize,  0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
 };
 
@@ -901,16 +901,16 @@ static void M_DrawScrollPages (int x, int y, int itemOnGlow, const char *pagenum
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Main[] = {
-    { ITT_SETMENU, "VIDEO OPTIONS",     NULL,                 0, MENU_ID_VIDEO1    },
-    { ITT_SETMENU, "DISPLAY OPTIONS",   NULL,                 0, MENU_ID_DISPLAY   },
-    { ITT_SETMENU, "SOUND OPTIONS",     NULL,                 0, MENU_ID_SOUND     },
-    { ITT_SETMENU, "CONTROL SETTINGS",  NULL,                 0, MENU_ID_CONTROLS  },
-    { ITT_SETMENU, "WIDGETS SETTINGS",  NULL,                 0, MENU_ID_WIDGETS   },
-    { ITT_SETMENU, "AUTOMAP SETTINGS",  NULL,                 0, MENU_ID_AUTOMAP   },
-    { ITT_EFUNC,   "GAMEPLAY FEATURES", M_Choose_ID_Gameplay, 0, MENU_NONE         },
-    { ITT_SETMENU, "MISC FEATURES",     NULL,                 0, MENU_ID_MISC      },
-    { ITT_EFUNC,   "END GAME",          SCEndGame,            0, MENU_NONE         },
-    { ITT_EFUNC,   "RESET SETTINGS",    M_ID_SettingReset,    0, MENU_NONE         },
+    { ITT_SETMENU, "OPCOES DE VIDEO",     NULL,                 0, MENU_ID_VIDEO1    },
+    { ITT_SETMENU, "OPCOES DE EXIBICAO",   NULL,                 0, MENU_ID_DISPLAY   },
+    { ITT_SETMENU, "OPCOES DE SOM",     NULL,                 0, MENU_ID_SOUND     },
+    { ITT_SETMENU, "CONFIGURAR CONTROLES",  NULL,                 0, MENU_ID_CONTROLS  },
+    { ITT_SETMENU, "CONFIGURAR WIDGETS",  NULL,                 0, MENU_ID_WIDGETS   },
+    { ITT_SETMENU, "CONFIGURAR AUTOMAPA",  NULL,                 0, MENU_ID_AUTOMAP   },
+    { ITT_EFUNC,   "OPCOES DE JOGO", M_Choose_ID_Gameplay, 0, MENU_NONE         },
+    { ITT_SETMENU, "OPCOES DIVERSAS",     NULL,                 0, MENU_ID_MISC      },
+    { ITT_EFUNC,   "ENCERRAR PARTIDA",          SCEndGame,            0, MENU_NONE         },
+    { ITT_EFUNC,   "RESTAURAR PADROES",    M_ID_SettingReset,    0, MENU_NONE         },
 };
 
 static Menu_t ID_Def_Main = {
@@ -924,7 +924,7 @@ static Menu_t ID_Def_Main = {
 
 static void M_Draw_ID_Main (void)
 {
-    MN_DrTextACentered("OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPCOES", 10, cr[CR_YELLOW]);
 }
 
 // -----------------------------------------------------------------------------
@@ -932,15 +932,15 @@ static void M_Draw_ID_Main (void)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Video_1[] = {
-    { ITT_LRFUNC2, "TRUECOLOR RENDERING",  M_ID_TrueColor,    0, MENU_NONE },
-    { ITT_LRFUNC1, "RENDERING RESOLUTION", M_ID_RenderingRes, 0, MENU_NONE },
-    { ITT_LRFUNC1, "WIDESCREEN MODE",      M_ID_Widescreen,   0, MENU_NONE },
-    { ITT_LRFUNC2, "EXCLUSIVE FULLSCREEN", M_ID_ExclusiveFS,  0, MENU_NONE },
-    { ITT_LRFUNC1, "UNCAPPED FRAMERATE",   M_ID_UncappedFPS,  0, MENU_NONE },
-    { ITT_LRFUNC1, "FRAMERATE LIMIT",      M_ID_LimitFPS,     0, MENU_NONE },
-    { ITT_LRFUNC2, "ENABLE VSYNC",         M_ID_VSync,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW FPS COUNTER",     M_ID_ShowFPS,      0, MENU_NONE },
-    { ITT_LRFUNC2, "PIXEL SCALING",        M_ID_PixelScaling, 0, MENU_NONE },
+    { ITT_LRFUNC2, "RENDERIZACAO TRUECOLOR",  M_ID_TrueColor,    0, MENU_NONE },
+    { ITT_LRFUNC1, "RES. RENDERIZACAO", M_ID_RenderingRes, 0, MENU_NONE },
+    { ITT_LRFUNC1, "MODO WIDESCREEN",      M_ID_Widescreen,   0, MENU_NONE },
+    { ITT_LRFUNC2, "TELA CHEIA EXCLUSIVA", M_ID_ExclusiveFS,  0, MENU_NONE },
+    { ITT_LRFUNC1, "TAXA DE QUADROS ILIMITADA",   M_ID_UncappedFPS,  0, MENU_NONE },
+    { ITT_LRFUNC1, "LIMITE DE QUADROS",      M_ID_LimitFPS,     0, MENU_NONE },
+    { ITT_LRFUNC2, "ATIVAR VSYNC",         M_ID_VSync,        0, MENU_NONE },
+    { ITT_LRFUNC2, "EXIBIR CONTADOR DE FPS",     M_ID_ShowFPS,      0, MENU_NONE },
+    { ITT_LRFUNC2, "ESCALA DE PIXEL",        M_ID_PixelScaling, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
@@ -961,10 +961,10 @@ static void M_Draw_ID_Video_1 (void)
 {
     char str[32];
 
-    MN_DrTextACentered("VIDEO OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPCOES DE VIDEO", 10, cr[CR_YELLOW]);
 
     // Truecolor Rendering
-    sprintf(str, vid_truecolor ? "ON" : "OFF");
+    sprintf(str, vid_truecolor ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         vid_truecolor ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             vid_truecolor ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -977,7 +977,7 @@ static void M_Draw_ID_Video_1 (void)
                  vid_resolution == 4 ? "4X (800P)"  :
                  vid_resolution == 5 ? "5X (1000P)" :
                  vid_resolution == 6 ? "6X (1200P)" :
-                                       "CUSTOM");
+                                       "PERSONALIZADO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         vid_resolution == 1 ? cr[CR_DARKRED] :
                         vid_resolution == 2 ||
@@ -996,21 +996,21 @@ static void M_Draw_ID_Video_1 (void)
                  vid_widescreen == 2 ? "16:10" :
                  vid_widescreen == 3 ? "16:9" :
                  vid_widescreen == 4 ? "21:9" :
-                 vid_widescreen == 5 ? "32:9" : "OFF");
+                 vid_widescreen == 5 ? "32:9" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         vid_widescreen ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             vid_widescreen ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(2));
 
     // Exclusive fullscreen
-    sprintf(str, vid_fullscreen_exclusive ? "ON" : "OFF");
+    sprintf(str, vid_fullscreen_exclusive ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         vid_fullscreen_exclusive ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vid_fullscreen_exclusive ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(3));
 
     // Uncapped framerate
-    sprintf(str, vid_uncapped_fps ? "ON" : "OFF");
+    sprintf(str, vid_uncapped_fps ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         vid_uncapped_fps ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             vid_uncapped_fps ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -1019,7 +1019,7 @@ static void M_Draw_ID_Video_1 (void)
 
     // Framerate limit
     sprintf(str, !vid_uncapped_fps ? "35" :
-                 vid_fpslimit ? "%d" : "NONE", vid_fpslimit);
+                 vid_fpslimit ? "%d" : "NENHUM", vid_fpslimit);
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         !vid_uncapped_fps ? cr[CR_DARKRED] :
                         vid_fpslimit == 0 ? cr[CR_RED] :
@@ -1030,21 +1030,21 @@ static void M_Draw_ID_Video_1 (void)
                                 LINE_ALPHA(5));
 
     // Enable vsync
-    sprintf(str, vid_vsync ? "ON" : "OFF");
+    sprintf(str, vid_vsync ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                     vid_vsync ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vid_vsync ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
     // Show FPS counter
-    sprintf(str, vid_showfps ? "ON" : "OFF");
+    sprintf(str, vid_showfps ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 90,
                     vid_showfps ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vid_showfps ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(7));
 
     // Pixel scaling
-    sprintf(str, vid_smooth_scaling ? "SMOOTH" : "SHARP");
+    sprintf(str, vid_smooth_scaling ? "SUAVE" : "NITIDO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         vid_smooth_scaling ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vid_smooth_scaling ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -1224,19 +1224,19 @@ static void M_ID_Banners (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Video_2[] = {
-    { ITT_LRFUNC2, "GRAPHICAL STARTUP",      M_ID_GfxStartup,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SCREEN WIPE EFFECT",     M_ID_ScreenWipe,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW BANNERS",           M_ID_Banners,           0, MENU_NONE },
+    { ITT_LRFUNC2, "INICIALIZACAO GRAFICA",      M_ID_GfxStartup,        0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITO DE TRANSICAO DE TELA",     M_ID_ScreenWipe,        0, MENU_NONE },
+    { ITT_LRFUNC2, "EXIBIR BANNERS",           M_ID_Banners,           0, MENU_NONE },
     { ITT_EMPTY,   NULL,                     NULL,                   0, MENU_NONE },
-    { ITT_LRFUNC1, "SUPERSAMPLED SMOOTHING", M_ID_SuperSmoothing,    0, MENU_NONE },
-    { ITT_LRFUNC2, "OVERBRIGHT GLOW",        M_ID_OverbrightGlow,    0, MENU_NONE },
-    { ITT_LRFUNC2, "SOFT BLOOM",             M_ID_SoftBloom,         0, MENU_NONE },
-    { ITT_LRFUNC1, "ANALOG RGB DRIFT",       M_ID_AnalogRGBDrift,    0, MENU_NONE },
-    { ITT_LRFUNC2, "VHS LINE DISTORTION",    M_ID_VHSLineDistortion, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SCREEN VIGNETTE",        M_ID_ScreenVignette,    0, MENU_NONE },
-    { ITT_LRFUNC1, "FILM GRAIN",             M_ID_FilmGrain,         0, MENU_NONE },
-    { ITT_LRFUNC1, "MOTION BLUR",            M_ID_MotionBlur,        0, MENU_NONE },
-    { ITT_LRFUNC2, "DEPTH OF FIELD BLUR",    M_ID_DepthOfFieldBlur,  0, MENU_NONE },
+    { ITT_LRFUNC1, "SUAVIZACAO COM SUPERSAMPLING", M_ID_SuperSmoothing,    0, MENU_NONE },
+    { ITT_LRFUNC2, "BRILHO INTENSO",        M_ID_OverbrightGlow,    0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITO BLOOM",             M_ID_SoftBloom,         0, MENU_NONE },
+    { ITT_LRFUNC1, "DISTORCAO RGB ANALOGICA",       M_ID_AnalogRGBDrift,    0, MENU_NONE },
+    { ITT_LRFUNC2, "DISTORCAO DE LINHA VHS",    M_ID_VHSLineDistortion, 0, MENU_NONE },
+    { ITT_LRFUNC1, "VINHETA NA TELA",        M_ID_ScreenVignette,    0, MENU_NONE },
+    { ITT_LRFUNC1, "GRAO DE FILME",             M_ID_FilmGrain,         0, MENU_NONE },
+    { ITT_LRFUNC1, "DESFOQUE DE MOVIMENTO",            M_ID_MotionBlur,        0, MENU_NONE },
+    { ITT_LRFUNC2, "DESFOQUE DE PROFUNDIDADE",    M_ID_DepthOfFieldBlur,  0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */   M_ScrollVideo,          0, MENU_NONE },
 };
 
@@ -1252,13 +1252,13 @@ static Menu_t ID_Def_Video_2 = {
 static void M_Draw_ID_Video_2 (void)
 {
     char str[32];
-    const char *sample_factors[] = { "NONE", "1x", "2x", "3x", "4x", "5x", "6x" };
+    const char *sample_factors[] = { "NENHUM", "1x", "2x", "3x", "4x", "5x", "6x" };
 
-    MN_DrTextACentered("MISCELLANEOUS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("DIVERSOS", 10, cr[CR_YELLOW]);
 
     // Graphical startup
-    sprintf(str, vid_graphical_startup == 1 ? "FAST" :
-                 vid_graphical_startup == 2 ? "SLOW" : "OFF");
+    sprintf(str, vid_graphical_startup == 1 ? "RAPIDO" :
+                 vid_graphical_startup == 2 ? "LENTO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         vid_graphical_startup == 1 ? cr[CR_GREEN_HX] :
                         vid_graphical_startup == 2 ? cr[CR_YELLOW] : cr[CR_DARKRED],
@@ -1267,7 +1267,7 @@ static void M_Draw_ID_Video_2 (void)
                                 LINE_ALPHA(0));
 
     // Screen wipe effect
-    sprintf(str, vid_screenwipe_hr ? "CROSSFADE" : "OFF");
+    sprintf(str, vid_screenwipe_hr ? "TRANSICAO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         vid_screenwipe_hr ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vid_screenwipe_hr ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -1275,7 +1275,7 @@ static void M_Draw_ID_Video_2 (void)
 
     // Show banners
     sprintf(str, vid_banners == 1 ? "SAVE/LOAD/TRAVEL" :
-                 vid_banners == 2 ? "TRAVEL ONLY" : "OFF");
+                 vid_banners == 2 ? "TRAVEL ONLY" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         vid_banners == 1 ? cr[CR_GREEN_HX] :
                         vid_banners == 2 ? cr[CR_YELLOW] : cr[CR_DARKRED],
@@ -1283,7 +1283,7 @@ static void M_Draw_ID_Video_2 (void)
                             vid_banners == 2 ? cr[CR_YELLOW_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
-    MN_DrTextACentered("POST-PROCESSING EFFECTS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("EFEITOS DE POS-PROCESSAMENTO", 50, cr[CR_YELLOW]);
 
     // Supersampled smoothing
     sprintf(str, "%s", sample_factors[post_supersample]);
@@ -1293,68 +1293,68 @@ static void M_Draw_ID_Video_2 (void)
                                 LINE_ALPHA(4));
 
     // Overbright glow
-    sprintf(str, post_overglow ? "ON" : "OFF");
+    sprintf(str, post_overglow ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         post_overglow ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_overglow ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(5));
 
     // Soft bloom
-    sprintf(str, post_bloom ? "ON" : "OFF");
+    sprintf(str, post_bloom ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         post_bloom ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_bloom ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
     // Analog RGB drift
-    sprintf(str, post_rgbdrift == 1 ? "SUBTLE" :
-                 post_rgbdrift == 2 ? "STRONG" : "OFF");
+    sprintf(str, post_rgbdrift == 1 ? "SUTIL" :
+                 post_rgbdrift == 2 ? "FORTE" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 90,
                         post_rgbdrift ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_rgbdrift ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(7));
 
     // VHS line distortion
-    sprintf(str, post_vhsdist ? "ON" : "OFF");
+    sprintf(str, post_vhsdist ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         post_vhsdist ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_vhsdist ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
     // Screen vignette
-    sprintf(str, post_vignette == 1 ? "SUBTLE" :
-                 post_vignette == 2 ? "SOFT"   : 
-                 post_vignette == 3 ? "STRONG" : 
-                 post_vignette == 4 ? "DARK"   : "OFF");
+    sprintf(str, post_vignette == 1 ? "SUTIL" :
+                 post_vignette == 2 ? "SUAVE"   : 
+                 post_vignette == 3 ? "FORTE" : 
+                 post_vignette == 4 ? "ESCURO"   : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         post_vignette ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_vignette ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(9));
 
     // Film grain
-    sprintf(str, post_filmgrain == 1 ? "SOFT"      :
-                 post_filmgrain == 2 ? "LIGHT"     : 
-                 post_filmgrain == 3 ? "MEDIUM"    : 
-                 post_filmgrain == 4 ? "HEAVY"     : 
-                 post_filmgrain == 5 ? "NIGHTMARE" : "OFF");
+    sprintf(str, post_filmgrain == 1 ? "SUAVE"      :
+                 post_filmgrain == 2 ? "LEVE"     : 
+                 post_filmgrain == 3 ? "MEDIO"    : 
+                 post_filmgrain == 4 ? "PESADO"     : 
+                 post_filmgrain == 5 ? "PESADELO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 120,
                         post_filmgrain ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_filmgrain ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(10));
 
     // Motion blur
-    sprintf(str, post_motionblur == 1 ? "SOFT"   :
-                 post_motionblur == 2 ? "LIGHT"  : 
-                 post_motionblur == 3 ? "MEDIUM" : 
-                 post_motionblur == 4 ? "HEAVY"  : 
-                 post_motionblur == 5 ? "GHOST"  : "OFF");
+    sprintf(str, post_motionblur == 1 ? "SUAVE"   :
+                 post_motionblur == 2 ? "LEVE"  : 
+                 post_motionblur == 3 ? "MEDIO" : 
+                 post_motionblur == 4 ? "PESADO"  : 
+                 post_motionblur == 5 ? "FANTASMA"  : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 130,
                         post_motionblur ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_motionblur ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(11));
 
     // Depth if field blur
-    sprintf(str, post_dofblur ? "ON" : "OFF");
+    sprintf(str, post_dofblur ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 140,
                         post_dofblur ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             post_dofblur ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -1420,20 +1420,20 @@ static void M_ScrollVideo (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Display[] = {
-    { ITT_LRFUNC1, "FIELD OF VIEW",           M_ID_FOV,             0, MENU_NONE },
-    { ITT_LRFUNC1, "MENU BACKGROUND SHADING", M_ID_MenuShading,     0, MENU_NONE },
-    { ITT_LRFUNC1, "EXTRA LEVEL BRIGHTNESS",  M_ID_LevelBrightness, 0, MENU_NONE },
+    { ITT_LRFUNC1, "CAMPO DE VISAO",           M_ID_FOV,             0, MENU_NONE },
+    { ITT_LRFUNC1, "SOMBREAMENTO DE FUNDO DO MENU", M_ID_MenuShading,     0, MENU_NONE },
+    { ITT_LRFUNC1, "BRILHO EXTRA DA FASE",  M_ID_LevelBrightness, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC1, "GAMMA-CORRECTION",        M_ID_Gamma,           0, MENU_NONE },
-    { ITT_LRFUNC1, "SATURATION",              M_ID_Saturation,      0, MENU_NONE },
-    { ITT_LRFUNC1, "CONTRAST",                M_ID_Contrast,        0, MENU_NONE },
-    { ITT_LRFUNC1, "RED INTENSITY",           M_ID_R_Intensity,     0, MENU_NONE },
-    { ITT_LRFUNC1, "GREEN INTENSITY",         M_ID_G_Intensity,     0, MENU_NONE },
-    { ITT_LRFUNC1, "BLUE INTENSITY",          M_ID_B_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "CORRECAO DE GAMA",        M_ID_Gamma,           0, MENU_NONE },
+    { ITT_LRFUNC1, "SATURACAO",              M_ID_Saturation,      0, MENU_NONE },
+    { ITT_LRFUNC1, "CONTRASTE",                M_ID_Contrast,        0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE VERMELHO",           M_ID_R_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE VERDE",         M_ID_G_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE AZUL",          M_ID_B_Intensity,     0, MENU_NONE },
     { ITT_EMPTY,   NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC2, "MESSAGES ENABLED",        M_ID_Messages,        0, MENU_NONE },
-    { ITT_LRFUNC2, "TEXT CASTS SHADOWS",      M_ID_TextShadows,     0, MENU_NONE },
-    { ITT_LRFUNC2, "LOCAL TIME",              M_ID_LocalTime,       0, MENU_NONE },
+    { ITT_LRFUNC2, "MENSAGENS ATIVADAS",        M_ID_Messages,        0, MENU_NONE },
+    { ITT_LRFUNC2, "TEXTO PROJETA SOMBRAS",      M_ID_TextShadows,     0, MENU_NONE },
+    { ITT_LRFUNC2, "HORA LOCAL",              M_ID_LocalTime,       0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Display = {
@@ -1449,7 +1449,7 @@ static void M_Draw_ID_Display (void)
 {
     char str[32];
 
-    MN_DrTextACentered("DISPLAY OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPCOES DE EXIBICAO", 10, cr[CR_YELLOW]);
 
     // Field of View
     sprintf(str, "%d", vid_fov);
@@ -1461,7 +1461,7 @@ static void M_Draw_ID_Display (void)
                                 LINE_ALPHA(0));
 
     // Background shading
-    sprintf(str, dp_menu_shading ? "%d" : "OFF", dp_menu_shading);
+    sprintf(str, dp_menu_shading ? "%d" : "DESL.", dp_menu_shading);
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         dp_menu_shading == 12 ? cr[CR_YELLOW] :
                         dp_menu_shading  > 0  ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
@@ -1470,7 +1470,7 @@ static void M_Draw_ID_Display (void)
                                 LINE_ALPHA(1));
 
     // Extra level brightness
-    sprintf(str, dp_level_brightness ? "%d" : "OFF", dp_level_brightness);
+    sprintf(str, dp_level_brightness ? "%d" : "DESL.", dp_level_brightness);
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         dp_level_brightness == 8 ? cr[CR_YELLOW] :
                         dp_level_brightness  > 0  ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
@@ -1478,7 +1478,7 @@ static void M_Draw_ID_Display (void)
                             dp_level_brightness  > 0  ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
-    MN_DrTextACentered("COLOR SETTINGS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURACOES DE COR", 50, cr[CR_YELLOW]);
 
     // Gamma-correction num
     sprintf(str, "%s", gammalvls[vid_gamma][1]);
@@ -1522,17 +1522,17 @@ static void M_Draw_ID_Display (void)
                             cr[CR_BLUE2_BRIGHT],
                                 LINE_ALPHA(9));
 
-    MN_DrTextACentered("MESSAGES SETTINGS", 120, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURACOES DE MENSAGENS", 120, cr[CR_YELLOW]);
 
     // Messages enabled
-    sprintf(str, msg_show ? "ON" : "OFF");
+    sprintf(str, msg_show ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 130,
                         msg_show ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             msg_show ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(11));
 
     // Text casts shadows
-    sprintf(str, msg_text_shadows ? "ON" : "OFF");
+    sprintf(str, msg_text_shadows ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 140,
                         msg_text_shadows ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             msg_text_shadows ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -1540,7 +1540,7 @@ static void M_Draw_ID_Display (void)
 
     // Local time
     sprintf(str, msg_local_time == 1 ? "12-HOUR FORMAT" :
-                 msg_local_time == 2 ? "24-HOUR FORMAT" : "OFF");
+                 msg_local_time == 2 ? "24-HOUR FORMAT" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 150,
                         msg_local_time ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             msg_local_time ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -1663,7 +1663,7 @@ static void M_ID_Messages (int choice)
 {
     msg_show ^= 1;
     CT_SetMessage(&players[consoleplayer],
-                  msg_show ? "MESSAGES ON" : "MESSAGES OFF", true, NULL);
+                  msg_show ? "MENSAGENS LIGADAS" : "MENSAGENS DESLIGADAS", true, NULL);
     S_StartSound(NULL, SFX_DOOR_LIGHT_CLOSE);
 }
 
@@ -1682,20 +1682,20 @@ static void M_ID_LocalTime (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Sound[] = {
-    { ITT_SLDR,   "SFX VOLUME",           SCSfxVolume,         MENU_NONE },
+    { ITT_SLDR,   "VOLUME (EFEITOS)",           SCSfxVolume,         MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
-    { ITT_SLDR,   "MUSIC VOLUME",         SCMusicVolume,       MENU_NONE },
+    { ITT_SLDR,   "VOLUME (MUSICA)",         SCMusicVolume,       MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
-    { ITT_LRFUNC2, "MUSIC PLAYBACK",       M_ID_MusicSystem, 0, MENU_NONE },
-    { ITT_LRFUNC2, "SOUND EFFECTS MODE",   M_ID_SFXMode,     0, MENU_NONE },
-    { ITT_LRFUNC2, "PITCH-SHIFTED SOUNDS", M_ID_PitchShift,  0, MENU_NONE },
-    { ITT_LRFUNC1, "NUMBER OF SFX TO MIX", M_ID_SFXChannels, 0, MENU_NONE },
-    { ITT_LRFUNC2, "MUTE INACTIVE WINDOW", M_ID_MuteInactive,0, MENU_NONE },
+    { ITT_LRFUNC2, "REPRODUCAO DE MUSICA",       M_ID_MusicSystem, 0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO DE EFEITOS SONOROS",   M_ID_SFXMode,     0, MENU_NONE },
+    { ITT_LRFUNC2, "SONS COM PITCH ALTERADO", M_ID_PitchShift,  0, MENU_NONE },
+    { ITT_LRFUNC1, "NUMERO DE SFX PARA MIXAR", M_ID_SFXChannels, 0, MENU_NONE },
+    { ITT_LRFUNC2, "SILENCIAR JANELA INATIVA", M_ID_MuteInactive,0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,             0, MENU_NONE },
-    { ITT_LRFUNC2, "PREFFERED SOUNDTRACK", M_ID_RemasterOST, 0, MENU_NONE },
+    { ITT_LRFUNC2, "TRILHA SONORA PREFERIDA", M_ID_RemasterOST, 0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Sound = {
@@ -1711,7 +1711,7 @@ static void M_Draw_ID_Sound (void)
 {
     char str[32];
 
-    MN_DrTextACentered("SOUND OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPCOES DE SOM", 10, cr[CR_YELLOW]);
 
     DrawSlider(&ID_Def_Sound, 1, 16, snd_MaxVolume, false, 0);
     M_ID_HandleSliderMouseControl(70, 30, 134, &snd_MaxVolume, false, 0, 15);
@@ -1723,7 +1723,7 @@ static void M_Draw_ID_Sound (void)
     sprintf(str,"%d", snd_MusicVolume);
     MN_DrTextAGlow(str, 228, 65, cr[CR_MENU_DARK2], cr[CR_MENU_BRIGHT2], LINE_ALPHA(3));
 
-    MN_DrTextACentered("SOUND SYSTEM", 80, cr[CR_YELLOW]);
+    MN_DrTextACentered("SISTEMA DE SOM", 80, cr[CR_YELLOW]);
 
     // Music playback
     sprintf(str, snd_musicdevice == 0 ? "DISABLED" :
@@ -1732,21 +1732,21 @@ static void M_Draw_ID_Sound (void)
                  snd_musicdevice == 5 ?  "GUS (EMULATED)" :
                  snd_musicdevice == 8 ?  "NATIVE MIDI" :
                  snd_musicdevice == 11 ? "FLUIDSYNTH" :
-                                         "UNKNOWN");
+                                         "DESCONHECIDO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 90,
                         snd_musicdevice ? cr[CR_GREEN_HX] : cr[CR_RED],
                             snd_musicdevice ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(7));
 
     // Sound effects mode
-    sprintf(str, snd_monosfx ? "MONO" : "STEREO");
+    sprintf(str, snd_monosfx ? "MONO" : "ESTEREO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         snd_monosfx ? cr[CR_RED] : cr[CR_GREEN_HX],
                             snd_monosfx ? cr[CR_RED_BRIGHT] : cr[CR_GREEN_HX_BRIGHT],
                                 LINE_ALPHA(8));
 
     // Pitch-shifted sounds
-    sprintf(str, snd_pitchshift ? "ON" : "OFF");
+    sprintf(str, snd_pitchshift ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         snd_pitchshift ? cr[CR_GREEN_HX] : cr[CR_RED],
                             snd_pitchshift ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -1762,18 +1762,18 @@ static void M_Draw_ID_Sound (void)
                                 LINE_ALPHA(10));
 
     // Mute inactive window
-    sprintf(str, snd_mute_inactive ? "ON" : "OFF");
+    sprintf(str, snd_mute_inactive ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 130,
                         snd_mute_inactive ? cr[CR_GREEN_HX] : cr[CR_RED],
                             snd_mute_inactive ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(11));
 
-    MN_DrTextACentered("REMASTERED MUSIC", 140, cr[CR_YELLOW]);
+    MN_DrTextACentered("MUSICA REMASTERIZADA", 140, cr[CR_YELLOW]);
 
     // Remastered music
-    sprintf(str, (!remaster_ost_r && !remaster_ost_o) ? "N/A" :
+    sprintf(str, (!remaster_ost_r && !remaster_ost_o) ? "N/D" :
                  snd_remaster_ost == 1 ? "REMIX" :
-                 snd_remaster_ost == 2 ? "ORIGINAL" : "OFF");
+                 snd_remaster_ost == 2 ? "ORIGINAL" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 150,
                         remaster_ost_r && snd_remaster_ost == 1 ? cr[CR_GREEN_HX] :
                         remaster_ost_o && snd_remaster_ost == 2 ? cr[CR_YELLOW] : cr[CR_RED],
@@ -1799,8 +1799,8 @@ static void M_Draw_ID_Sound (void)
     {
         if (!remaster_ost_r && !remaster_ost_o)
 		{
-            MN_DrTextACentered("HEXEN[MUS[REMIX.WAD FILE NOT LOADED", 170, cr[CR_ORANGE_BRIGHT]);
-            MN_DrTextACentered("HEXEN[MUS[ORIG.WAD FILE NOT LOADED", 180, cr[CR_ORANGE_BRIGHT]);
+            MN_DrTextACentered("ARQUIVO HEXEN[MUS[REMIX.WAD NAO CARREGADO", 170, cr[CR_ORANGE_BRIGHT]);
+            MN_DrTextACentered("ARQUIVO HEXEN[MUS[ORIG.WAD NAO CARREGADO", 180, cr[CR_ORANGE_BRIGHT]);
 		}
     }
 }
@@ -1973,17 +1973,17 @@ static MenuItem_t ID_Menu_Controls[] = {
     { ITT_EFUNC,   "KEYBOARD BINDINGS",       M_Choose_ID_Keybinds,       0, MENU_NONE          },
     { ITT_SETMENU, "MOUSE BINDINGS",          NULL,                       0, MENU_ID_MOUSEBINDS },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_SLDR,    "HORIZONTAL SENSITIVITY",  SCMouseSensi,               0, MENU_NONE          },
+    { ITT_SLDR,    "SENSIBILIDADE HORIZONTAL",  SCMouseSensi,               0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_SLDR,    "VERTICAL SENSITIVITY",    SCMouseSensi_y,             0, MENU_NONE          },
+    { ITT_SLDR,    "SENSIBILIDADE VERTICAL",    SCMouseSensi_y,             0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_LRFUNC1, "ACCELERATION",            M_ID_Controls_Acceleration, 0, MENU_NONE          },
-    { ITT_LRFUNC1, "ACCELERATION THRESHOLD",  M_ID_Controls_Threshold,    0, MENU_NONE          },
-    { ITT_LRFUNC2,  "MOUSE LOOK",              M_ID_Controls_MLook,        0, MENU_NONE          },
-    { ITT_LRFUNC2,  "VERTICAL MOUSE MOVEMENT", M_ID_Controls_NoVert,       0, MENU_NONE          },
-    { ITT_LRFUNC2,  "INVERT VERTICAL AXIS",    M_ID_Controls_InvertY,      0, MENU_NONE          },
+    { ITT_LRFUNC1, "ACELERACAO",            M_ID_Controls_Acceleration, 0, MENU_NONE          },
+    { ITT_LRFUNC1, "LIMITE DE ACELERACAO",  M_ID_Controls_Threshold,    0, MENU_NONE          },
+    { ITT_LRFUNC2,  "OLHAR COM O MOUSE",              M_ID_Controls_MLook,        0, MENU_NONE          },
+    { ITT_LRFUNC2,  "MOVIMENTO VERTICAL DO MOUSE", M_ID_Controls_NoVert,       0, MENU_NONE          },
+    { ITT_LRFUNC2,  "INVERTER EIXO VERTICAL",    M_ID_Controls_InvertY,      0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_LRFUNC2,  "PERMANENT \"NOARTISKIP\" MODE", M_ID_Controls_NoArtiSkip, 0, MENU_NONE      },
 };
@@ -2003,9 +2003,9 @@ static void M_Draw_ID_Controls (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("BINDINGS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ATALHOS", 10, cr[CR_YELLOW]);
 
-    MN_DrTextACentered("MOUSE CONFIGURATION", 40, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURACAO DO MOUSE", 40, cr[CR_YELLOW]);
 
     DrawSlider(&ID_Def_Controls, 4, 16, mouseSensitivity, false, 3);
     M_ID_HandleSliderMouseControl(66, 60, 132, &mouseSensitivity, false, 0, 15);
@@ -2050,30 +2050,30 @@ static void M_Draw_ID_Controls (void)
                                 LINE_ALPHA(10));
 
     // Mouse look
-    sprintf(str, mouse_look ? "ON" : "OFF");
+    sprintf(str, mouse_look ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 130,
                         mouse_look ? cr[CR_GREEN_HX] : cr[CR_RED],
                             mouse_look ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(11));
 
     // Vertical mouse movement
-    sprintf(str, mouse_novert ? "OFF" : "ON");
+    sprintf(str, mouse_novert ? "DESL." : "LIG.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 140,
                         mouse_novert ? cr[CR_RED] : cr[CR_GREEN_HX],
                             mouse_novert ? cr[CR_RED_BRIGHT] : cr[CR_GREEN_HX_BRIGHT],
                                 LINE_ALPHA(12));
 
     // Invert vertical axis
-    sprintf(str, mouse_y_invert ? "ON" : "OFF");
+    sprintf(str, mouse_y_invert ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 150,
                         mouse_y_invert ? cr[CR_GREEN_HX] : cr[CR_RED],
                             mouse_y_invert ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(13));
 
-    MN_DrTextACentered("MISCELLANEOUS", 160, cr[CR_YELLOW]);
+    MN_DrTextACentered("DIVERSOS", 160, cr[CR_YELLOW]);
 
     // Permanent "noartiskip" mode
-    sprintf(str, ctrl_noartiskip ? "ON" : "OFF");
+    sprintf(str, ctrl_noartiskip ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 170,
                         ctrl_noartiskip ? cr[CR_GREEN_HX] : cr[CR_RED],
                             ctrl_noartiskip ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -2119,19 +2119,19 @@ static void M_ID_Controls_NoArtiSkip (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_1[] = {
-    { ITT_EFUNC, "MOVE FORWARD",    M_Bind_MoveForward,  0, MENU_NONE },
-    { ITT_EFUNC, "MOVE BACKWARD",   M_Bind_MoveBackward, 0, MENU_NONE },
-    { ITT_EFUNC, "TURN LEFT",       M_Bind_TurnLeft,     0, MENU_NONE },
-    { ITT_EFUNC, "TURN RIGHT",      M_Bind_TurnRight,    0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE LEFT",     M_Bind_StrafeLeft,   0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE RIGHT",    M_Bind_StrafeRight,  0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE ON",       M_Bind_StrafeOn,     0, MENU_NONE },
-    { ITT_EFUNC, "SPEED ON",        M_Bind_SpeedOn,      0, MENU_NONE },
-    { ITT_EFUNC, "JUMP",            M_Bind_Jump,         0, MENU_NONE },
-    { ITT_EFUNC, "180 DEGREE TURN", M_Bind_180Turn,      0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA FRENTE",    M_Bind_MoveForward,  0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA TRAS",   M_Bind_MoveBackward, 0, MENU_NONE },
+    { ITT_EFUNC, "VIRAR A ESQUERDA",       M_Bind_TurnLeft,     0, MENU_NONE },
+    { ITT_EFUNC, "VIRAR A DIREITA",      M_Bind_TurnRight,    0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ ESQUERDA",     M_Bind_StrafeLeft,   0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ DIREITA",    M_Bind_StrafeRight,  0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR MOVER LATERAL",       M_Bind_StrafeOn,     0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR CORRIDA",        M_Bind_SpeedOn,      0, MENU_NONE },
+    { ITT_EFUNC, "PULAR",            M_Bind_Jump,         0, MENU_NONE },
+    { ITT_EFUNC, "GIRAR 180 GRAUS", M_Bind_180Turn,      0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,                0, MENU_NONE },
-    { ITT_EFUNC, "FIRE/ATTACK",     M_Bind_FireAttack,   0, MENU_NONE },
-    { ITT_EFUNC, "USE",             M_Bind_Use,          0, MENU_NONE },
+    { ITT_EFUNC, "ATIRAR / ATACAR",     M_Bind_FireAttack,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR",             M_Bind_Use,          0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_1 = {
@@ -2149,7 +2149,7 @@ static void M_Draw_ID_Keybinds_1 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("MOVEMENT", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("MOVIMENTO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_up);
     M_DrawBindKey(1, 30, key_down);
@@ -2162,7 +2162,7 @@ static void M_Draw_ID_Keybinds_1 (void)
     M_DrawBindKey(8, 100, key_jump);
     M_DrawBindKey(9, 110, key_180turn);
 
-    MN_DrTextACentered("ACTION", 120, cr[CR_YELLOW]);
+    MN_DrTextACentered("ACAO", 120, cr[CR_YELLOW]);
 
     M_DrawBindKey(11, 130, key_fire);
     M_DrawBindKey(12, 140, key_use);
@@ -2235,17 +2235,17 @@ static void M_Bind_Use (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_2[] = {
-    { ITT_EFUNC, "LOOK UP",         M_Bind_LookUp,     0, MENU_NONE },
-    { ITT_EFUNC, "LOOK DOWN",       M_Bind_LookDown,   0, MENU_NONE },
-    { ITT_EFUNC, "CENTER VIEW",     M_Bind_LookCenter, 0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR P/ CIMA",         M_Bind_LookUp,     0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR P/ BAIXO",       M_Bind_LookDown,   0, MENU_NONE },
+    { ITT_EFUNC, "CENTRALIZAR VISAO",     M_Bind_LookCenter, 0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "FLY UP",          M_Bind_FlyUp,      0, MENU_NONE },
-    { ITT_EFUNC, "FLY DOWN",        M_Bind_FlyDown,    0, MENU_NONE },
-    { ITT_EFUNC, "STOP FLYING",     M_Bind_FlyCenter,  0, MENU_NONE },
+    { ITT_EFUNC, "VOAR P/ CIMA",          M_Bind_FlyUp,      0, MENU_NONE },
+    { ITT_EFUNC, "VOAR P/ BAIXO",        M_Bind_FlyDown,    0, MENU_NONE },
+    { ITT_EFUNC, "PARAR DE VOAR",     M_Bind_FlyCenter,  0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY LEFT",  M_Bind_InvLeft,    0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY RIGHT", M_Bind_InvRight,   0, MENU_NONE },
-    { ITT_EFUNC, "USE ARTIFACT",    M_Bind_UseArti,    0, MENU_NONE },
+    { ITT_EFUNC, "INVENTARIO ESQUERDA",  M_Bind_InvLeft,    0, MENU_NONE },
+    { ITT_EFUNC, "INVENTARIO DIREITA", M_Bind_InvRight,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR ARTEFATO",    M_Bind_UseArti,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_2 = {
@@ -2263,19 +2263,19 @@ static void M_Draw_ID_Keybinds_2 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("VIEW", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("VISAO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_lookup);
     M_DrawBindKey(1, 30, key_lookdown);
     M_DrawBindKey(2, 40, key_lookcenter);
 
-    MN_DrTextACentered("FLYING", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("VOO", 50, cr[CR_YELLOW]);
 
     M_DrawBindKey(4, 60, key_flyup);
     M_DrawBindKey(5, 70, key_flydown);
     M_DrawBindKey(6, 80, key_flycenter);
 
-    MN_DrTextACentered("INVENTORY", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("INVENTARIO", 90, cr[CR_YELLOW]);
 
     M_DrawBindKey(8, 100, key_invleft);
     M_DrawBindKey(9, 110, key_invright);
@@ -2334,21 +2334,21 @@ static void M_Bind_UseArti (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_3[] = {
-    { ITT_EFUNC, "ALWAYS RUN",              M_Bind_AlwaysRun,     0, MENU_NONE },
-    { ITT_EFUNC, "MOUSE LOOK",              M_Bind_MouseLook,     0, MENU_NONE },
-    { ITT_EFUNC, "VERTICAL MOUSE MOVEMENT", M_Bind_NoVert,        0, MENU_NONE },
+    { ITT_EFUNC, "SEMPRE CORRER",              M_Bind_AlwaysRun,     0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR COM O MOUSE",              M_Bind_MouseLook,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVIMENTO VERTICAL DO MOUSE", M_Bind_NoVert,        0, MENU_NONE },
     { ITT_EMPTY, NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_EFUNC, "GO TO PREVIOUS LEVEL",    M_Bind_PrevLevel,     0, MENU_NONE },
-    { ITT_EFUNC, "RESTART LEVEL/DEMO",      M_Bind_RestartLevel,  0, MENU_NONE },
-    { ITT_EFUNC, "GO TO NEXT LEVEL",        M_Bind_NextLevel,     0, MENU_NONE },
-    { ITT_EFUNC, "DEMO FAST-FORWARD",       M_Bind_FastForward,   0, MENU_NONE },
-    { ITT_EFUNC, "FLIP LEVEL HORIZONTALLY", M_Bind_FlipLevels,    0, MENU_NONE },
-    { ITT_EFUNC, "TOGGLE EXTENDED HUD",     M_Bind_ExtendedHUD,   0, MENU_NONE },
+    { ITT_EFUNC, "IR PARA FASE ANTERIOR",    M_Bind_PrevLevel,     0, MENU_NONE },
+    { ITT_EFUNC, "REINICIAR FASE/DEMO",      M_Bind_RestartLevel,  0, MENU_NONE },
+    { ITT_EFUNC, "IR PARA PROXIMA FASE",        M_Bind_NextLevel,     0, MENU_NONE },
+    { ITT_EFUNC, "AVANCO RAPIDO DA DEMO",       M_Bind_FastForward,   0, MENU_NONE },
+    { ITT_EFUNC, "ESPELHAR FASE HORIZONTALMENTE", M_Bind_FlipLevels,    0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR HUD EXTENDIDO",     M_Bind_ExtendedHUD,   0, MENU_NONE },
     { ITT_EMPTY, NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_EFUNC, "SPECTATOR MODE",          M_Bind_SpectatorMode, 0, MENU_NONE },
-    { ITT_EFUNC, "FREEZE MODE",             M_Bind_FreezeMode,    0, MENU_NONE },
-    { ITT_EFUNC, "NOTARGET MODE",           M_Bind_NotargetMode,  0, MENU_NONE },
-    { ITT_EFUNC, "BUDDHA MODE",             M_Bind_BuddhaMode,    0, MENU_NONE },
+    { ITT_EFUNC, "MODO ESPECTADOR",          M_Bind_SpectatorMode, 0, MENU_NONE },
+    { ITT_EFUNC, "MODO CONGELAR",             M_Bind_FreezeMode,    0, MENU_NONE },
+    { ITT_EFUNC, "MODO SEM ALVO",           M_Bind_NotargetMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO BUDA",             M_Bind_BuddhaMode,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_3 = {
@@ -2366,7 +2366,7 @@ static void M_Draw_ID_Keybinds_3 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("ADVANCED MOVEMENT", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("MOVIMENTO AVANCADO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_autorun);
     M_DrawBindKey(1, 30, key_mouse_look);
@@ -2465,14 +2465,14 @@ static MenuItem_t ID_Menu_Keybinds_4[] = {
     { ITT_EFUNC, "WEAPON 2",             M_Bind_Weapon2,    0, MENU_NONE },
     { ITT_EFUNC, "WEAPON 3",             M_Bind_Weapon3,    0, MENU_NONE },
     { ITT_EFUNC, "WEAPON 4",             M_Bind_Weapon4,    0, MENU_NONE },
-    { ITT_EFUNC, "PREVIOUS WEAPON",      M_Bind_PrevWeapon, 0, MENU_NONE },
-    { ITT_EFUNC, "NEXT WEAPON",          M_Bind_NextWeapon, 0, MENU_NONE },
+    { ITT_EFUNC, "ARMA ANTERIOR",      M_Bind_PrevWeapon, 0, MENU_NONE },
+    { ITT_EFUNC, "PROXIMA ARMA",          M_Bind_NextWeapon, 0, MENU_NONE },
     { ITT_EMPTY, NULL,                   NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "QUARTZ FLASK",         M_Bind_Quartz,     0, MENU_NONE },
-    { ITT_EFUNC, "MYSTIC URN",           M_Bind_Urn,        0, MENU_NONE },
-    { ITT_EFUNC, "FLECHETTE",            M_Bind_Flechette,  0, MENU_NONE },
-    { ITT_EFUNC, "DISK OF REPULSTION",   M_Bind_Disk,       0, MENU_NONE },
-    { ITT_EFUNC, "ICON OF THE DEFENDER", M_Bind_Icon,       0, MENU_NONE },
+    { ITT_EFUNC, "FRASCO DE QUARTZO",         M_Bind_Quartz,     0, MENU_NONE },
+    { ITT_EFUNC, "URNA MISTICA",           M_Bind_Urn,        0, MENU_NONE },
+    { ITT_EFUNC, "BOMBA DE VENENO",            M_Bind_Flechette,  0, MENU_NONE },
+    { ITT_EFUNC, "DISCO DA REPULSAO",   M_Bind_Disk,       0, MENU_NONE },
+    { ITT_EFUNC, "ICONE DO DEFENSOR", M_Bind_Icon,       0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_4 = {
@@ -2490,7 +2490,7 @@ static void M_Draw_ID_Keybinds_4 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("WEAPONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARMAS", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_weapon1);
     M_DrawBindKey(1, 30, key_weapon2);
@@ -2499,7 +2499,7 @@ static void M_Draw_ID_Keybinds_4 (void)
     M_DrawBindKey(4, 60, key_prevweapon);
     M_DrawBindKey(5, 70, key_nextweapon);
 
-    MN_DrTextACentered("ARTIFACTS", 80, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARTEFATOS", 80, cr[CR_YELLOW]);
 
     M_DrawBindKey(7, 90, key_arti_health);
     M_DrawBindKey(8, 100, key_arti_urn);
@@ -2570,17 +2570,17 @@ static void M_Bind_Icon (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_5[] = {
-    { ITT_EFUNC, "PORKALATOR",          M_Bind_Porkalator, 0, MENU_NONE },
-    { ITT_EFUNC, "CHAOS DEVICE",        M_Bind_Chaos,      0, MENU_NONE },
-    { ITT_EFUNC, "BANISHMENT DEVICE",   M_Bind_Banishment, 0, MENU_NONE },
-    { ITT_EFUNC, "WINGS OF WRATH",      M_Bind_Wings,      0, MENU_NONE },
-    { ITT_EFUNC, "DARK SERVANT",        M_Bind_Servant,    0, MENU_NONE },
-    { ITT_EFUNC, "DRAGONSKIN BRACERS",  M_Bind_Bracers,    0, MENU_NONE },
-    { ITT_EFUNC, "BOOTS OF SPEED",      M_Bind_Boots,      0, MENU_NONE },
-    { ITT_EFUNC, "TORCH",               M_Bind_Torch,      0, MENU_NONE },
-    { ITT_EFUNC, "KRATER OF MIGHT",     M_Bind_Krater,     0, MENU_NONE },
-    { ITT_EFUNC, "MYSTIC AMBIT INCANT", M_Bind_Incant,     0, MENU_NONE },    
-    { ITT_EFUNC, "ONE OF EACH",         M_Bind_AllArti,    0, MENU_NONE },
+    { ITT_EFUNC, "PORCALIZADOR",          M_Bind_Porkalator, 0, MENU_NONE },
+    { ITT_EFUNC, "ARTEFATO DO CAOS",        M_Bind_Chaos,      0, MENU_NONE },
+    { ITT_EFUNC, "ARTEFATO DO BANIMENTO",   M_Bind_Banishment, 0, MENU_NONE },
+    { ITT_EFUNC, "ASAS DA IRA",      M_Bind_Wings,      0, MENU_NONE },
+    { ITT_EFUNC, "SERVO DAS TREVAS",        M_Bind_Servant,    0, MENU_NONE },
+    { ITT_EFUNC, "BRACELETES DE DRAGAO",  M_Bind_Bracers,    0, MENU_NONE },
+    { ITT_EFUNC, "BOTAS DA VELOCIDADE",      M_Bind_Boots,      0, MENU_NONE },
+    { ITT_EFUNC, "TOCHA",               M_Bind_Torch,      0, MENU_NONE },
+    { ITT_EFUNC, "CRATERA DE PODER",     M_Bind_Krater,     0, MENU_NONE },
+    { ITT_EFUNC, "ENCANTAMENTO MISTICO", M_Bind_Incant,     0, MENU_NONE },    
+    { ITT_EFUNC, "UM DE CADA",         M_Bind_AllArti,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_5 = {
@@ -2598,7 +2598,7 @@ static void M_Draw_ID_Keybinds_5 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("ARTIFACTS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARTEFATOS", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_arti_egg);
     M_DrawBindKey(1, 30, key_arti_teleport);
@@ -2675,17 +2675,17 @@ static void M_Bind_AllArti (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_6[] = {
-    { ITT_EFUNC, "TOGGLE MAP",         M_Bind_ToggleMap,   0, MENU_NONE },
-    { ITT_EFUNC, "ZOOM IN",            M_Bind_ZoomIn,      0, MENU_NONE },
-    { ITT_EFUNC, "ZOOM OUT",           M_Bind_ZoomOut,     0, MENU_NONE },
-    { ITT_EFUNC, "MAXIMUM ZOOM OUT",   M_Bind_MaxZoom,     0, MENU_NONE },
-    { ITT_EFUNC, "FOLLOW MODE",        M_Bind_FollowMode,  0, MENU_NONE },
-    { ITT_EFUNC, "ROTATE MODE",        M_Bind_RotateMode,  0, MENU_NONE },
-    { ITT_EFUNC, "OVERLAY MODE",       M_Bind_OverlayMode, 0, MENU_NONE },
-    { ITT_EFUNC, "MOUSE PANNING MODE", M_Bind_PanMode,     0, MENU_NONE },
-    { ITT_EFUNC, "TOGGLE GRID",        M_Bind_ToggleGrid,  0, MENU_NONE },
-    { ITT_EFUNC, "MARK LOCATION",      M_Bind_AddMark,     0, MENU_NONE },
-    { ITT_EFUNC, "CLEAR ALL MARKS",    M_Bind_ClearMarks,  0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR MAPA",         M_Bind_ToggleMap,   0, MENU_NONE },
+    { ITT_EFUNC, "APROXIMAR",            M_Bind_ZoomIn,      0, MENU_NONE },
+    { ITT_EFUNC, "AFASTAR",           M_Bind_ZoomOut,     0, MENU_NONE },
+    { ITT_EFUNC, "ZOOM MAXIMO",   M_Bind_MaxZoom,     0, MENU_NONE },
+    { ITT_EFUNC, "MODO SEGUIR",        M_Bind_FollowMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO GIRAR",        M_Bind_RotateMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO SOBREPOSICAO",       M_Bind_OverlayMode, 0, MENU_NONE },
+    { ITT_EFUNC, "MODO DE PANORAMICA COM MOUSE", M_Bind_PanMode,     0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR GRADE",        M_Bind_ToggleGrid,  0, MENU_NONE },
+    { ITT_EFUNC, "MARCAR LOCAL",      M_Bind_AddMark,     0, MENU_NONE },
+    { ITT_EFUNC, "LIMPAR TODAS AS MARCAS",    M_Bind_ClearMarks,  0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_6 = {
@@ -2703,7 +2703,7 @@ static void M_Draw_ID_Keybinds_6 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("AUTOMAP", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUTOMAPA", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_map_toggle);
     M_DrawBindKey(1, 30, key_map_zoomin);
@@ -2780,18 +2780,18 @@ static void M_Bind_ClearMarks (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_7[] = {
-    {ITT_EFUNC, "HELP SCREEN",     M_Bind_HelpScreen,     0, MENU_NONE},
-    {ITT_EFUNC, "SAVE GAME",       M_Bind_SaveGame,       0, MENU_NONE},
-    {ITT_EFUNC, "LOAD GAME",       M_Bind_LoadGame,       0, MENU_NONE},
-    {ITT_EFUNC, "SOUND VOLUME",    M_Bind_SoundVolume,    0, MENU_NONE},
-    {ITT_EFUNC, "SUICIDE",         M_Bind_Suicide,        0, MENU_NONE},
-    {ITT_EFUNC, "QUICK SAVE",      M_Bind_QuickSave,      0, MENU_NONE},
-    {ITT_EFUNC, "END GAME",        M_Bind_EndGame,        0, MENU_NONE},
-    {ITT_EFUNC, "TOGGLE MESSAGES", M_Bind_ToggleMessages, 0, MENU_NONE},
-    {ITT_EFUNC, "QUICK LOAD",      M_Bind_QuickLoad,      0, MENU_NONE},
-    {ITT_EFUNC, "QUIT GAME",       M_Bind_QuitGame,       0, MENU_NONE},
-    {ITT_EFUNC, "TOGGLE GAMMA",    M_Bind_ToggleGamma,    0, MENU_NONE},
-    {ITT_EFUNC, "MULTIPLAYER SPY", M_Bind_MultiplayerSpy, 0, MENU_NONE}
+    {ITT_EFUNC, "TELA DE AJUDA",     M_Bind_HelpScreen,     0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR JOGO",       M_Bind_SaveGame,       0, MENU_NONE},
+    {ITT_EFUNC, "CARREGAR JOGO",       M_Bind_LoadGame,       0, MENU_NONE},
+    {ITT_EFUNC, "VOLUME DO SOM",    M_Bind_SoundVolume,    0, MENU_NONE},
+    {ITT_EFUNC, "SUICIDIO",         M_Bind_Suicide,        0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR RAPIDO",      M_Bind_QuickSave,      0, MENU_NONE},
+    {ITT_EFUNC, "ENCERRAR PARTIDA",        M_Bind_EndGame,        0, MENU_NONE},
+    {ITT_EFUNC, "ATIVAR/DESATIVAR MENSAGENS", M_Bind_ToggleMessages, 0, MENU_NONE},
+    {ITT_EFUNC, "CARREGAR RAPIDO",      M_Bind_QuickLoad,      0, MENU_NONE},
+    {ITT_EFUNC, "SAIR DO JOGO",       M_Bind_QuitGame,       0, MENU_NONE},
+    {ITT_EFUNC, "AJUSTAR GAMA",    M_Bind_ToggleGamma,    0, MENU_NONE},
+    {ITT_EFUNC, "ESPIAR MULTIJOGADOR", M_Bind_MultiplayerSpy, 0, MENU_NONE}
 };
 
 static Menu_t ID_Def_Keybinds_7 = {
@@ -2809,7 +2809,7 @@ static void M_Draw_ID_Keybinds_7 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("FUNCTION KEYS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("TECLAS DE FUNCAO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_menu_help);
     M_DrawBindKey(1, 30, key_menu_save);
@@ -2893,15 +2893,15 @@ static void M_Bind_MultiplayerSpy (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_8[] = {
-    {ITT_EFUNC, "PAUSE GAME",            M_Bind_Pause,          0, MENU_NONE},
-    {ITT_EFUNC, "SAVE A SCREENSHOT",     M_Bind_SaveScreenshot, 0, MENU_NONE},
-    {ITT_EFUNC, "DISPLAY LAST MESSAGE",  M_Bind_LastMessage,    0, MENU_NONE},
-    {ITT_EFUNC, "FINISH DEMO RECORDING", M_Bind_FinishDemo,     0, MENU_NONE},
-	{ITT_EFUNC, "SWITCH SOUNDTRACK",     M_Bind_SwitchOST,      0, MENU_NONE},
+    {ITT_EFUNC, "PAUSAR JOGO",            M_Bind_Pause,          0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR CAPTURA DE TELA",     M_Bind_SaveScreenshot, 0, MENU_NONE},
+    {ITT_EFUNC, "EXIBIR ULTIMA MENSAGEM",  M_Bind_LastMessage,    0, MENU_NONE},
+    {ITT_EFUNC, "FINALIZAR GRAVACAO DE DEMO", M_Bind_FinishDemo,     0, MENU_NONE},
+	{ITT_EFUNC, "TROCAR TRILHA SONORA",     M_Bind_SwitchOST,      0, MENU_NONE},
     {ITT_EMPTY, NULL,                    NULL,                  0, MENU_NONE},
-    {ITT_EFUNC, "SEND MESSAGE",          M_Bind_SendMessage,    0, MENU_NONE},
+    {ITT_EFUNC, "ENVIAR MENSAGEM",          M_Bind_SendMessage,    0, MENU_NONE},
     {ITT_EMPTY, NULL,                    NULL,                  0, MENU_NONE},
-    {ITT_EFUNC, "RESET BINDINGS TO DEFAULT", M_Bind_Reset,      0, MENU_NONE},
+    {ITT_EFUNC, "RESTAURAR VINCULOS PADRAO", M_Bind_Reset,      0, MENU_NONE},
     /*
     {ITT_EFUNC, "- TO PLAYER 1",         M_Bind_ToPlayer1,      0, MENU_NONE},
     {ITT_EFUNC, "- TO PLAYER 2",         M_Bind_ToPlayer2,      0, MENU_NONE},
@@ -2929,7 +2929,7 @@ static void M_Draw_ID_Keybinds_8 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("SHORTCUT KEYS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("TECLAS DE ATALHO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_pause);
     M_DrawBindKey(1, 30, key_menu_screenshot);
@@ -2937,11 +2937,11 @@ static void M_Draw_ID_Keybinds_8 (void)
     M_DrawBindKey(3, 50, key_demo_quit);
 	M_DrawBindKey(4, 60, key_switch_ost);
 
-    MN_DrTextACentered("MULTIPLAYER", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("MULTIJOGADOR", 70, cr[CR_YELLOW]);
 
     M_DrawBindKey(6, 80, key_multi_msg);
 
-    MN_DrTextACentered("RESET", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("RESTAURAR", 90, cr[CR_YELLOW]);
     
     /*
     M_DrawBindKey(6, 80, key_multi_msgplayer[0]);
@@ -3017,22 +3017,22 @@ static void M_Bind_Reset (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_MouseBinds[] = {
-    { ITT_EFUNC, "FIRE/ATTACK",               M_Bind_M_FireAttack,     0, MENU_NONE },
-    { ITT_EFUNC, "MOVE FORWARD",              M_Bind_M_MoveForward,    0, MENU_NONE },
-    { ITT_EFUNC, "MOVE BACKWARD",             M_Bind_M_MoveBackward,   0, MENU_NONE },
-    { ITT_EFUNC, "USE",                       M_Bind_M_Use,            0, MENU_NONE },
-    { ITT_EFUNC, "JUMP",                      M_Bind_M_Jump,           0, MENU_NONE },    
-    { ITT_EFUNC, "SPEED ON",                  M_Bind_M_SpeedOn,        0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE ON",                 M_Bind_M_StrafeOn,       0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE LEFT",               M_Bind_M_StrafeLeft,     0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE RIGHT",              M_Bind_M_StrafeRight,    0, MENU_NONE },
+    { ITT_EFUNC, "ATIRAR / ATACAR",               M_Bind_M_FireAttack,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA FRENTE",              M_Bind_M_MoveForward,    0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA TRAS",             M_Bind_M_MoveBackward,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR",                       M_Bind_M_Use,            0, MENU_NONE },
+    { ITT_EFUNC, "PULAR",                      M_Bind_M_Jump,           0, MENU_NONE },    
+    { ITT_EFUNC, "ATIVAR CORRIDA",                  M_Bind_M_SpeedOn,        0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR MOVER LATERAL",                 M_Bind_M_StrafeOn,       0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ ESQUERDA",               M_Bind_M_StrafeLeft,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ DIREITA",              M_Bind_M_StrafeRight,    0, MENU_NONE },
     { ITT_EFUNC, "PREV WEAPON",               M_Bind_M_PrevWeapon,     0, MENU_NONE },
-    { ITT_EFUNC, "NEXT WEAPON",               M_Bind_M_NextWeapon,     0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY LEFT",            M_Bind_M_InventoryLeft,  0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY RIGHT",           M_Bind_M_InventoryRight, 0, MENU_NONE },
-    { ITT_EFUNC, "USE ARTIFACT",              M_Bind_M_UseArtifact,    0, MENU_NONE },
+    { ITT_EFUNC, "PROXIMA ARMA",               M_Bind_M_NextWeapon,     0, MENU_NONE },
+    { ITT_EFUNC, "INVENTARIO ESQUERDA",            M_Bind_M_InventoryLeft,  0, MENU_NONE },
+    { ITT_EFUNC, "INVENTARIO DIREITA",           M_Bind_M_InventoryRight, 0, MENU_NONE },
+    { ITT_EFUNC, "USAR ARTEFATO",              M_Bind_M_UseArtifact,    0, MENU_NONE },
     { ITT_EMPTY, NULL,                        NULL,                    0, MENU_NONE },
-    { ITT_EFUNC, "RESET BINDINGS TO DEFAULT", M_Bind_M_Reset,          0, MENU_NONE },
+    { ITT_EFUNC, "RESTAURAR VINCULOS PADRAO", M_Bind_M_Reset,          0, MENU_NONE },
 };
 
 static Menu_t ID_Def_MouseBinds = {
@@ -3065,7 +3065,7 @@ static void M_Draw_ID_MouseBinds (void)
     M_DrawBindButton(12, 140, mousebinvright);
     M_DrawBindButton(13, 150, mousebuseartifact);
 
-    MN_DrTextACentered("RESET", 160, cr[CR_YELLOW]);
+    MN_DrTextACentered("RESTAURAR", 160, cr[CR_YELLOW]);
 
     M_DrawBindFooter(NULL, false);
 }
@@ -3152,16 +3152,16 @@ static void M_Bind_M_Reset (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Widgets[] = {
-    { ITT_LRFUNC2, "COLOR SCHEME",     M_ID_Widget_Colors,    0, MENU_NONE },
-    { ITT_LRFUNC2, "PLACEMENT",        M_ID_Widget_Placement, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ALIGNMENT",        M_ID_Widget_Alignment, 0, MENU_NONE },
-    { ITT_LRFUNC2, "TOTAL KILLS",      M_ID_Widget_Kills,     0, MENU_NONE },
-    { ITT_LRFUNC2, "TOTAL TIME",       M_ID_Widget_TotalTime, 0, MENU_NONE },
-    { ITT_LRFUNC2, "LEVEL NAME",       M_ID_Widget_LevelName, 0, MENU_NONE },
-    { ITT_LRFUNC2, "PLAYER COORDS",    M_ID_Widget_Coords,    0, MENU_NONE },
-    { ITT_LRFUNC2, "PLAYER SPEED",     M_ID_Widget_Speed,     0, MENU_NONE },
-    { ITT_LRFUNC2, "RENDER COUNTERS",  M_ID_Widget_Render,    0, MENU_NONE },
-    { ITT_LRFUNC2, "TARGET'S HEALTH",  M_ID_Widget_Health,    0, MENU_NONE },
+    { ITT_LRFUNC2, "ESQUEMA DE CORES",     M_ID_Widget_Colors,    0, MENU_NONE },
+    { ITT_LRFUNC2, "POSICIONAMENTO",        M_ID_Widget_Placement, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ALINHAMENTO",        M_ID_Widget_Alignment, 0, MENU_NONE },
+    { ITT_LRFUNC2, "INIMIGOS MORTOS",      M_ID_Widget_Kills,     0, MENU_NONE },
+    { ITT_LRFUNC2, "TEMPO TOTAL",       M_ID_Widget_TotalTime, 0, MENU_NONE },
+    { ITT_LRFUNC2, "NOME DA FASE",       M_ID_Widget_LevelName, 0, MENU_NONE },
+    { ITT_LRFUNC2, "COORD. DO JOGADOR",    M_ID_Widget_Coords,    0, MENU_NONE },
+    { ITT_LRFUNC2, "VELOC. DO JOGADOR",     M_ID_Widget_Speed,     0, MENU_NONE },
+    { ITT_LRFUNC2, "CONTADORES DE RENDER.",  M_ID_Widget_Render,    0, MENU_NONE },
+    { ITT_LRFUNC2, "VIDA DO ALVO",  M_ID_Widget_Health,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Widgets = {
@@ -3183,21 +3183,21 @@ static void M_Draw_ID_Widgets (void)
     sprintf(str, widget_scheme == 1 ? "INTER"  :
                  widget_scheme == 2 ? "CRISPY" :
                  widget_scheme == 3 ? "WOOF"   :
-                 widget_scheme == 4 ? "DSDA"   : "OFF");
+                 widget_scheme == 4 ? "DSDA"   : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         widget_scheme ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             widget_scheme ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(0));
 
     // Placement
-    sprintf(str, widget_location ? "TOP" : "BOTTOM");
+    sprintf(str, widget_location ? "TOPO" : "BASE");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         cr[CR_GREEN_HX],
                             cr[CR_GREEN_HX_BRIGHT],
                                 LINE_ALPHA(1));
 
     // Alignment
-    sprintf(str, widget_alignment == 1 ? "STATUS BAR" :
+    sprintf(str, widget_alignment == 1 ? "BARRA DE STATUS" :
                  widget_alignment == 2 ? "AUTO" : "LEFT");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         widget_alignment ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
@@ -3205,54 +3205,54 @@ static void M_Draw_ID_Widgets (void)
                                 LINE_ALPHA(2));
 
     // Total kills
-    sprintf(str, widget_kis == 1 ? "ALWAYS"  :
-                 widget_kis == 2 ? "AUTOMAP" : "OFF");
+    sprintf(str, widget_kis == 1 ? "SEMPRE"  :
+                 widget_kis == 2 ? "AUTOMAPA" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         widget_kis ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             widget_kis ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(3));
 
     // Total time
-    sprintf(str, widget_totaltime ? "ALWAYS" : "AUTOMAP");
+    sprintf(str, widget_totaltime ? "SEMPRE" : "AUTOMAPA");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         widget_time ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_time ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
     // Level name
-    sprintf(str, widget_levelname ? "ALWAYS" : "AUTOMAP");
+    sprintf(str, widget_levelname ? "SEMPRE" : "AUTOMAPA");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         widget_levelname ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_levelname ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(5));
 
     // Player coords
-    sprintf(str, widget_coords == 1 ? "ALWAYS"  :
-                 widget_coords == 2 ? "AUTOMAP" : "OFF");
+    sprintf(str, widget_coords == 1 ? "SEMPRE"  :
+                 widget_coords == 2 ? "AUTOMAPA" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         widget_coords ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_coords ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
     // Player speed
-    sprintf(str, widget_speed ? "ON" : "OFF");
+    sprintf(str, widget_speed ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 90,
                         widget_speed ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_speed ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(7));
 
     // Render counters
-    sprintf(str, widget_render ? "ON" : "OFF");
+    sprintf(str, widget_render ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         widget_render ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_render ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
     // Target's health
-    sprintf(str, widget_health == 1 ? "TOP" :
+    sprintf(str, widget_health == 1 ? "TOPO" :
                  widget_health == 2 ? "TOP+NAME" :
-                 widget_health == 3 ? "BOTTOM" :
-                 widget_health == 4 ? "BOTTOM+NAME" : "OFF");
+                 widget_health == 3 ? "BASE" :
+                 widget_health == 4 ? "BOTTOM+NAME" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         widget_health ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_health ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3314,15 +3314,15 @@ static void M_ID_Widget_Health (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Automap[] = {
-    { ITT_LRFUNC2, "LINE SMOOTHING",        M_ID_Automap_Smooth,   0, MENU_NONE },
-    { ITT_LRFUNC1, "LINE THICKNESS",        M_ID_Automap_Thick,    0, MENU_NONE },
-    { ITT_LRFUNC2, "SQUARE ASPECT RATIO",   M_ID_Automap_Square,   0, MENU_NONE },
-    { ITT_LRFUNC2, "BACKGROUND STYLE",      M_ID_Automap_TexturedBg, 0, MENU_NONE },
-    { ITT_LRFUNC2, "SCROLL BACKGROUND",     M_ID_Automap_ScrollBg, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ROTATE MODE",           M_ID_Automap_Rotate,   0, MENU_NONE },
-    { ITT_LRFUNC2, "OVERLAY MODE",          M_ID_Automap_Overlay,  0, MENU_NONE },
-    { ITT_LRFUNC1, "OVERLAY SHADING LEVEL", M_ID_Automap_Shading,  0, MENU_NONE },
-    { ITT_LRFUNC2, "MOUSE PANNING MODE",    M_ID_Automap_Pan,      0, MENU_NONE },
+    { ITT_LRFUNC2, "SUAVIZACAO DE LINHAS",        M_ID_Automap_Smooth,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ESPESSURA DAS LINHAS",        M_ID_Automap_Thick,    0, MENU_NONE },
+    { ITT_LRFUNC2, "PROPORCAO DE TELA QUADRADA",   M_ID_Automap_Square,   0, MENU_NONE },
+    { ITT_LRFUNC2, "ESTILO DE FUNDO",      M_ID_Automap_TexturedBg, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ROLAR FUNDO",     M_ID_Automap_ScrollBg, 0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO GIRAR",           M_ID_Automap_Rotate,   0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO SOBREPOSICAO",          M_ID_Automap_Overlay,  0, MENU_NONE },
+    { ITT_LRFUNC1, "NIVEL DE SOMBRA DA SOBREPOSICAO", M_ID_Automap_Shading,  0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO DE PANORAMICA COM MOUSE",    M_ID_Automap_Pan,      0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Automap = {
@@ -3338,13 +3338,13 @@ static void M_Draw_ID_Automap (void)
 {
     char str[32];
     const char *thickness[] = {
-        "DEFAULT","2X","3X","4X","5X","6X","AUTO"
+        "PADRAO","2X","3X","4X","5X","6X","AUTO"
     };
 
-    MN_DrTextACentered("AUTOMAP", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUTOMAPA", 10, cr[CR_YELLOW]);
 
     // Line smoothing
-    sprintf(str, automap_smooth_hr ? "ON" : "OFF");
+    sprintf(str, automap_smooth_hr ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         automap_smooth_hr ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_smooth_hr ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3358,35 +3358,35 @@ static void M_Draw_ID_Automap (void)
                                 LINE_ALPHA(1));
 
     // Square aspect ratio
-    sprintf(str, automap_square ? "ON" : "OFF");
+    sprintf(str, automap_square ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         automap_square ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_square ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
     // Background style
-    sprintf(str, automap_textured_bg ? "TEXTURED" : "BLACK");
+    sprintf(str, automap_textured_bg ? "TEXTURIZADO" : "PRETO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         !automap_textured_bg ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             !automap_textured_bg ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(3));
 
     // Scroll background
-    sprintf(str, automap_scroll_bg ? "ON" : "OFF");
+    sprintf(str, automap_scroll_bg ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         automap_scroll_bg ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_scroll_bg ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
     // Rotate mode
-    sprintf(str, automap_rotate ? "ON" : "OFF");
+    sprintf(str, automap_rotate ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         automap_rotate ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_rotate ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(5));
 
     // Overlay mode
-    sprintf(str, automap_overlay ? "ON" : "OFF");
+    sprintf(str, automap_overlay ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         automap_overlay ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_overlay ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3404,7 +3404,7 @@ static void M_Draw_ID_Automap (void)
                                 LINE_ALPHA(7));
 
     // Mouse panning mode
-    sprintf(str, automap_mouse_pan ? "ON" : "OFF");
+    sprintf(str, automap_mouse_pan ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         automap_mouse_pan ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             automap_mouse_pan ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3466,15 +3466,15 @@ static void M_ID_Automap_Pan (int choice)
 
 static MenuItem_t ID_Menu_Gameplay_1[] = {
     { ITT_LRFUNC1, "BRIGHTMAPS",                M_ID_Brightmaps,      0, MENU_NONE },
-    { ITT_LRFUNC2, "EXTRA TRANSLUCENCY",        M_ID_Translucency,    0, MENU_NONE },
-    { ITT_LRFUNC1, "DIMINISHED LIGHTING",       M_ID_SmoothLighting,  0, MENU_NONE },
-    { ITT_LRFUNC1, "PALETTE FADING EFFECT",     M_ID_SmoothPalette,   0, MENU_NONE },
-    { ITT_LRFUNC1, "LIQUIDS ANIMATION",         M_ID_SwirlingLiquids, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SKY DRAWING MODE",          M_ID_LinearSky,       0, MENU_NONE },
-    { ITT_LRFUNC1, "RANDOMLY MIRRORED CORPSES", M_ID_FlipCorpses,     0, MENU_NONE },
+    { ITT_LRFUNC2, "TRANSLUCIDEZ ADICIONAL",        M_ID_Translucency,    0, MENU_NONE },
+    { ITT_LRFUNC1, "ILUMINACAO REDUZIDA",       M_ID_SmoothLighting,  0, MENU_NONE },
+    { ITT_LRFUNC1, "EFEITO DE TRANSICAO DE PALETA",     M_ID_SmoothPalette,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ANIMACAO DE LIQUIDOS",         M_ID_SwirlingLiquids, 0, MENU_NONE },
+    { ITT_LRFUNC1, "MODO DE RENDERIZACAO DO CEU",          M_ID_LinearSky,       0, MENU_NONE },
+    { ITT_LRFUNC1, "CORPOS ESPELHADOS ALEATORIAMENTE", M_ID_FlipCorpses,     0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC2, "SHAPE",                     M_ID_Crosshair,       0, MENU_NONE },
-    { ITT_LRFUNC2, "INDICATION",                M_ID_CrosshairColor,  0, MENU_NONE },
+    { ITT_LRFUNC2, "FORMATO",                     M_ID_Crosshair,       0, MENU_NONE },
+    { ITT_LRFUNC2, "INDICACAO",                M_ID_CrosshairColor,  0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */      M_ScrollGameplay,     0, MENU_NONE },
@@ -3497,36 +3497,36 @@ static void M_Draw_ID_Gameplay_1 (void)
     MN_DrTextACentered("VISUAL", 10, cr[CR_YELLOW]);
 
     // Brightmaps
-    sprintf(str, vis_brightmaps ? "ON" : "OFF");
+    sprintf(str, vis_brightmaps ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         vis_brightmaps ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_brightmaps ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(0));
 
     // Translucency
-    sprintf(str, vis_translucency == 1 ? "ADDITIVE" :
-                 vis_translucency == 2 ? "BLENDING" : "OFF");
+    sprintf(str, vis_translucency == 1 ? "ADITIVA" :
+                 vis_translucency == 2 ? "MISTURA" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         vis_translucency ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_translucency ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(1));
 
     // Diminished lighting
-    sprintf(str, vis_smooth_light ? "SMOOTH" : "ORIGINAL");
+    sprintf(str, vis_smooth_light ? "SUAVE" : "ORIGINAL");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         vis_smooth_light ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_smooth_light ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
     // Palette fading effect
-    sprintf(str, vis_smooth_palette ? "SMOOTH" : "ORIGINAL");
+    sprintf(str, vis_smooth_palette ? "SUAVE" : "ORIGINAL");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         vis_smooth_palette ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_smooth_palette ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(3));
 
     // Liquids animation
-    sprintf(str, vis_swirling_liquids ? "IMPROVED" : "ORIGINAL");
+    sprintf(str, vis_swirling_liquids ? "MELHORADA" : "ORIGINAL");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         vis_swirling_liquids ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_swirling_liquids ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3540,31 +3540,31 @@ static void M_Draw_ID_Gameplay_1 (void)
                                 LINE_ALPHA(5));
 
     // Randomly mirrored corpses
-    sprintf(str, vis_flip_corpses ? "ON" : "OFF");
+    sprintf(str, vis_flip_corpses ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         vis_flip_corpses ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             vis_flip_corpses ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("CROSSHAIR", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("MIRA", 90, cr[CR_YELLOW]);
 
     // Crosshair shape
-    sprintf(str, xhair_draw == 1 ? "CROSS 1" :
-                 xhair_draw == 2 ? "CROSS 2" :
+    sprintf(str, xhair_draw == 1 ? "CRUZ 1" :
+                 xhair_draw == 2 ? "CRUZ 2" :
                  xhair_draw == 3 ? "X" :
-                 xhair_draw == 4 ? "CIRCLE" :
-                 xhair_draw == 5 ? "ANGLE" :
-                 xhair_draw == 6 ? "TRIANGLE" :
-                 xhair_draw == 7 ? "DOT" : "OFF");
+                 xhair_draw == 4 ? "CIRCULO" :
+                 xhair_draw == 5 ? "ANGULO" :
+                 xhair_draw == 6 ? "TRIANGULO" :
+                 xhair_draw == 7 ? "PONTO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         xhair_draw ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             xhair_draw ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
     // Crosshair indication
-    sprintf(str, xhair_color == 1 ? "HEALTH" :
-                 xhair_color == 2 ? "TARGET HIGHLIGHT" :
-                 xhair_color == 3 ? "TGT HIGHLIGHT+HEALTH" : "STATIC");
+    sprintf(str, xhair_color == 1 ? "VIDA" :
+                 xhair_color == 2 ? "ALVO DESTACADO" :
+                 xhair_color == 3 ? "ALVO DESTACADO+VIDA" : "ESTATICO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         xhair_color ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             xhair_color ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3647,16 +3647,16 @@ static void M_ID_CrosshairColor (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Gameplay_2[] = {
-    { ITT_LRFUNC1, "FULL SCREEN LAYOUT",          M_ID_Layout,       0, MENU_NONE },
-    { ITT_LRFUNC1, "COLORED ELEMENTS",            M_ID_ColoredSBar,  0, MENU_NONE },
-    { ITT_LRFUNC2, "4TH WEAPON WIDGET",           M_ID_WeaponWidget, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ARMOR ICON",                  M_ID_ArmorIcon,    0, MENU_NONE },
-    { ITT_LRFUNC2, "ARMOR VALUE",                 M_ID_ArmorValue,   0, MENU_NONE },
+    { ITT_LRFUNC1, "LAYOUT DE TELA CHEIA",          M_ID_Layout,       0, MENU_NONE },
+    { ITT_LRFUNC1, "ELEMENTOS COLORIDOS",            M_ID_ColoredSBar,  0, MENU_NONE },
+    { ITT_LRFUNC2, "WIDGET DA 4a ARMA",           M_ID_WeaponWidget, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ICONE DA ARMADURA",                  M_ID_ArmorIcon,    0, MENU_NONE },
+    { ITT_LRFUNC2, "VALOR DA ARMADURA",                 M_ID_ArmorValue,   0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
-    { ITT_LRFUNC1, "SFX ATTENUATION AXISES",      M_ID_ZAxisSfx,     0, MENU_NONE },
+    { ITT_LRFUNC1, "EIXOS DE ATENUACAO SFX",      M_ID_ZAxisSfx,     0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
-    { ITT_LRFUNC1, "CORPSES SLIDING FROM LEDGES", M_ID_Torque,       0, MENU_NONE },
-    { ITT_LRFUNC1, "IMITATE PLAYER'S BREATHING",  M_ID_Breathing,    0, MENU_NONE },
+    { ITT_LRFUNC1, "CORPOS DESLIZANDO DE BEIRADAS", M_ID_Torque,       0, MENU_NONE },
+    { ITT_LRFUNC1, "IMITAR RESPIRACAO DO JOGADOR",  M_ID_Breathing,    0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
@@ -3677,7 +3677,7 @@ static void M_Draw_ID_Gameplay_2 (void)
     char str[32];
     Gameplay_Cur = (MenuType_t)MENU_ID_GAMEPLAY2;
 
-    MN_DrTextACentered("STATUS BAR", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("BARRA DE STATUS", 10, cr[CR_YELLOW]);
 
     // Full screen layout
     sprintf(str, st_fullscreen_layout == 1 ? "REMASTER" : "ORIGINAL");
@@ -3687,35 +3687,35 @@ static void M_Draw_ID_Gameplay_2 (void)
                                 LINE_ALPHA(0));
 
     // Colored elements
-    sprintf(str, st_colored_stbar ? "ON" : "OFF");
+    sprintf(str, st_colored_stbar ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 30,
                         st_colored_stbar ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             st_colored_stbar ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(1));
 
     // Fourth weapon widget
-    sprintf(str, st_weapon_widget == 1 ? "SOLID" :
-                 st_weapon_widget == 2 ? "TRANSLUCENT" : "OFF");
+    sprintf(str, st_weapon_widget == 1 ? "SOLIDO" :
+                 st_weapon_widget == 2 ? "TRANSLUCIDO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         st_weapon_widget ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             st_weapon_widget ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
     // Armor icon
-    sprintf(str, st_armor_icon ? "GENERIC" : "CLASS-BASED");
+    sprintf(str, st_armor_icon ? "GENERICA" : "BASEADA NA CLASSE");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         st_armor_icon ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             st_armor_icon ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(3));
 
     // Armor value
-    sprintf(str, st_armor_value ? "PERCENT" : "CLASS");
+    sprintf(str, st_armor_value ? "PORCENTAGEM" : "CLASSE");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         st_armor_value ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             st_armor_value ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
-    MN_DrTextACentered("AUDIBLE", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUDIO", 70, cr[CR_YELLOW]);
 
     // Sfx Attenuation Axises
     sprintf(str, aud_z_axis_sfx ? "X/Y/Z" : "X/Y");
@@ -3724,17 +3724,17 @@ static void M_Draw_ID_Gameplay_2 (void)
                             aud_z_axis_sfx ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("PHYSICAL", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("FISICA", 90, cr[CR_YELLOW]);
 
     // Corpses sliding from ledges
-    sprintf(str, phys_torque ? "ON" : "OFF");
+    sprintf(str, phys_torque ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         phys_torque ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             phys_torque ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
     // Imitate player's breathing
-    sprintf(str, phys_breathing ? "ON" : "OFF");
+    sprintf(str, phys_breathing ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         phys_breathing ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             phys_breathing ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3791,17 +3791,17 @@ static void M_ID_Breathing (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Gameplay_3[] = {
-    { ITT_LRFUNC2, "DEFAULT PLAYER CLASS",         M_ID_DefaultClass,   0, MENU_NONE },
-    { ITT_LRFUNC2, "DEFAULT SKILL LEVEL",          M_ID_DefaultSkill,   0, MENU_NONE },
-    { ITT_LRFUNC1, "FLIP LEVELS HORIZONTALLY",     M_ID_FlipLevels,     0, MENU_NONE },
-    { ITT_LRFUNC2, "ON DEATH ACTION",              M_ID_OnDeathAction,  0, MENU_NONE },
+    { ITT_LRFUNC2, "CLASSE DE JOGADOR PADRAO",         M_ID_DefaultClass,   0, MENU_NONE },
+    { ITT_LRFUNC2, "DIFICULDADE PADRAO",          M_ID_DefaultSkill,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ESPELHAR FASES HORIZONTALMENTE",     M_ID_FlipLevels,     0, MENU_NONE },
+    { ITT_LRFUNC2, "ACAO AO MORRER",              M_ID_OnDeathAction,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW DEMO TIMER",              M_ID_DemoTimer,      0, MENU_NONE },
-    { ITT_LRFUNC1, "TIMER DIRECTION",              M_ID_TimerDirection, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SHOW PROGRESS BAR",            M_ID_ProgressBar,    0, MENU_NONE },
-    { ITT_LRFUNC1, "PLAY INTERNAL DEMOS",          M_ID_InternalDemos,  0, MENU_NONE },
+    { ITT_LRFUNC2, "EXIBIR CRONOMETRO DA DEMO",              M_ID_DemoTimer,      0, MENU_NONE },
+    { ITT_LRFUNC1, "DIRECAO DO CRONOMETRO",              M_ID_TimerDirection, 0, MENU_NONE },
+    { ITT_LRFUNC1, "EXIBIR BARRA DE PROGRESSO",            M_ID_ProgressBar,    0, MENU_NONE },
+    { ITT_LRFUNC1, "REPRODUZIR DEMOS INTERNAS",          M_ID_InternalDemos,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
-    { ITT_LRFUNC1, "AUTOMATIC STRAFE 50",          M_ID_AutomaticSR50,  0, MENU_NONE },
+    { ITT_LRFUNC1, "MOVER LATERAL 50 AUTOMATICO",          M_ID_AutomaticSR50,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */         M_ScrollGameplay,    0, MENU_NONE },
 };
@@ -3818,12 +3818,12 @@ static Menu_t ID_Def_Gameplay_3 = {
 static void M_Draw_ID_Gameplay_3 (void)
 {
     char str[32];
-    const char *const DefClassName[3] = { "FIGHTER", "CLERIC", "MAGE", };
-    const char *const DefSkillName[5] = { "EASIEST", "EASY", "NORMAL", "HARD", "HARDEST" };
+    const char *const DefClassName[3] = { "GUERREIRO", "CLERIGO", "MAGO", };
+    const char *const DefSkillName[5] = { "APRENDIZ", "FACIL", "NORMAL", "DIFICIL", "LENDARIO" };
 
     Gameplay_Cur = (MenuType_t)MENU_ID_GAMEPLAY3;
 
-    MN_DrTextACentered("GAMEPLAY", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("JOGABILIDADE", 10, cr[CR_YELLOW]);
 
     // Default player class
     M_snprintf(str, sizeof(str), "%s", DefClassName[gp_default_class]);
@@ -3850,7 +3850,7 @@ static void M_Draw_ID_Gameplay_3 (void)
                                 LINE_ALPHA(1));
 
     // Flip levels horizontally
-    sprintf(str, gp_flip_levels ? "ON" : "OFF");
+    sprintf(str, gp_flip_levels ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         gp_flip_levels ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             gp_flip_levels ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3858,7 +3858,7 @@ static void M_Draw_ID_Gameplay_3 (void)
 
     // On death action
     sprintf(str, gp_death_use_action == 1 ? "LAST SAVE" :
-                 gp_death_use_action == 2 ? "NOTHING" : "DEFAULT");
+                 gp_death_use_action == 2 ? "NOTHING" : "PADRAO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         gp_death_use_action ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             gp_death_use_action ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3869,37 +3869,37 @@ static void M_Draw_ID_Gameplay_3 (void)
     // Show Demo timer
     sprintf(str, demo_timer == 1 ? "PLAYBACK" : 
                  demo_timer == 2 ? "RECORDING" : 
-                 demo_timer == 3 ? "ALWAYS" : "OFF");
+                 demo_timer == 3 ? "SEMPRE" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         demo_timer ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             demo_timer ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(5));
 
     // Timer direction
-    sprintf(str, demo_timerdir ? "BACKWARD" : "FORWARD");
+    sprintf(str, demo_timerdir ? "REGRESSIVO" : "PROGRESSIVO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         demo_timer ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             demo_timer ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
     // Show progress bar
-    sprintf(str, demo_bar ? "ON" : "OFF");
+    sprintf(str, demo_bar ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 90,
                         demo_bar ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             demo_bar ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(7));
 
     // Play internal demos
-    sprintf(str, demo_internal ? "ON" : "OFF");
+    sprintf(str, demo_internal ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         demo_internal ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             demo_internal ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
-    MN_DrTextACentered("COMPATIBILITY-BREAKING", 110, cr[CR_YELLOW]);
+    MN_DrTextACentered("QUEBRA DE COMPATIBILIDADE", 110, cr[CR_YELLOW]);
 
     // Automatic strafe 50
-    sprintf(str, compat_auto_sr50 ? "ON" : "OFF");
+    sprintf(str, compat_auto_sr50 ? "LIG." : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 120,
                         compat_auto_sr50 ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             compat_auto_sr50 ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3983,16 +3983,16 @@ static void M_ScrollGameplay (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Misc[] = {
-    { ITT_LRFUNC2, "PALETTE FLASH EFFECTS", M_ID_Misc_A11yPalFlash,   0, MENU_NONE },
-    { ITT_LRFUNC1, "MOVEMENT BOBBING",      M_ID_Misc_A11yMoveBob,    0, MENU_NONE },
-    { ITT_LRFUNC1, "WEAPON BOBBING",        M_ID_Misc_A11yWeaponBob,  0, MENU_NONE },
-    { ITT_LRFUNC1, "QUAKE INTENSITY",       M_ID_Misc_A11yQuakeInten, 0, MENU_NONE },
-    { ITT_LRFUNC2, "COLORBLIND FILTER",     M_ID_Misc_A11yColorblind, 0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITOS DE FLASH DA PALETA", M_ID_Misc_A11yPalFlash,   0, MENU_NONE },
+    { ITT_LRFUNC1, "OSCILACAO DE MOVIMENTO",      M_ID_Misc_A11yMoveBob,    0, MENU_NONE },
+    { ITT_LRFUNC1, "OSCILACAO DA ARMA",        M_ID_Misc_A11yWeaponBob,  0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE DE TREMOR",       M_ID_Misc_A11yQuakeInten, 0, MENU_NONE },
+    { ITT_LRFUNC2, "FILTRO PARA DALTONISMO",     M_ID_Misc_A11yColorblind, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                    NULL,                     0, MENU_NONE },
-    { ITT_LRFUNC2, "AUTOLOAD WAD FILES",    M_ID_Misc_AutoloadWAD,    0, MENU_NONE },
+    { ITT_LRFUNC2, "CARREGAR WADS AUTOMATICAMENTE",    M_ID_Misc_AutoloadWAD,    0, MENU_NONE },
     { ITT_EMPTY,   NULL,                    NULL,                     0, MENU_NONE },
-    { ITT_LRFUNC2, "HIGHLIGHTING EFFECT",   M_ID_Misc_Hightlight,     0, MENU_NONE },
-    { ITT_LRFUNC1, "ESC KEY BEHAVIOUR",     M_ID_Misc_MenuEscKey,     0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITO DE DESTAQUE",   M_ID_Misc_Hightlight,     0, MENU_NONE },
+    { ITT_LRFUNC1, "FUNCAO DA TECLA ESC",     M_ID_Misc_MenuEscKey,     0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Misc = {
@@ -4008,20 +4008,20 @@ static void M_Draw_ID_Misc (void)
 {
     char str[32];
     const char *bobpercent[] = {
-        "OFF","5%","10%","15%","20%","25%","30%","35%","40%","45%","50%",
+        "DESL.","5%","10%","15%","20%","25%","30%","35%","40%","45%","50%",
         "55%","60%","65%","70%","75%","80%","85%","90%","95%","100%"
     };
     const char *colorblind_name[] = {
-        "NONE","PROTANOPIA","PROTANOMALY","DEUTERANOPIA","DEUTERANOMALY",
+        "NENHUM","PROTANOPIA","PROTANOMALY","DEUTERANOPIA","DEUTERANOMALY",
         "TRITANOPIA","TRITANOMALY","ACHROMATOPSIA","ACHROMATOMALY"
     };
 
-    MN_DrTextACentered("ACCESSIBILITY", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ACESSIBILIDADE", 10, cr[CR_YELLOW]);
 
     // Palette flash effects
-    sprintf(str, a11y_pal_flash == 1 ? "HALVED" :
-                 a11y_pal_flash == 2 ? "QUARTERED" :
-                 a11y_pal_flash == 3 ? "OFF" : "DEFAULT");
+    sprintf(str, a11y_pal_flash == 1 ? "METADE" :
+                 a11y_pal_flash == 2 ? "UM QUARTO" :
+                 a11y_pal_flash == 3 ? "DESL." : "PADRAO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 20,
                         a11y_pal_flash == 1 ? cr[CR_YELLOW] :
                         a11y_pal_flash == 2 ? cr[CR_ORANGE_HR] :
@@ -4065,11 +4065,11 @@ static void M_Draw_ID_Misc (void)
                             a11y_colorblind ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
-    MN_DrTextACentered("AUTOLOAD", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("CARREGAMENTO AUTOMATICO", 70, cr[CR_YELLOW]);
 
     // Autoload WAD files
-    sprintf(str, autoload_wad == 1 ? "IWAD ONLY" :
-                 autoload_wad == 2 ? "IWAD AND PWAD" : "OFF");
+    sprintf(str, autoload_wad == 1 ? "APENAS IWAD" :
+                 autoload_wad == 2 ? "IWAD E PWAD" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         autoload_wad == 1 ? cr[CR_YELLOW] :
                         autoload_wad == 2 ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
@@ -4077,11 +4077,11 @@ static void M_Draw_ID_Misc (void)
                             autoload_wad == 2 ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("MENU SETTINGS", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIG. DO MENU", 90, cr[CR_YELLOW]);
 
     // Highlighting effect
-    sprintf(str, menu_highlight == 1 ? "ANIMATED" :
-                 menu_highlight == 2 ? "STATIC" : "OFF");
+    sprintf(str, menu_highlight == 1 ? "ANIMADO" :
+                 menu_highlight == 2 ? "ESTATICO" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 100,
                         menu_highlight == 1 ? cr[CR_GREEN_HX] :
                         menu_highlight == 2 ? cr[CR_YELLOW] : cr[CR_DARKRED],
@@ -4090,7 +4090,7 @@ static void M_Draw_ID_Misc (void)
                                 LINE_ALPHA(8));
 
     // ESC key behaviour
-    sprintf(str, menu_esc_key ? "GO BACK" : "CLOSE MENU" );
+    sprintf(str, menu_esc_key ? "VOLTAR" : "FECHAR MENU" );
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         menu_esc_key ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             menu_esc_key ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -4100,8 +4100,8 @@ static void M_Draw_ID_Misc (void)
     if (CurrentItPos == 3)
     {
         const char *colorblind_hint[] = {
-            "","RED-BLIND","RED-WEAK","GREEN-BLIND","GREEN-WEAK",
-            "BLUE-BLIND","BLUE-WEAK","MONOCHROMACY","BLUE CONE MONOCHROMACY"
+            "","PROTANOPIA","PROTANOMALIA","DEUTERANOPIA","DEUTERANOMALIA",
+            "TRITANOPIA","TRITANOMALIA","MONOCROMACIA","MONOCROMACIA DE CONE AZUL"
         };
 
         MN_DrTextACentered(colorblind_hint[a11y_colorblind], 130, cr[CR_LIGHTGRAY_DARK]);
@@ -4110,10 +4110,10 @@ static void M_Draw_ID_Misc (void)
     // [PN] Added explanations for autoload variables
     if (CurrentItPos == 5)
     {
-        const char *off = "AUTOLOAD IS DISABLED";
-        const char *first_line = "AUTOLOAD AND FOLDER CREATION";
-        const char *second_line1 = "ONLY ALLOWED FOR IWAD FILES";
-        const char *second_line2 = "ALLOWED FOR BOTH IWAD AND PWAD FILES";
+        const char *off = "CARREGAMENTO AUTOMATICO DESATIVADO";
+        const char *first_line = "CARREGAMENTO AUTO. E CRIACAO DE PASTA";
+        const char *second_line1 = "PERMITIDO APENAS PARA ARQUIVOS IWAD";
+        const char *second_line2 = "PERMITIDO PARA ARQUIVOS IWAD E PWAD";
 
         switch (autoload_wad)
         {
@@ -4867,13 +4867,13 @@ static void M_ID_HandleSliderMouseControl (int x, int y, int width, void *value,
 
 static const char *QuitEndMsg[] = {
     "ARE YOU SURE YOU WANT TO QUIT?",
-    "ARE YOU SURE YOU WANT TO END THE GAME?",
-    "DO YOU WANT TO QUICKSAVE THE GAME NAMED",
-    "DO YOU WANT TO QUICKLOAD THE GAME NAMED",
-    "ARE YOU SURE YOU WANT TO SUICIDE?",
-    "DO YOU WANT TO DELETE THE GAME NAMED",        // [crispy] typeofask 6 (delete a savegame)
-    "RESET KEYBOARD BINDINGS TO DEFAULT VALUES?",  // [JN] typeofask 7 (reset keyboard binds)
-    "RESET MOUSE BINDINGS TO DEFAULT VALUES?",     // [JN] typeofask 8 (reset mouse binds)
+    "TEM CERTEZA QUE DESEJA ENCERRAR A PARTIDA?",
+    "DESEJA FAZER UM SALVAMENTO RAPIDO DO JOGO",
+    "DESEJA CARREGAR RAPIDAMENTE O JOGO",
+    "TEM CERTEZA QUE QUER SE MATAR?",
+    "DESEJA APAGAR O JOGO SALVO",        // [crispy] typeofask 6 (delete a savegame)
+    "RESTAURAR TECLAS PARA OS VALORES PADRAO?",  // [JN] typeofask 7 (reset keyboard binds)
+    "RESTAURAR MOUSE PARA OS VALORES PADRAO?",     // [JN] typeofask 8 (reset mouse binds)
     "",                                            // [JN] typeofask 9 (setting reset), full text in drawer below
 };
 
@@ -4911,7 +4911,7 @@ void MN_Drawer(void)
             if (typeofask == 7 || typeofask == 8)
             {
                 M_FillBackground();
-                MN_DrTextACentered("PRESS Y OR N.", 100, NULL);
+                MN_DrTextACentered("PRESSIONE S OU N.", 100, NULL);
             }
 
             MN_DrTextA(QuitEndMsg[typeofask - 1], 160 -
@@ -4939,10 +4939,10 @@ void MN_Drawer(void)
             }
             if (typeofask == 9)
             {
-                MN_DrTextACentered("GRAPHICAL, AUDIO AND GAMEPLAY SETTINGS", 70, NULL);
-                MN_DrTextACentered("WILL BE RESET TO DEFAULT VALUES.", 80, NULL);
-                MN_DrTextACentered("ARE YOU SURE WANT TO CONTINUE?", 100, NULL);
-                MN_DrTextACentered("PRESS Y OR N.", 120, NULL);
+                MN_DrTextACentered("CONFIGURACOES GRAFICAS, DE AUDIO E DE JOGO", 70, NULL);
+                MN_DrTextACentered("SERAO RESTAURADAS PARA OS VALORES PADRAO.", 80, NULL);
+                MN_DrTextACentered("TEM CERTEZA QUE DESEJA CONTINUAR?", 100, NULL);
+                MN_DrTextACentered("PRESSIONE S OU N.", 120, NULL);
             }
         }
         return;
@@ -5046,7 +5046,7 @@ static void DrawClassMenu(void)
         "m_mwalk1"
     };
 
-    MN_DrTextB("CHOOSE CLASS:", 34, 24, NULL);
+    MN_DrTextB("SUA CLASSE:", 34, 24, NULL);
     class = (pclass_t) CurrentMenu->items[CurrentItPos].choice;
     if (class < 3)
     {
@@ -5065,7 +5065,7 @@ static void DrawClassMenu(void)
 
 static void DrawSkillMenu(void)
 {
-    MN_DrTextB("CHOOSE SKILL LEVEL:", 74, 16, NULL);
+    MN_DrTextB("DIFICULDADE:", 74, 16, NULL);
 }
 
 //---------------------------------------------------------------------------
@@ -5135,7 +5135,7 @@ static void DrawLoadMenu(void)
 {
     const char *title;
 
-    title = quickloadTitle ? "QUICK LOAD GAME" : "LOAD GAME";
+    title = quickloadTitle ? "CARREGAMENTO RAPIDO" : "CARREGAR JOGO";
 
     if (!slottextloaded)
     {
@@ -5156,7 +5156,7 @@ static void DrawSaveMenu(void)
 {
     const char *title;
 
-    title = quicksaveTitle ? "QUICK SAVE GAME" : "SAVE GAME";
+    title = quicksaveTitle ? "SALVAMENTO RAPIDO" : "SALVAR JOGO";
 
     if (!slottextloaded)
     {
@@ -5272,11 +5272,11 @@ static void DrawOptionsMenu(void)
 {
     if (msg_show)
     {
-        MN_DrTextB("ON", 196, 50, NULL);
+        MN_DrTextB("LIG.", 196, 50, NULL);
     }
     else
     {
-        MN_DrTextB("OFF", 196, 50, NULL);
+        MN_DrTextB("DESL.", 196, 50, NULL);
     }
     DrawSlider(&OptionsMenu, 3, 10, mouseSensitivity, true, 0);
 }
@@ -5371,11 +5371,11 @@ static void SCMessages(int choice)
     msg_show ^= 1;
     if (msg_show)
     {
-        CT_SetMessage(&players[consoleplayer], "MESSAGES ON", true, NULL);
+        CT_SetMessage(&players[consoleplayer], "MENSAGENS LIGADAS", true, NULL);
     }
     else
     {
-        CT_SetMessage(&players[consoleplayer], "MESSAGES OFF", true, NULL);
+        CT_SetMessage(&players[consoleplayer], "MENSAGENS DESLIGADAS", true, NULL);
     }
     S_StartSound(NULL, SFX_CHAT);
 }
@@ -5396,15 +5396,15 @@ static boolean SCNetCheck(int choice)
     {
         case 1:                // new game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T START A NEW GAME IN NETPLAY!", true, NULL);
+                          "NAO PODE INICIAR NOVO JOGO EM REDE!", true, NULL);
             break;
         case 2:                // load game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T LOAD A GAME IN NETPLAY!", true, NULL);
+                          "NAO PODE CARREGAR JOGO EM REDE!", true, NULL);
             break;
         case 3:                // end game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T END A GAME IN NETPLAY!", true, NULL);
+                          "NAO PODE ENCERRAR JOGO EM REDE!", true, NULL);
             break;
     }
     MenuActive = false;
@@ -5508,10 +5508,10 @@ static void SetDefaultSaveName(int slot)
 
 static const char *const class_str[NUMCLASSES] =
 {
-    "FIGHTER",
-    "CLERIC",
-    "MAGE",
-    "PIG",
+    "GUERREIRO",
+    "CLERIGO",
+    "MAGO",
+    "PORCO",
 };
 
 // [JN] Check if Save Game menu should be accessable.
@@ -5520,7 +5520,7 @@ static void SCSaveCheck(int choice)
     if (!usergame)
     {
         CT_SetMessage(&players[consoleplayer],
-                     "YOU CAN'T SAVE IF YOU AREN'T PLAYING", true, NULL);
+                     "NAO PODE SALVAR SE NAO ESTIVER JOGANDO", true, NULL);
     }
     else
     {
@@ -5591,7 +5591,7 @@ static void SCClass(int choice)
     if (netgame)
     {
         CT_SetMessage(&players[consoleplayer],
-                      "YOU CAN'T START A NEW GAME FROM WITHIN A NETGAME!",
+                      "NAO PODE INICIAR NOVO JOGO DENTRO DE UMA PARTIDA EM REDE!",
                      true, NULL);
         return;
     }
@@ -5600,35 +5600,35 @@ static void SCClass(int choice)
     {
         case PCLASS_FIGHTER:
             SkillMenu.x = 120;
-            SkillItems[0].text = "SQUIRE";
-            SkillItems[1].text = "KNIGHT";
-            SkillItems[2].text = "WARRIOR";
+            SkillItems[0].text = "ESCUDEIRO";
+            SkillItems[1].text = "CAVALEIRO";
+            SkillItems[2].text = "GUERREIRO";
             SkillItems[3].text = "BERSERKER";
-            SkillItems[4].text = "TITAN";
+            SkillItems[4].text = "TITA";
             break;
         case PCLASS_CLERIC:
             SkillMenu.x = 116;
-            SkillItems[0].text = "ALTAR BOY";
-            SkillItems[1].text = "ACOLYTE";
-            SkillItems[2].text = "PRIEST";
-            SkillItems[3].text = "CARDINAL";
-            SkillItems[4].text = "POPE";
+            SkillItems[0].text = "COROINHA";
+            SkillItems[1].text = "ACOLITO";
+            SkillItems[2].text = "SACERDOTE";
+            SkillItems[3].text = "CARDEAL";
+            SkillItems[4].text = "PAPA";
             break;
         case PCLASS_MAGE:
             SkillMenu.x = 112;
-            SkillItems[0].text = "APPRENTICE";
-            SkillItems[1].text = "ENCHANTER";
-            SkillItems[2].text = "SORCERER";
-            SkillItems[3].text = "WARLOCK";
-            SkillItems[4].text = "ARCHIMAGE";
+            SkillItems[0].text = "APRENDIZ";
+            SkillItems[1].text = "ENCANTADOR";
+            SkillItems[2].text = "FEITICEIRO";
+            SkillItems[3].text = "BRUXO";
+            SkillItems[4].text = "ARQUIMAGO";
             break;
         case PCLASS_RANDOM:
             SkillMenu.x = 38;
-            SkillItems[0].text = "THOU NEEDETH A WET-NURSE";
-            SkillItems[1].text = "YELLOWBELLIES-R-US";
-            SkillItems[2].text = "BRINGEST THEM ONETH";
-            SkillItems[3].text = "THOU ART A SMITE-MEISTER";
-            SkillItems[4].text = "BLACK PLAGUE POSSESSES THEE";
+            SkillItems[0].text = "PRECISAS DE UMA AMA-DE-LEITE";
+            SkillItems[1].text = "COVARDES E COMPANHIA";
+            SkillItems[2].text = "QUE VENHAM OS DESAFIOS";
+            SkillItems[3].text = "TU ES O MESTRE DA MATANCA";
+            SkillItems[4].text = "A PESTE NEGRA TE POSSUI";
             break;
     }
     SetMenu(MENU_SKILL);
@@ -5787,14 +5787,14 @@ static boolean MN_ID_TypeOfAsk (void)
 
         case 3:
             CT_SetMessage(&players[consoleplayer],
-                          "QUICKSAVING....", false, NULL);
+                          "SALVANDO RAPIDAMENTE....", false, NULL);
             FileMenuKeySteal = true;
             SCSaveGame(quicksave - 1);
             break;
 
         case 4:
             CT_SetMessage(&players[consoleplayer],
-                          "QUICKLOADING....", false, NULL);
+                          "CARREGANDO RAPIDAMENTE....", false, NULL);
             SCLoadGame(quickload - 1);
             break;
 
@@ -7549,7 +7549,7 @@ static void M_DrawBindKey (int itemNum, int yPos, int keyBind)
 
 static void M_DrawBindFooter (char *pagenum, boolean drawPages)
 {
-    const char *string = "PRESS ENTER TO BIND, DEL TO CLEAR";
+    const char *string = "PRESSIONE ENTER PARA VINCULAR, DEL PARA LIMPAR";
 
     if (drawPages)
     {
@@ -7579,14 +7579,14 @@ static void M_DrawBindFooter (char *pagenum, boolean drawPages)
 // -----------------------------------------------------------------------------
 
 static char *mouse_button_names[MAX_MOUSE_BUTTONS] = {
-		"LEFT BUTTON",
-		"RIGHT BUTTON",
-		"MIDDLE BUTTON",
-		"WHEEL UP",
-		"WHEEL DOWN",
-		"BUTTON #6",
-		"BUTTON #7",
-		"BUTTON #8"
+		"BOTAO ESQUERDO",
+		"BOTAO DIREITO",
+		"BOTAO DO MEIO",
+		"RODA P/ CIMA",
+		"RODA P/ BAIXO",
+		"BOTAO #6",
+		"BOTAO #7",
+		"BOTAO #8"
 };
 
 static char *M_NameMouseBind (int CurrentItPosOn, int btn)
@@ -7594,7 +7594,7 @@ static char *M_NameMouseBind (int CurrentItPosOn, int btn)
 	if (CurrentItPos == CurrentItPosOn && MouseIsBinding) return "?";  // Means binding now
 	if(btn == -1) return "---"; // Means empty
 	if(btn < MAX_MOUSE_BUTTONS) return mouse_button_names[btn];
-	return "UNKNOWN";
+	return "DESCONHECIDO";
 }
 
 // -----------------------------------------------------------------------------
@@ -7723,3 +7723,4 @@ static void M_ResetMouseBinds (void)
     mousebinvright = -1;
     mousebuseartifact = -1;
 }
+
