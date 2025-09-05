@@ -1103,7 +1103,7 @@ void G_DoLoadLevel(void)
 
     if (testcontrols)
     {
-        CT_SetMessage(&players[consoleplayer], "PRESS ESCAPE TO QUIT.", false, NULL);
+        CT_SetMessage(&players[consoleplayer], "PRESSIONE ESC PARA SAIR.", false, NULL);
     }
 }
 
@@ -1788,12 +1788,12 @@ void G_Ticker(void)
                         {
                             if (netgame)
                             {
-                                M_StringCopy(savedescription, "NET GAME",
+                                M_StringCopy(savedescription, "JOGO EM REDE",
                                              sizeof(savedescription));
                             }
                             else
                             {
-                                M_StringCopy(savedescription, "SAVE GAME",
+                                M_StringCopy(savedescription, "SALVAR JOGO",
                                              sizeof(savedescription));
                             }
                         }

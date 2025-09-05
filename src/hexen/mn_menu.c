@@ -2372,7 +2372,7 @@ static void M_Draw_ID_Keybinds_3 (void)
     M_DrawBindKey(1, 30, key_mouse_look);
     M_DrawBindKey(2, 40, key_novert);
 
-    MN_DrTextACentered("SPECIAL KEYS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("CHAVES ESPECIAIS", 50, cr[CR_YELLOW]);
 
     M_DrawBindKey(4, 60, key_prevlevel);
     M_DrawBindKey(5, 60, key_reloadlevel);
@@ -2381,7 +2381,7 @@ static void M_Draw_ID_Keybinds_3 (void)
     M_DrawBindKey(8, 90, key_flip_levels);
     M_DrawBindKey(9, 100, key_widget_enable);
 
-    MN_DrTextACentered("SPECIAL MODES", 110, cr[CR_YELLOW]);
+    MN_DrTextACentered("MODOS ESPECIAIS", 110, cr[CR_YELLOW]);
 
     M_DrawBindKey(11, 120, key_spectator);
     M_DrawBindKey(12, 130, key_freeze);
@@ -2461,10 +2461,10 @@ static void M_Bind_BuddhaMode (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_4[] = {
-    { ITT_EFUNC, "WEAPON 1",             M_Bind_Weapon1,    0, MENU_NONE },
-    { ITT_EFUNC, "WEAPON 2",             M_Bind_Weapon2,    0, MENU_NONE },
-    { ITT_EFUNC, "WEAPON 3",             M_Bind_Weapon3,    0, MENU_NONE },
-    { ITT_EFUNC, "WEAPON 4",             M_Bind_Weapon4,    0, MENU_NONE },
+    { ITT_EFUNC, "ARMA 1",             M_Bind_Weapon1,    0, MENU_NONE },
+    { ITT_EFUNC, "ARMA 2",             M_Bind_Weapon2,    0, MENU_NONE },
+    { ITT_EFUNC, "ARMA 3",             M_Bind_Weapon3,    0, MENU_NONE },
+    { ITT_EFUNC, "ARMA 4",             M_Bind_Weapon4,    0, MENU_NONE },
     { ITT_EFUNC, "ARMA ANTERIOR",      M_Bind_PrevWeapon, 0, MENU_NONE },
     { ITT_EFUNC, "PROXIMA ARMA",          M_Bind_NextWeapon, 0, MENU_NONE },
     { ITT_EMPTY, NULL,                   NULL,              0, MENU_NONE },
