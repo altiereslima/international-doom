@@ -884,12 +884,12 @@ static void M_DrawScrollPages (int x, int y, int itemOnGlow, const char *pagenum
 {
     char str[32];
 
-    MN_DrTextAGlow("SCROLL PAGES", x, y,
+    MN_DrTextAGlow("ROLAR PAGINAS", x, y,
                         cr[CR_MENU_DARK4],
                             cr[CR_MENU_DARK1],
                                 LINE_ALPHA(itemOnGlow));
 
-    M_snprintf(str, 32, "PAGE %s", pagenum);
+    M_snprintf(str, 32, "PAGINA %s", pagenum);
     MN_DrTextAGlow(str, M_ItemRightAlign(str), y,
                         cr[CR_MENU_DARK4],
                             cr[CR_MENU_DARK1],
@@ -992,7 +992,7 @@ static void M_Draw_ID_Video_1 (void)
                                 LINE_ALPHA(1));
 
     // Widescreen mode
-    sprintf(str, vid_widescreen == 1 ? "MATCH SCREEN" :
+    sprintf(str, vid_widescreen == 1 ? "MESMA DA TELA" :
                  vid_widescreen == 2 ? "16:10" :
                  vid_widescreen == 3 ? "16:9" :
                  vid_widescreen == 4 ? "21:9" :
@@ -1059,7 +1059,7 @@ static void M_Draw_ID_Video_1 (void)
 
         M_snprintf(width, 8, "%d", (ORIGWIDTH + (WIDESCREENDELTA*2)) * vid_resolution);
         M_snprintf(height, 8, "%d", (ORIGHEIGHT * vid_resolution));
-        resolution = M_StringJoin("CURRENT RESOLUTION: ", width, "X", height, NULL);
+        resolution = M_StringJoin("RESOLUCAO ATUAL: ", width, "X", height, NULL);
 
         MN_DrTextACentered(resolution, 125, cr[CR_LIGHTGRAY_DARK]);
         free(resolution);
@@ -1274,8 +1274,8 @@ static void M_Draw_ID_Video_2 (void)
                                 LINE_ALPHA(1));
 
     // Show banners
-    sprintf(str, vid_banners == 1 ? "SAVE/LOAD/TRAVEL" :
-                 vid_banners == 2 ? "TRAVEL ONLY" : "DESL.");
+    sprintf(str, vid_banners == 1 ? "SALVAR/CARREAR/VIAJAR" :
+                 vid_banners == 2 ? "APENAS AO VIAJAR" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         vid_banners == 1 ? cr[CR_GREEN_HX] :
                         vid_banners == 2 ? cr[CR_YELLOW] : cr[CR_DARKRED],
@@ -1539,8 +1539,8 @@ static void M_Draw_ID_Display (void)
                                 LINE_ALPHA(12));
 
     // Local time
-    sprintf(str, msg_local_time == 1 ? "12-HOUR FORMAT" :
-                 msg_local_time == 2 ? "24-HOUR FORMAT" : "DESL.");
+    sprintf(str, msg_local_time == 1 ? "FORMATO 12-HORAS" :
+                 msg_local_time == 2 ? "FORMATO 24-HORAS" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 150,
                         msg_local_time ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             msg_local_time ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -1663,7 +1663,7 @@ static void M_ID_Messages (int choice)
 {
     msg_show ^= 1;
     CT_SetMessage(&players[consoleplayer],
-                  msg_show ? "MENSAGENS LIGADAS" : "MENSAGENS DESLIGADAS", true, NULL);
+                  msg_show ? "MENSAGENS LIG." : "MENSAGENS DESL.", true, NULL);
     S_StartSound(NULL, SFX_DOOR_LIGHT_CLOSE);
 }
 
@@ -1970,8 +1970,8 @@ void M_ID_RemasterOST (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Controls[] = {
-    { ITT_EFUNC,   "KEYBOARD BINDINGS",       M_Choose_ID_Keybinds,       0, MENU_NONE          },
-    { ITT_SETMENU, "MOUSE BINDINGS",          NULL,                       0, MENU_ID_MOUSEBINDS },
+    { ITT_EFUNC,   "ATALHOS DO TECLADO",       M_Choose_ID_Keybinds,       0, MENU_NONE          },
+    { ITT_SETMENU, "ATALHOS DO MOUSE",          NULL,                       0, MENU_ID_MOUSEBINDS },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_SLDR,    "SENSIBILIDADE HORIZONTAL",  SCMouseSensi,               0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
@@ -2343,7 +2343,7 @@ static MenuItem_t ID_Menu_Keybinds_3[] = {
     { ITT_EFUNC, "IR PARA PROXIMA FASE",        M_Bind_NextLevel,     0, MENU_NONE },
     { ITT_EFUNC, "AVANCO RAPIDO DA DEMO",       M_Bind_FastForward,   0, MENU_NONE },
     { ITT_EFUNC, "ESPELHAR FASE HORIZONTALMENTE", M_Bind_FlipLevels,    0, MENU_NONE },
-    { ITT_EFUNC, "ATIVAR/DESATIVAR HUD EXTENDIDO",     M_Bind_ExtendedHUD,   0, MENU_NONE },
+    { ITT_EFUNC, "ALTERNAR HUD EXTENDIDO",     M_Bind_ExtendedHUD,   0, MENU_NONE },
     { ITT_EMPTY, NULL,                      NULL,                 0, MENU_NONE },
     { ITT_EFUNC, "MODO ESPECTADOR",          M_Bind_SpectatorMode, 0, MENU_NONE },
     { ITT_EFUNC, "MODO CONGELAR",             M_Bind_FreezeMode,    0, MENU_NONE },
@@ -2675,7 +2675,7 @@ static void M_Bind_AllArti (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_6[] = {
-    { ITT_EFUNC, "ATIVAR/DESATIVAR MAPA",         M_Bind_ToggleMap,   0, MENU_NONE },
+    { ITT_EFUNC, "ALTERNAR MAPA",         M_Bind_ToggleMap,   0, MENU_NONE },
     { ITT_EFUNC, "APROXIMAR",            M_Bind_ZoomIn,      0, MENU_NONE },
     { ITT_EFUNC, "AFASTAR",           M_Bind_ZoomOut,     0, MENU_NONE },
     { ITT_EFUNC, "ZOOM MAXIMO",   M_Bind_MaxZoom,     0, MENU_NONE },
@@ -2683,7 +2683,7 @@ static MenuItem_t ID_Menu_Keybinds_6[] = {
     { ITT_EFUNC, "MODO GIRAR",        M_Bind_RotateMode,  0, MENU_NONE },
     { ITT_EFUNC, "MODO SOBREPOSICAO",       M_Bind_OverlayMode, 0, MENU_NONE },
     { ITT_EFUNC, "MODO DE PANORAMICA COM MOUSE", M_Bind_PanMode,     0, MENU_NONE },
-    { ITT_EFUNC, "ATIVAR/DESATIVAR GRADE",        M_Bind_ToggleGrid,  0, MENU_NONE },
+    { ITT_EFUNC, "ALTERNAR GRADE",        M_Bind_ToggleGrid,  0, MENU_NONE },
     { ITT_EFUNC, "MARCAR LOCAL",      M_Bind_AddMark,     0, MENU_NONE },
     { ITT_EFUNC, "LIMPAR TODAS AS MARCAS",    M_Bind_ClearMarks,  0, MENU_NONE },
 };
@@ -2787,7 +2787,7 @@ static MenuItem_t ID_Menu_Keybinds_7[] = {
     {ITT_EFUNC, "SUICIDIO",         M_Bind_Suicide,        0, MENU_NONE},
     {ITT_EFUNC, "SALVAR RAPIDO",      M_Bind_QuickSave,      0, MENU_NONE},
     {ITT_EFUNC, "ENCERRAR PARTIDA",        M_Bind_EndGame,        0, MENU_NONE},
-    {ITT_EFUNC, "ATIVAR/DESATIVAR MENSAGENS", M_Bind_ToggleMessages, 0, MENU_NONE},
+    {ITT_EFUNC, "ALTERNAR MENSAGENS", M_Bind_ToggleMessages, 0, MENU_NONE},
     {ITT_EFUNC, "CARREGAR RAPIDO",      M_Bind_QuickLoad,      0, MENU_NONE},
     {ITT_EFUNC, "SAIR DO JOGO",       M_Bind_QuitGame,       0, MENU_NONE},
     {ITT_EFUNC, "AJUSTAR GAMA",    M_Bind_ToggleGamma,    0, MENU_NONE},
@@ -3198,7 +3198,7 @@ static void M_Draw_ID_Widgets (void)
 
     // Alignment
     sprintf(str, widget_alignment == 1 ? "BARRA DE STATUS" :
-                 widget_alignment == 2 ? "AUTO" : "LEFT");
+                 widget_alignment == 2 ? "AUTO" : "ESQUERDA");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         widget_alignment ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             widget_alignment ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
@@ -3250,9 +3250,9 @@ static void M_Draw_ID_Widgets (void)
 
     // Target's health
     sprintf(str, widget_health == 1 ? "TOPO" :
-                 widget_health == 2 ? "TOP+NAME" :
+                 widget_health == 2 ? "TOPO+NOME" :
                  widget_health == 3 ? "BASE" :
-                 widget_health == 4 ? "BOTTOM+NAME" : "DESL.");
+                 widget_health == 4 ? "BASE +NOME" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 110,
                         widget_health ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_health ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3465,7 +3465,7 @@ static void M_ID_Automap_Pan (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Gameplay_1[] = {
-    { ITT_LRFUNC1, "BRIGHTMAPS",                M_ID_Brightmaps,      0, MENU_NONE },
+    { ITT_LRFUNC1, "TEXTURAS BRILHANTES",                M_ID_Brightmaps,      0, MENU_NONE },
     { ITT_LRFUNC2, "TRANSLUCIDEZ ADICIONAL",        M_ID_Translucency,    0, MENU_NONE },
     { ITT_LRFUNC1, "ILUMINACAO REDUZIDA",       M_ID_SmoothLighting,  0, MENU_NONE },
     { ITT_LRFUNC1, "EFEITO DE TRANSICAO DE PALETA",     M_ID_SmoothPalette,   0, MENU_NONE },
@@ -3857,8 +3857,8 @@ static void M_Draw_ID_Gameplay_3 (void)
                                 LINE_ALPHA(2));
 
     // On death action
-    sprintf(str, gp_death_use_action == 1 ? "LAST SAVE" :
-                 gp_death_use_action == 2 ? "NOTHING" : "PADRAO");
+    sprintf(str, gp_death_use_action == 1 ? "ULTIMO SALVAMENTO" :
+                 gp_death_use_action == 2 ? "NENHUM" : "PADRAO");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         gp_death_use_action ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             gp_death_use_action ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3867,8 +3867,8 @@ static void M_Draw_ID_Gameplay_3 (void)
     MN_DrTextACentered("DEMOS", 60, cr[CR_YELLOW]);
 
     // Show Demo timer
-    sprintf(str, demo_timer == 1 ? "PLAYBACK" : 
-                 demo_timer == 2 ? "RECORDING" : 
+    sprintf(str, demo_timer == 1 ? "REPRODUZINDO" : 
+                 demo_timer == 2 ? "GRAVANDO" : 
                  demo_timer == 3 ? "SEMPRE" : "DESL.");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         demo_timer ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
@@ -4012,8 +4012,8 @@ static void M_Draw_ID_Misc (void)
         "55%","60%","65%","70%","75%","80%","85%","90%","95%","100%"
     };
     const char *colorblind_name[] = {
-        "NENHUM","PROTANOPIA","PROTANOMALY","DEUTERANOPIA","DEUTERANOMALY",
-        "TRITANOPIA","TRITANOMALY","ACHROMATOPSIA","ACHROMATOMALY"
+        "NENHUM","PROTANOPIA","PROTANOMALIA","DEUTERANOPIA","DEUTERANOMALIA",
+        "TRITANOPIA","TRITANOMALIA","ACROMATOPSIA","ACROMATOMALIA"
     };
 
     MN_DrTextACentered("ACESSIBILIDADE", 10, cr[CR_YELLOW]);
@@ -4911,7 +4911,7 @@ void MN_Drawer(void)
             if (typeofask == 7 || typeofask == 8)
             {
                 M_FillBackground();
-                MN_DrTextACentered("PRESSIONE S OU N.", 100, NULL);
+                MN_DrTextACentered("PRESSIONE Y OU N.", 100, NULL);
             }
 
             MN_DrTextA(QuitEndMsg[typeofask - 1], 160 -
@@ -4942,7 +4942,7 @@ void MN_Drawer(void)
                 MN_DrTextACentered("CONFIGURACOES GRAFICAS, DE AUDIO E DE JOGO", 70, NULL);
                 MN_DrTextACentered("SERAO RESTAURADAS PARA OS VALORES PADRAO.", 80, NULL);
                 MN_DrTextACentered("TEM CERTEZA QUE DESEJA CONTINUAR?", 100, NULL);
-                MN_DrTextACentered("PRESSIONE S OU N.", 120, NULL);
+                MN_DrTextACentered("PRESSIONE Y OU N.", 120, NULL);
             }
         }
         return;
@@ -5371,11 +5371,11 @@ static void SCMessages(int choice)
     msg_show ^= 1;
     if (msg_show)
     {
-        CT_SetMessage(&players[consoleplayer], "MENSAGENS LIGADAS", true, NULL);
+        CT_SetMessage(&players[consoleplayer], "MENSAGENS LIG.", true, NULL);
     }
     else
     {
-        CT_SetMessage(&players[consoleplayer], "MENSAGENS DESLIGADAS", true, NULL);
+        CT_SetMessage(&players[consoleplayer], "MENSAGENS DESL.", true, NULL);
     }
     S_StartSound(NULL, SFX_CHAT);
 }
@@ -5603,7 +5603,7 @@ static void SCClass(int choice)
             SkillItems[0].text = "ESCUDEIRO";
             SkillItems[1].text = "CAVALEIRO";
             SkillItems[2].text = "GUERREIRO";
-            SkillItems[3].text = "BERSERKER";
+            SkillItems[3].text = "FURIOSO";
             SkillItems[4].text = "TITA";
             break;
         case PCLASS_CLERIC:
@@ -5787,14 +5787,14 @@ static boolean MN_ID_TypeOfAsk (void)
 
         case 3:
             CT_SetMessage(&players[consoleplayer],
-                          "SALVANDO RAPIDAMENTE....", false, NULL);
+                          "SALVANDO RAPIDAMENTE...", false, NULL);
             FileMenuKeySteal = true;
             SCSaveGame(quicksave - 1);
             break;
 
         case 4:
             CT_SetMessage(&players[consoleplayer],
-                          "CARREGANDO RAPIDAMENTE....", false, NULL);
+                          "CARREGANDO RAPIDAMENTE...", false, NULL);
             SCLoadGame(quickload - 1);
             break;
 
