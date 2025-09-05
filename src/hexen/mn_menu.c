@@ -267,11 +267,11 @@ static char *gammalvls[MAXGAMMA][2] =
 };
 
 static MenuItem_t MainItems[] = {
-    {ITT_SETMENU, "NEW GAME", SCNetCheck2, 1, MENU_CLASS},
-    {ITT_SETMENU, "OPTIONS", NULL, 0, MENU_ID_MAIN},
-    {ITT_SETMENU, "GAME FILES", NULL, 0, MENU_FILES},
-    {ITT_EFUNC, "INFO", SCInfo, 0, MENU_NONE},
-    {ITT_EFUNC, "QUIT GAME", SCQuitGame, 0, MENU_NONE}
+    {ITT_SETMENU, "NOVO JOGO", SCNetCheck2, 1, MENU_CLASS},
+    {ITT_SETMENU, "OPÇÕES", NULL, 0, MENU_ID_MAIN},
+    {ITT_SETMENU, "ARQUIVOS DO JOGO", NULL, 0, MENU_FILES},
+    {ITT_EFUNC, "INFORMAÇÕES", SCInfo, 0, MENU_NONE},
+    {ITT_EFUNC, "SAIR DO JOGO", SCQuitGame, 0, MENU_NONE}
 };
 
 static Menu_t MainMenu = {
@@ -284,10 +284,10 @@ static Menu_t MainMenu = {
 };
 
 static MenuItem_t ClassItems[] = {
-    {ITT_EFUNC, "FIGHTER", SCClass, 0, MENU_NONE},
-    {ITT_EFUNC, "CLERIC", SCClass, 1, MENU_NONE},
-    {ITT_EFUNC, "MAGE", SCClass, 2, MENU_NONE},
-    {ITT_EFUNC, "RANDOM", SCClass, 4, MENU_NONE},
+    {ITT_EFUNC, "GUERREIRO", SCClass, 0, MENU_NONE},
+    {ITT_EFUNC, "CLÉRIGO", SCClass, 1, MENU_NONE},
+    {ITT_EFUNC, "MAGO", SCClass, 2, MENU_NONE},
+    {ITT_EFUNC, "ALEATÓRIO", SCClass, 4, MENU_NONE},
 };
 
 static Menu_t ClassMenu = {
@@ -300,8 +300,8 @@ static Menu_t ClassMenu = {
 };
 
 static MenuItem_t FilesItems[] = {
-    {ITT_SETMENU, "LOAD GAME", SCNetCheck2, 2, MENU_LOAD},
-    {ITT_EFUNC, "SAVE GAME", SCSaveCheck, 0, MENU_SAVE}
+    {ITT_SETMENU, "CARREGAR JOGO", SCNetCheck2, 2, MENU_LOAD},
+    {ITT_EFUNC, "SALVAR JOGO", SCSaveCheck, 0, MENU_SAVE}
 };
 
 static Menu_t FilesMenu = {
@@ -371,11 +371,11 @@ static Menu_t SkillMenu = {
 };
 
 static MenuItem_t OptionsItems[] = {
-    {ITT_EFUNC, "END GAME", SCEndGame, 0, MENU_NONE},
+    {ITT_EFUNC, "ENCERRAR JOGO", SCEndGame, 0, MENU_NONE},
     {ITT_EFUNC, "MESSAGES : ", SCMessages, 0, MENU_NONE},
-    {ITT_LRFUNC1, "MOUSE SENSITIVITY", SCMouseSensi, 0, MENU_NONE},
+    {ITT_LRFUNC1, "SENSIBILIDADE DO MOUSE", SCMouseSensi, 0, MENU_NONE},
     {ITT_EMPTY, NULL, NULL, 0, MENU_NONE},
-    {ITT_SETMENU, "MORE...", NULL, 0, MENU_OPTIONS2}
+    {ITT_SETMENU, "MAIS...", NULL, 0, MENU_OPTIONS2}
 };
 
 static Menu_t OptionsMenu = {
@@ -388,11 +388,11 @@ static Menu_t OptionsMenu = {
 };
 
 static MenuItem_t Options2Items[] = {
-    { ITT_SLDR,   "SFX VOLUME",   SCSfxVolume,   0, MENU_NONE },
+    { ITT_SLDR,   "VOLUME SFX",   SCSfxVolume,   0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
-    { ITT_SLDR,   "MUSIC VOLUME", SCMusicVolume, 0, MENU_NONE },
+    { ITT_SLDR,   "VOLUME DA MÚSICA", SCMusicVolume, 0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
-    { ITT_SLDR,   "SCREEN SIZE",  SCScreenSize,  0, MENU_NONE },
+    { ITT_SLDR,   "TAMANHO DA TELA",  SCScreenSize,  0, MENU_NONE },
     { ITT_EMPTY,  NULL,           NULL,          0, MENU_NONE },
 };
 
@@ -901,16 +901,16 @@ static void M_DrawScrollPages (int x, int y, int itemOnGlow, const char *pagenum
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Main[] = {
-    { ITT_SETMENU, "VIDEO OPTIONS",     NULL,                 0, MENU_ID_VIDEO1    },
-    { ITT_SETMENU, "DISPLAY OPTIONS",   NULL,                 0, MENU_ID_DISPLAY   },
-    { ITT_SETMENU, "SOUND OPTIONS",     NULL,                 0, MENU_ID_SOUND     },
-    { ITT_SETMENU, "CONTROL SETTINGS",  NULL,                 0, MENU_ID_CONTROLS  },
-    { ITT_SETMENU, "WIDGETS SETTINGS",  NULL,                 0, MENU_ID_WIDGETS   },
-    { ITT_SETMENU, "AUTOMAP SETTINGS",  NULL,                 0, MENU_ID_AUTOMAP   },
-    { ITT_EFUNC,   "GAMEPLAY FEATURES", M_Choose_ID_Gameplay, 0, MENU_NONE         },
-    { ITT_SETMENU, "MISC FEATURES",     NULL,                 0, MENU_ID_MISC      },
-    { ITT_EFUNC,   "END GAME",          SCEndGame,            0, MENU_NONE         },
-    { ITT_EFUNC,   "RESET SETTINGS",    M_ID_SettingReset,    0, MENU_NONE         },
+    { ITT_SETMENU, "OPÇÕES DE VÍDEO",     NULL,                 0, MENU_ID_VIDEO1    },
+    { ITT_SETMENU, "OPÇÕES DE EXIBIÇÃO",   NULL,                 0, MENU_ID_DISPLAY   },
+    { ITT_SETMENU, "OPÇÕES DE SOM",     NULL,                 0, MENU_ID_SOUND     },
+    { ITT_SETMENU, "CONFIGURAÇÕES DE CONTROLE",  NULL,                 0, MENU_ID_CONTROLS  },
+    { ITT_SETMENU, "CONFIGURAÇÕES DE WIDGETS",  NULL,                 0, MENU_ID_WIDGETS   },
+    { ITT_SETMENU, "CONFIGURAÇÕES DO AUTOMAPA",  NULL,                 0, MENU_ID_AUTOMAP   },
+    { ITT_EFUNC,   "RECURSOS DE JOGABILIDADE", M_Choose_ID_Gameplay, 0, MENU_NONE         },
+    { ITT_SETMENU, "RECURSOS DIVERSOS",     NULL,                 0, MENU_ID_MISC      },
+    { ITT_EFUNC,   "ENCERRAR JOGO",          SCEndGame,            0, MENU_NONE         },
+    { ITT_EFUNC,   "REDEFINIR CONFIGURAÇÕES",    M_ID_SettingReset,    0, MENU_NONE         },
 };
 
 static Menu_t ID_Def_Main = {
@@ -924,7 +924,7 @@ static Menu_t ID_Def_Main = {
 
 static void M_Draw_ID_Main (void)
 {
-    MN_DrTextACentered("OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPÇÕES", 10, cr[CR_YELLOW]);
 }
 
 // -----------------------------------------------------------------------------
@@ -932,15 +932,15 @@ static void M_Draw_ID_Main (void)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Video_1[] = {
-    { ITT_LRFUNC2, "TRUECOLOR RENDERING",  M_ID_TrueColor,    0, MENU_NONE },
-    { ITT_LRFUNC1, "RENDERING RESOLUTION", M_ID_RenderingRes, 0, MENU_NONE },
-    { ITT_LRFUNC1, "WIDESCREEN MODE",      M_ID_Widescreen,   0, MENU_NONE },
-    { ITT_LRFUNC2, "EXCLUSIVE FULLSCREEN", M_ID_ExclusiveFS,  0, MENU_NONE },
-    { ITT_LRFUNC1, "UNCAPPED FRAMERATE",   M_ID_UncappedFPS,  0, MENU_NONE },
+    { ITT_LRFUNC2, "RENDERIZAÇÃO TRUECOLOR",  M_ID_TrueColor,    0, MENU_NONE },
+    { ITT_LRFUNC1, "RESOLUÇÃO DE RENDERIZAÇÃO", M_ID_RenderingRes, 0, MENU_NONE },
+    { ITT_LRFUNC1, "MODO WIDESCREEN",      M_ID_Widescreen,   0, MENU_NONE },
+    { ITT_LRFUNC2, "TELA CHEIA EXCLUSIVA", M_ID_ExclusiveFS,  0, MENU_NONE },
+    { ITT_LRFUNC1, "TAXA DE QUADROS ILIMITADA",   M_ID_UncappedFPS,  0, MENU_NONE },
     { ITT_LRFUNC1, "FRAMERATE LIMIT",      M_ID_LimitFPS,     0, MENU_NONE },
-    { ITT_LRFUNC2, "ENABLE VSYNC",         M_ID_VSync,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW FPS COUNTER",     M_ID_ShowFPS,      0, MENU_NONE },
-    { ITT_LRFUNC2, "PIXEL SCALING",        M_ID_PixelScaling, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ATIVAR VSYNC",         M_ID_VSync,        0, MENU_NONE },
+    { ITT_LRFUNC2, "MOSTRAR CONTADOR DE FPS",     M_ID_ShowFPS,      0, MENU_NONE },
+    { ITT_LRFUNC2, "ESCALONAMENTO DE PIXEL",        M_ID_PixelScaling, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,              0, MENU_NONE },
@@ -961,7 +961,7 @@ static void M_Draw_ID_Video_1 (void)
 {
     char str[32];
 
-    MN_DrTextACentered("VIDEO OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPÇÕES DE VÍDEO", 10, cr[CR_YELLOW]);
 
     // Truecolor Rendering
     sprintf(str, vid_truecolor ? "ON" : "OFF");
@@ -1224,19 +1224,19 @@ static void M_ID_Banners (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Video_2[] = {
-    { ITT_LRFUNC2, "GRAPHICAL STARTUP",      M_ID_GfxStartup,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SCREEN WIPE EFFECT",     M_ID_ScreenWipe,        0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW BANNERS",           M_ID_Banners,           0, MENU_NONE },
+    { ITT_LRFUNC2, "INICIALIZAÇÃO GRÁFICA",      M_ID_GfxStartup,        0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITO DE TRANSIÇÃO DE TELA",     M_ID_ScreenWipe,        0, MENU_NONE },
+    { ITT_LRFUNC2, "MOSTRAR BANNERS",           M_ID_Banners,           0, MENU_NONE },
     { ITT_EMPTY,   NULL,                     NULL,                   0, MENU_NONE },
-    { ITT_LRFUNC1, "SUPERSAMPLED SMOOTHING", M_ID_SuperSmoothing,    0, MENU_NONE },
-    { ITT_LRFUNC2, "OVERBRIGHT GLOW",        M_ID_OverbrightGlow,    0, MENU_NONE },
-    { ITT_LRFUNC2, "SOFT BLOOM",             M_ID_SoftBloom,         0, MENU_NONE },
-    { ITT_LRFUNC1, "ANALOG RGB DRIFT",       M_ID_AnalogRGBDrift,    0, MENU_NONE },
-    { ITT_LRFUNC2, "VHS LINE DISTORTION",    M_ID_VHSLineDistortion, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SCREEN VIGNETTE",        M_ID_ScreenVignette,    0, MENU_NONE },
-    { ITT_LRFUNC1, "FILM GRAIN",             M_ID_FilmGrain,         0, MENU_NONE },
-    { ITT_LRFUNC1, "MOTION BLUR",            M_ID_MotionBlur,        0, MENU_NONE },
-    { ITT_LRFUNC2, "DEPTH OF FIELD BLUR",    M_ID_DepthOfFieldBlur,  0, MENU_NONE },
+    { ITT_LRFUNC1, "SUAVIZAÇÃO SUPERSAMPLED", M_ID_SuperSmoothing,    0, MENU_NONE },
+    { ITT_LRFUNC2, "BRILHO EXCESSIVO",        M_ID_OverbrightGlow,    0, MENU_NONE },
+    { ITT_LRFUNC2, "BLOOM SUAVE",             M_ID_SoftBloom,         0, MENU_NONE },
+    { ITT_LRFUNC1, "DESVIO RGB ANALÓGICO",       M_ID_AnalogRGBDrift,    0, MENU_NONE },
+    { ITT_LRFUNC2, "DISTORÇÃO DE LINHA VHS",    M_ID_VHSLineDistortion, 0, MENU_NONE },
+    { ITT_LRFUNC1, "VINHETA NA TELA",        M_ID_ScreenVignette,    0, MENU_NONE },
+    { ITT_LRFUNC1, "GRÃO DE FILME",             M_ID_FilmGrain,         0, MENU_NONE },
+    { ITT_LRFUNC1, "DESFOQUE DE MOVIMENTO",            M_ID_MotionBlur,        0, MENU_NONE },
+    { ITT_LRFUNC2, "DESFOQUE DE PROFUNDIDADE",    M_ID_DepthOfFieldBlur,  0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */   M_ScrollVideo,          0, MENU_NONE },
 };
 
@@ -1254,7 +1254,7 @@ static void M_Draw_ID_Video_2 (void)
     char str[32];
     const char *sample_factors[] = { "NONE", "1x", "2x", "3x", "4x", "5x", "6x" };
 
-    MN_DrTextACentered("MISCELLANEOUS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("DIVERSOS", 10, cr[CR_YELLOW]);
 
     // Graphical startup
     sprintf(str, vid_graphical_startup == 1 ? "FAST" :
@@ -1283,7 +1283,7 @@ static void M_Draw_ID_Video_2 (void)
                             vid_banners == 2 ? cr[CR_YELLOW_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
-    MN_DrTextACentered("POST-PROCESSING EFFECTS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("EFEITOS DE PÓS-PROCESSAMENTO", 50, cr[CR_YELLOW]);
 
     // Supersampled smoothing
     sprintf(str, "%s", sample_factors[post_supersample]);
@@ -1420,20 +1420,20 @@ static void M_ScrollVideo (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Display[] = {
-    { ITT_LRFUNC1, "FIELD OF VIEW",           M_ID_FOV,             0, MENU_NONE },
-    { ITT_LRFUNC1, "MENU BACKGROUND SHADING", M_ID_MenuShading,     0, MENU_NONE },
-    { ITT_LRFUNC1, "EXTRA LEVEL BRIGHTNESS",  M_ID_LevelBrightness, 0, MENU_NONE },
+    { ITT_LRFUNC1, "CAMPO DE VISÃO",           M_ID_FOV,             0, MENU_NONE },
+    { ITT_LRFUNC1, "SOMBREAMENTO DO FUNDO DO MENU", M_ID_MenuShading,     0, MENU_NONE },
+    { ITT_LRFUNC1, "BRILHO EXTRA DO NÍVEL",  M_ID_LevelBrightness, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC1, "GAMMA-CORRECTION",        M_ID_Gamma,           0, MENU_NONE },
-    { ITT_LRFUNC1, "SATURATION",              M_ID_Saturation,      0, MENU_NONE },
-    { ITT_LRFUNC1, "CONTRAST",                M_ID_Contrast,        0, MENU_NONE },
-    { ITT_LRFUNC1, "RED INTENSITY",           M_ID_R_Intensity,     0, MENU_NONE },
-    { ITT_LRFUNC1, "GREEN INTENSITY",         M_ID_G_Intensity,     0, MENU_NONE },
-    { ITT_LRFUNC1, "BLUE INTENSITY",          M_ID_B_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "CORREÇÃO DE GAMA",        M_ID_Gamma,           0, MENU_NONE },
+    { ITT_LRFUNC1, "SATURAÇÃO",              M_ID_Saturation,      0, MENU_NONE },
+    { ITT_LRFUNC1, "CONTRASTE",                M_ID_Contrast,        0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE VERMELHO",           M_ID_R_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE VERDE",         M_ID_G_Intensity,     0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE AZUL",          M_ID_B_Intensity,     0, MENU_NONE },
     { ITT_EMPTY,   NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC2, "MESSAGES ENABLED",        M_ID_Messages,        0, MENU_NONE },
-    { ITT_LRFUNC2, "TEXT CASTS SHADOWS",      M_ID_TextShadows,     0, MENU_NONE },
-    { ITT_LRFUNC2, "LOCAL TIME",              M_ID_LocalTime,       0, MENU_NONE },
+    { ITT_LRFUNC2, "MENSAGENS HABILITADAS",        M_ID_Messages,        0, MENU_NONE },
+    { ITT_LRFUNC2, "TEXTO PROJETA SOMBRAS",      M_ID_TextShadows,     0, MENU_NONE },
+    { ITT_LRFUNC2, "HORA LOCAL",              M_ID_LocalTime,       0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Display = {
@@ -1449,7 +1449,7 @@ static void M_Draw_ID_Display (void)
 {
     char str[32];
 
-    MN_DrTextACentered("DISPLAY OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPÇÕES DE EXIBIÇÃO", 10, cr[CR_YELLOW]);
 
     // Field of View
     sprintf(str, "%d", vid_fov);
@@ -1478,7 +1478,7 @@ static void M_Draw_ID_Display (void)
                             dp_level_brightness  > 0  ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(2));
 
-    MN_DrTextACentered("COLOR SETTINGS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURAÇÕES DE COR", 50, cr[CR_YELLOW]);
 
     // Gamma-correction num
     sprintf(str, "%s", gammalvls[vid_gamma][1]);
@@ -1522,7 +1522,7 @@ static void M_Draw_ID_Display (void)
                             cr[CR_BLUE2_BRIGHT],
                                 LINE_ALPHA(9));
 
-    MN_DrTextACentered("MESSAGES SETTINGS", 120, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURAÇÕES DE MENSAGENS", 120, cr[CR_YELLOW]);
 
     // Messages enabled
     sprintf(str, msg_show ? "ON" : "OFF");
@@ -1682,20 +1682,20 @@ static void M_ID_LocalTime (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Sound[] = {
-    { ITT_SLDR,   "SFX VOLUME",           SCSfxVolume,         MENU_NONE },
+    { ITT_SLDR,   "VOLUME SFX",           SCSfxVolume,         MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
-    { ITT_SLDR,   "MUSIC VOLUME",         SCMusicVolume,       MENU_NONE },
+    { ITT_SLDR,   "VOLUME DA MÚSICA",         SCMusicVolume,       MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
     { ITT_EMPTY,  NULL,                   NULL,             0, MENU_NONE },
-    { ITT_LRFUNC2, "MUSIC PLAYBACK",       M_ID_MusicSystem, 0, MENU_NONE },
-    { ITT_LRFUNC2, "SOUND EFFECTS MODE",   M_ID_SFXMode,     0, MENU_NONE },
-    { ITT_LRFUNC2, "PITCH-SHIFTED SOUNDS", M_ID_PitchShift,  0, MENU_NONE },
-    { ITT_LRFUNC1, "NUMBER OF SFX TO MIX", M_ID_SFXChannels, 0, MENU_NONE },
-    { ITT_LRFUNC2, "MUTE INACTIVE WINDOW", M_ID_MuteInactive,0, MENU_NONE },
+    { ITT_LRFUNC2, "REPRODUÇÃO DE MÚSICA",       M_ID_MusicSystem, 0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO DE EFEITOS SONOROS",   M_ID_SFXMode,     0, MENU_NONE },
+    { ITT_LRFUNC2, "SONS COM PITCH ALTERADO", M_ID_PitchShift,  0, MENU_NONE },
+    { ITT_LRFUNC1, "NÚMERO DE SFX PARA MIXAR", M_ID_SFXChannels, 0, MENU_NONE },
+    { ITT_LRFUNC2, "SILENCIAR JANELA INATIVA", M_ID_MuteInactive,0, MENU_NONE },
     { ITT_EMPTY,   NULL,                   NULL,             0, MENU_NONE },
-    { ITT_LRFUNC2, "PREFFERED SOUNDTRACK", M_ID_RemasterOST, 0, MENU_NONE },
+    { ITT_LRFUNC2, "TRILHA SONORA PREFERIDA", M_ID_RemasterOST, 0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Sound = {
@@ -1711,7 +1711,7 @@ static void M_Draw_ID_Sound (void)
 {
     char str[32];
 
-    MN_DrTextACentered("SOUND OPTIONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("OPÇÕES DE SOM", 10, cr[CR_YELLOW]);
 
     DrawSlider(&ID_Def_Sound, 1, 16, snd_MaxVolume, false, 0);
     M_ID_HandleSliderMouseControl(70, 30, 134, &snd_MaxVolume, false, 0, 15);
@@ -1723,7 +1723,7 @@ static void M_Draw_ID_Sound (void)
     sprintf(str,"%d", snd_MusicVolume);
     MN_DrTextAGlow(str, 228, 65, cr[CR_MENU_DARK2], cr[CR_MENU_BRIGHT2], LINE_ALPHA(3));
 
-    MN_DrTextACentered("SOUND SYSTEM", 80, cr[CR_YELLOW]);
+    MN_DrTextACentered("SISTEMA DE SOM", 80, cr[CR_YELLOW]);
 
     // Music playback
     sprintf(str, snd_musicdevice == 0 ? "DISABLED" :
@@ -1768,7 +1768,7 @@ static void M_Draw_ID_Sound (void)
                             snd_mute_inactive ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(11));
 
-    MN_DrTextACentered("REMASTERED MUSIC", 140, cr[CR_YELLOW]);
+    MN_DrTextACentered("MÚSICA REMASTERIZADA", 140, cr[CR_YELLOW]);
 
     // Remastered music
     sprintf(str, (!remaster_ost_r && !remaster_ost_o) ? "N/A" :
@@ -1970,20 +1970,20 @@ void M_ID_RemasterOST (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Controls[] = {
-    { ITT_EFUNC,   "KEYBOARD BINDINGS",       M_Choose_ID_Keybinds,       0, MENU_NONE          },
-    { ITT_SETMENU, "MOUSE BINDINGS",          NULL,                       0, MENU_ID_MOUSEBINDS },
+    { ITT_EFUNC,   "ATALHOS DO TECLADO",       M_Choose_ID_Keybinds,       0, MENU_NONE          },
+    { ITT_SETMENU, "ATALHOS DO MOUSE",          NULL,                       0, MENU_ID_MOUSEBINDS },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_SLDR,    "HORIZONTAL SENSITIVITY",  SCMouseSensi,               0, MENU_NONE          },
-    { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_SLDR,    "VERTICAL SENSITIVITY",    SCMouseSensi_y,             0, MENU_NONE          },
+    { ITT_SLDR,    "SENSIBILIDADE HORIZONTAL",  SCMouseSensi,               0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
-    { ITT_LRFUNC1, "ACCELERATION",            M_ID_Controls_Acceleration, 0, MENU_NONE          },
-    { ITT_LRFUNC1, "ACCELERATION THRESHOLD",  M_ID_Controls_Threshold,    0, MENU_NONE          },
-    { ITT_LRFUNC2,  "MOUSE LOOK",              M_ID_Controls_MLook,        0, MENU_NONE          },
-    { ITT_LRFUNC2,  "VERTICAL MOUSE MOVEMENT", M_ID_Controls_NoVert,       0, MENU_NONE          },
-    { ITT_LRFUNC2,  "INVERT VERTICAL AXIS",    M_ID_Controls_InvertY,      0, MENU_NONE          },
+    { ITT_SLDR,    "SENSIBILIDADE VERTICAL",    SCMouseSensi_y,             0, MENU_NONE          },
+    { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
+    { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
+    { ITT_LRFUNC1, "ACELERAÇÃO",            M_ID_Controls_Acceleration, 0, MENU_NONE          },
+    { ITT_LRFUNC1, "LIMIAR DE ACELERAÇÃO",  M_ID_Controls_Threshold,    0, MENU_NONE          },
+    { ITT_LRFUNC2,  "OLHAR COM MOUSE",              M_ID_Controls_MLook,        0, MENU_NONE          },
+    { ITT_LRFUNC2,  "MOVIMENTO VERTICAL DO MOUSE", M_ID_Controls_NoVert,       0, MENU_NONE          },
+    { ITT_LRFUNC2,  "INVERTER EIXO VERTICAL",    M_ID_Controls_InvertY,      0, MENU_NONE          },
     { ITT_EMPTY,   NULL,                      NULL,                       0, MENU_NONE          },
     { ITT_LRFUNC2,  "PERMANENT \"NOARTISKIP\" MODE", M_ID_Controls_NoArtiSkip, 0, MENU_NONE      },
 };
@@ -2003,9 +2003,9 @@ static void M_Draw_ID_Controls (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("BINDINGS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ATALHOS", 10, cr[CR_YELLOW]);
 
-    MN_DrTextACentered("MOUSE CONFIGURATION", 40, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGURAÇÃO DO MOUSE", 40, cr[CR_YELLOW]);
 
     DrawSlider(&ID_Def_Controls, 4, 16, mouseSensitivity, false, 3);
     M_ID_HandleSliderMouseControl(66, 60, 132, &mouseSensitivity, false, 0, 15);
@@ -2070,7 +2070,7 @@ static void M_Draw_ID_Controls (void)
                             mouse_y_invert ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(13));
 
-    MN_DrTextACentered("MISCELLANEOUS", 160, cr[CR_YELLOW]);
+    MN_DrTextACentered("DIVERSOS", 160, cr[CR_YELLOW]);
 
     // Permanent "noartiskip" mode
     sprintf(str, ctrl_noartiskip ? "ON" : "OFF");
@@ -2119,19 +2119,19 @@ static void M_ID_Controls_NoArtiSkip (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_1[] = {
-    { ITT_EFUNC, "MOVE FORWARD",    M_Bind_MoveForward,  0, MENU_NONE },
-    { ITT_EFUNC, "MOVE BACKWARD",   M_Bind_MoveBackward, 0, MENU_NONE },
-    { ITT_EFUNC, "TURN LEFT",       M_Bind_TurnLeft,     0, MENU_NONE },
-    { ITT_EFUNC, "TURN RIGHT",      M_Bind_TurnRight,    0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE LEFT",     M_Bind_StrafeLeft,   0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE RIGHT",    M_Bind_StrafeRight,  0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE ON",       M_Bind_StrafeOn,     0, MENU_NONE },
-    { ITT_EFUNC, "SPEED ON",        M_Bind_SpeedOn,      0, MENU_NONE },
-    { ITT_EFUNC, "JUMP",            M_Bind_Jump,         0, MENU_NONE },
-    { ITT_EFUNC, "180 DEGREE TURN", M_Bind_180Turn,      0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA FRENTE",    M_Bind_MoveForward,  0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA TRÁS",   M_Bind_MoveBackward, 0, MENU_NONE },
+    { ITT_EFUNC, "VIRAR À ESQUERDA",       M_Bind_TurnLeft,     0, MENU_NONE },
+    { ITT_EFUNC, "VIRAR À DIREITA",      M_Bind_TurnRight,    0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ ESQUERDA",     M_Bind_StrafeLeft,   0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ DIREITA",    M_Bind_StrafeRight,  0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR STRAFE",       M_Bind_StrafeOn,     0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR CORRIDA",        M_Bind_SpeedOn,      0, MENU_NONE },
+    { ITT_EFUNC, "PULAR",            M_Bind_Jump,         0, MENU_NONE },
+    { ITT_EFUNC, "GIRO DE 180 GRAUS", M_Bind_180Turn,      0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,                0, MENU_NONE },
-    { ITT_EFUNC, "FIRE/ATTACK",     M_Bind_FireAttack,   0, MENU_NONE },
-    { ITT_EFUNC, "USE",             M_Bind_Use,          0, MENU_NONE },
+    { ITT_EFUNC, "ATIRAR/ATACAR",     M_Bind_FireAttack,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR",             M_Bind_Use,          0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_1 = {
@@ -2149,7 +2149,7 @@ static void M_Draw_ID_Keybinds_1 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("MOVEMENT", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("MOVIMENTO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_up);
     M_DrawBindKey(1, 30, key_down);
@@ -2162,7 +2162,7 @@ static void M_Draw_ID_Keybinds_1 (void)
     M_DrawBindKey(8, 100, key_jump);
     M_DrawBindKey(9, 110, key_180turn);
 
-    MN_DrTextACentered("ACTION", 120, cr[CR_YELLOW]);
+    MN_DrTextACentered("AÇÃO", 120, cr[CR_YELLOW]);
 
     M_DrawBindKey(11, 130, key_fire);
     M_DrawBindKey(12, 140, key_use);
@@ -2235,17 +2235,17 @@ static void M_Bind_Use (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_2[] = {
-    { ITT_EFUNC, "LOOK UP",         M_Bind_LookUp,     0, MENU_NONE },
-    { ITT_EFUNC, "LOOK DOWN",       M_Bind_LookDown,   0, MENU_NONE },
-    { ITT_EFUNC, "CENTER VIEW",     M_Bind_LookCenter, 0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR PARA CIMA",         M_Bind_LookUp,     0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR PARA BAIXO",       M_Bind_LookDown,   0, MENU_NONE },
+    { ITT_EFUNC, "CENTRALIZAR VISÃO",     M_Bind_LookCenter, 0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "FLY UP",          M_Bind_FlyUp,      0, MENU_NONE },
-    { ITT_EFUNC, "FLY DOWN",        M_Bind_FlyDown,    0, MENU_NONE },
-    { ITT_EFUNC, "STOP FLYING",     M_Bind_FlyCenter,  0, MENU_NONE },
+    { ITT_EFUNC, "VOAR PARA CIMA",          M_Bind_FlyUp,      0, MENU_NONE },
+    { ITT_EFUNC, "VOAR PARA BAIXO",        M_Bind_FlyDown,    0, MENU_NONE },
+    { ITT_EFUNC, "PARAR DE VOAR",     M_Bind_FlyCenter,  0, MENU_NONE },
     { ITT_EMPTY, NULL,              NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY LEFT",  M_Bind_InvLeft,    0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY RIGHT", M_Bind_InvRight,   0, MENU_NONE },
-    { ITT_EFUNC, "USE ARTIFACT",    M_Bind_UseArti,    0, MENU_NONE },
+    { ITT_EFUNC, "INVENTÁRIO ESQUERDA",  M_Bind_InvLeft,    0, MENU_NONE },
+    { ITT_EFUNC, "INVENTÁRIO DIREITA", M_Bind_InvRight,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR ARTEFATO",    M_Bind_UseArti,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_2 = {
@@ -2263,19 +2263,19 @@ static void M_Draw_ID_Keybinds_2 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("VIEW", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("VISÃO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_lookup);
     M_DrawBindKey(1, 30, key_lookdown);
     M_DrawBindKey(2, 40, key_lookcenter);
 
-    MN_DrTextACentered("FLYING", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("VOO", 50, cr[CR_YELLOW]);
 
     M_DrawBindKey(4, 60, key_flyup);
     M_DrawBindKey(5, 70, key_flydown);
     M_DrawBindKey(6, 80, key_flycenter);
 
-    MN_DrTextACentered("INVENTORY", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("INVENTÁRIO", 90, cr[CR_YELLOW]);
 
     M_DrawBindKey(8, 100, key_invleft);
     M_DrawBindKey(9, 110, key_invright);
@@ -2334,21 +2334,21 @@ static void M_Bind_UseArti (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_3[] = {
-    { ITT_EFUNC, "ALWAYS RUN",              M_Bind_AlwaysRun,     0, MENU_NONE },
-    { ITT_EFUNC, "MOUSE LOOK",              M_Bind_MouseLook,     0, MENU_NONE },
-    { ITT_EFUNC, "VERTICAL MOUSE MOVEMENT", M_Bind_NoVert,        0, MENU_NONE },
+    { ITT_EFUNC, "SEMPRE CORRER",              M_Bind_AlwaysRun,     0, MENU_NONE },
+    { ITT_EFUNC, "OLHAR COM MOUSE",              M_Bind_MouseLook,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVIMENTO VERTICAL DO MOUSE", M_Bind_NoVert,        0, MENU_NONE },
     { ITT_EMPTY, NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_EFUNC, "GO TO PREVIOUS LEVEL",    M_Bind_PrevLevel,     0, MENU_NONE },
-    { ITT_EFUNC, "RESTART LEVEL/DEMO",      M_Bind_RestartLevel,  0, MENU_NONE },
-    { ITT_EFUNC, "GO TO NEXT LEVEL",        M_Bind_NextLevel,     0, MENU_NONE },
-    { ITT_EFUNC, "DEMO FAST-FORWARD",       M_Bind_FastForward,   0, MENU_NONE },
-    { ITT_EFUNC, "FLIP LEVEL HORIZONTALLY", M_Bind_FlipLevels,    0, MENU_NONE },
-    { ITT_EFUNC, "TOGGLE EXTENDED HUD",     M_Bind_ExtendedHUD,   0, MENU_NONE },
+    { ITT_EFUNC, "IR PARA NÍVEL ANTERIOR",    M_Bind_PrevLevel,     0, MENU_NONE },
+    { ITT_EFUNC, "REINICIAR NÍVEL/DEMO",      M_Bind_RestartLevel,  0, MENU_NONE },
+    { ITT_EFUNC, "IR PARA PRÓXIMO NÍVEL",        M_Bind_NextLevel,     0, MENU_NONE },
+    { ITT_EFUNC, "AVANÇO RÁPIDO DA DEMO",       M_Bind_FastForward,   0, MENU_NONE },
+    { ITT_EFUNC, "ESPELHAR NÍVEL HORIZONTALMENTE", M_Bind_FlipLevels,    0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR HUD ESTENDIDO",     M_Bind_ExtendedHUD,   0, MENU_NONE },
     { ITT_EMPTY, NULL,                      NULL,                 0, MENU_NONE },
-    { ITT_EFUNC, "SPECTATOR MODE",          M_Bind_SpectatorMode, 0, MENU_NONE },
-    { ITT_EFUNC, "FREEZE MODE",             M_Bind_FreezeMode,    0, MENU_NONE },
-    { ITT_EFUNC, "NOTARGET MODE",           M_Bind_NotargetMode,  0, MENU_NONE },
-    { ITT_EFUNC, "BUDDHA MODE",             M_Bind_BuddhaMode,    0, MENU_NONE },
+    { ITT_EFUNC, "MODO ESPECTADOR",          M_Bind_SpectatorMode, 0, MENU_NONE },
+    { ITT_EFUNC, "MODO CONGELAR",             M_Bind_FreezeMode,    0, MENU_NONE },
+    { ITT_EFUNC, "MODO SEM ALVO",           M_Bind_NotargetMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO BUDA",             M_Bind_BuddhaMode,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_3 = {
@@ -2366,13 +2366,13 @@ static void M_Draw_ID_Keybinds_3 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("ADVANCED MOVEMENT", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("MOVIMENTO AVANÇADO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_autorun);
     M_DrawBindKey(1, 30, key_mouse_look);
     M_DrawBindKey(2, 40, key_novert);
 
-    MN_DrTextACentered("SPECIAL KEYS", 50, cr[CR_YELLOW]);
+    MN_DrTextACentered("TECLAS ESPECIAIS", 50, cr[CR_YELLOW]);
 
     M_DrawBindKey(4, 60, key_prevlevel);
     M_DrawBindKey(5, 60, key_reloadlevel);
@@ -2381,7 +2381,7 @@ static void M_Draw_ID_Keybinds_3 (void)
     M_DrawBindKey(8, 90, key_flip_levels);
     M_DrawBindKey(9, 100, key_widget_enable);
 
-    MN_DrTextACentered("SPECIAL MODES", 110, cr[CR_YELLOW]);
+    MN_DrTextACentered("MODOS ESPECIAIS", 110, cr[CR_YELLOW]);
 
     M_DrawBindKey(11, 120, key_spectator);
     M_DrawBindKey(12, 130, key_freeze);
@@ -2465,14 +2465,14 @@ static MenuItem_t ID_Menu_Keybinds_4[] = {
     { ITT_EFUNC, "WEAPON 2",             M_Bind_Weapon2,    0, MENU_NONE },
     { ITT_EFUNC, "WEAPON 3",             M_Bind_Weapon3,    0, MENU_NONE },
     { ITT_EFUNC, "WEAPON 4",             M_Bind_Weapon4,    0, MENU_NONE },
-    { ITT_EFUNC, "PREVIOUS WEAPON",      M_Bind_PrevWeapon, 0, MENU_NONE },
-    { ITT_EFUNC, "NEXT WEAPON",          M_Bind_NextWeapon, 0, MENU_NONE },
+    { ITT_EFUNC, "ARMA ANTERIOR",      M_Bind_PrevWeapon, 0, MENU_NONE },
+    { ITT_EFUNC, "PRÓXIMA ARMA",          M_Bind_NextWeapon, 0, MENU_NONE },
     { ITT_EMPTY, NULL,                   NULL,              0, MENU_NONE },
-    { ITT_EFUNC, "QUARTZ FLASK",         M_Bind_Quartz,     0, MENU_NONE },
-    { ITT_EFUNC, "MYSTIC URN",           M_Bind_Urn,        0, MENU_NONE },
+    { ITT_EFUNC, "FRASCO DE QUARTZO",         M_Bind_Quartz,     0, MENU_NONE },
+    { ITT_EFUNC, "URNA MÍSTICA",           M_Bind_Urn,        0, MENU_NONE },
     { ITT_EFUNC, "FLECHETTE",            M_Bind_Flechette,  0, MENU_NONE },
-    { ITT_EFUNC, "DISK OF REPULSTION",   M_Bind_Disk,       0, MENU_NONE },
-    { ITT_EFUNC, "ICON OF THE DEFENDER", M_Bind_Icon,       0, MENU_NONE },
+    { ITT_EFUNC, "DISCO DE REPULSÃO",   M_Bind_Disk,       0, MENU_NONE },
+    { ITT_EFUNC, "ÍCONE DO DEFENSOR", M_Bind_Icon,       0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_4 = {
@@ -2490,7 +2490,7 @@ static void M_Draw_ID_Keybinds_4 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("WEAPONS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARMAS", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_weapon1);
     M_DrawBindKey(1, 30, key_weapon2);
@@ -2499,7 +2499,7 @@ static void M_Draw_ID_Keybinds_4 (void)
     M_DrawBindKey(4, 60, key_prevweapon);
     M_DrawBindKey(5, 70, key_nextweapon);
 
-    MN_DrTextACentered("ARTIFACTS", 80, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARTEFATOS", 80, cr[CR_YELLOW]);
 
     M_DrawBindKey(7, 90, key_arti_health);
     M_DrawBindKey(8, 100, key_arti_urn);
@@ -2570,17 +2570,17 @@ static void M_Bind_Icon (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_5[] = {
-    { ITT_EFUNC, "PORKALATOR",          M_Bind_Porkalator, 0, MENU_NONE },
-    { ITT_EFUNC, "CHAOS DEVICE",        M_Bind_Chaos,      0, MENU_NONE },
-    { ITT_EFUNC, "BANISHMENT DEVICE",   M_Bind_Banishment, 0, MENU_NONE },
-    { ITT_EFUNC, "WINGS OF WRATH",      M_Bind_Wings,      0, MENU_NONE },
-    { ITT_EFUNC, "DARK SERVANT",        M_Bind_Servant,    0, MENU_NONE },
-    { ITT_EFUNC, "DRAGONSKIN BRACERS",  M_Bind_Bracers,    0, MENU_NONE },
-    { ITT_EFUNC, "BOOTS OF SPEED",      M_Bind_Boots,      0, MENU_NONE },
-    { ITT_EFUNC, "TORCH",               M_Bind_Torch,      0, MENU_NONE },
-    { ITT_EFUNC, "KRATER OF MIGHT",     M_Bind_Krater,     0, MENU_NONE },
-    { ITT_EFUNC, "MYSTIC AMBIT INCANT", M_Bind_Incant,     0, MENU_NONE },    
-    { ITT_EFUNC, "ONE OF EACH",         M_Bind_AllArti,    0, MENU_NONE },
+    { ITT_EFUNC, "PORCALIZADOR",          M_Bind_Porkalator, 0, MENU_NONE },
+    { ITT_EFUNC, "DISPOSITIVO DO CAOS",        M_Bind_Chaos,      0, MENU_NONE },
+    { ITT_EFUNC, "DISPOSITIVO DE BANIMENTO",   M_Bind_Banishment, 0, MENU_NONE },
+    { ITT_EFUNC, "ASAS DA IRA",      M_Bind_Wings,      0, MENU_NONE },
+    { ITT_EFUNC, "SERVO DAS TREVAS",        M_Bind_Servant,    0, MENU_NONE },
+    { ITT_EFUNC, "BRACELETES DE PELE DE DRAGÃO",  M_Bind_Bracers,    0, MENU_NONE },
+    { ITT_EFUNC, "BOTAS DA VELOCIDADE",      M_Bind_Boots,      0, MENU_NONE },
+    { ITT_EFUNC, "TOCHA",               M_Bind_Torch,      0, MENU_NONE },
+    { ITT_EFUNC, "KRATER DO PODER",     M_Bind_Krater,     0, MENU_NONE },
+    { ITT_EFUNC, "ENCANTAMENTO MÍSTICO", M_Bind_Incant,     0, MENU_NONE },    
+    { ITT_EFUNC, "UM DE CADA",         M_Bind_AllArti,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_5 = {
@@ -2598,7 +2598,7 @@ static void M_Draw_ID_Keybinds_5 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("ARTIFACTS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ARTEFATOS", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_arti_egg);
     M_DrawBindKey(1, 30, key_arti_teleport);
@@ -2675,17 +2675,17 @@ static void M_Bind_AllArti (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_6[] = {
-    { ITT_EFUNC, "TOGGLE MAP",         M_Bind_ToggleMap,   0, MENU_NONE },
-    { ITT_EFUNC, "ZOOM IN",            M_Bind_ZoomIn,      0, MENU_NONE },
-    { ITT_EFUNC, "ZOOM OUT",           M_Bind_ZoomOut,     0, MENU_NONE },
-    { ITT_EFUNC, "MAXIMUM ZOOM OUT",   M_Bind_MaxZoom,     0, MENU_NONE },
-    { ITT_EFUNC, "FOLLOW MODE",        M_Bind_FollowMode,  0, MENU_NONE },
-    { ITT_EFUNC, "ROTATE MODE",        M_Bind_RotateMode,  0, MENU_NONE },
-    { ITT_EFUNC, "OVERLAY MODE",       M_Bind_OverlayMode, 0, MENU_NONE },
-    { ITT_EFUNC, "MOUSE PANNING MODE", M_Bind_PanMode,     0, MENU_NONE },
-    { ITT_EFUNC, "TOGGLE GRID",        M_Bind_ToggleGrid,  0, MENU_NONE },
-    { ITT_EFUNC, "MARK LOCATION",      M_Bind_AddMark,     0, MENU_NONE },
-    { ITT_EFUNC, "CLEAR ALL MARKS",    M_Bind_ClearMarks,  0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR MAPA",         M_Bind_ToggleMap,   0, MENU_NONE },
+    { ITT_EFUNC, "APROXIMAR ZOOM",            M_Bind_ZoomIn,      0, MENU_NONE },
+    { ITT_EFUNC, "AFASTAR ZOOM",           M_Bind_ZoomOut,     0, MENU_NONE },
+    { ITT_EFUNC, "ZOOM MÁXIMO PARA TRÁS",   M_Bind_MaxZoom,     0, MENU_NONE },
+    { ITT_EFUNC, "MODO SEGUIR",        M_Bind_FollowMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO ROTAÇÃO",        M_Bind_RotateMode,  0, MENU_NONE },
+    { ITT_EFUNC, "MODO SOBREPOSIÇÃO",       M_Bind_OverlayMode, 0, MENU_NONE },
+    { ITT_EFUNC, "MODO DE PANORÂMICA COM MOUSE", M_Bind_PanMode,     0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR/DESATIVAR GRADE",        M_Bind_ToggleGrid,  0, MENU_NONE },
+    { ITT_EFUNC, "MARCAR LOCALIZAÇÃO",      M_Bind_AddMark,     0, MENU_NONE },
+    { ITT_EFUNC, "LIMPAR TODAS AS MARCAS",    M_Bind_ClearMarks,  0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Keybinds_6 = {
@@ -2703,7 +2703,7 @@ static void M_Draw_ID_Keybinds_6 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("AUTOMAP", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUTOMAPA", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_map_toggle);
     M_DrawBindKey(1, 30, key_map_zoomin);
@@ -2780,18 +2780,18 @@ static void M_Bind_ClearMarks (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_7[] = {
-    {ITT_EFUNC, "HELP SCREEN",     M_Bind_HelpScreen,     0, MENU_NONE},
-    {ITT_EFUNC, "SAVE GAME",       M_Bind_SaveGame,       0, MENU_NONE},
-    {ITT_EFUNC, "LOAD GAME",       M_Bind_LoadGame,       0, MENU_NONE},
-    {ITT_EFUNC, "SOUND VOLUME",    M_Bind_SoundVolume,    0, MENU_NONE},
-    {ITT_EFUNC, "SUICIDE",         M_Bind_Suicide,        0, MENU_NONE},
-    {ITT_EFUNC, "QUICK SAVE",      M_Bind_QuickSave,      0, MENU_NONE},
-    {ITT_EFUNC, "END GAME",        M_Bind_EndGame,        0, MENU_NONE},
-    {ITT_EFUNC, "TOGGLE MESSAGES", M_Bind_ToggleMessages, 0, MENU_NONE},
-    {ITT_EFUNC, "QUICK LOAD",      M_Bind_QuickLoad,      0, MENU_NONE},
-    {ITT_EFUNC, "QUIT GAME",       M_Bind_QuitGame,       0, MENU_NONE},
-    {ITT_EFUNC, "TOGGLE GAMMA",    M_Bind_ToggleGamma,    0, MENU_NONE},
-    {ITT_EFUNC, "MULTIPLAYER SPY", M_Bind_MultiplayerSpy, 0, MENU_NONE}
+    {ITT_EFUNC, "TELA DE AJUDA",     M_Bind_HelpScreen,     0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR JOGO",       M_Bind_SaveGame,       0, MENU_NONE},
+    {ITT_EFUNC, "CARREGAR JOGO",       M_Bind_LoadGame,       0, MENU_NONE},
+    {ITT_EFUNC, "VOLUME DO SOM",    M_Bind_SoundVolume,    0, MENU_NONE},
+    {ITT_EFUNC, "SUICÍDIO",         M_Bind_Suicide,        0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR RÁPIDO",      M_Bind_QuickSave,      0, MENU_NONE},
+    {ITT_EFUNC, "ENCERRAR JOGO",        M_Bind_EndGame,        0, MENU_NONE},
+    {ITT_EFUNC, "ATIVAR/DESATIVAR MENSAGENS", M_Bind_ToggleMessages, 0, MENU_NONE},
+    {ITT_EFUNC, "CARREGAR RÁPIDO",      M_Bind_QuickLoad,      0, MENU_NONE},
+    {ITT_EFUNC, "SAIR DO JOGO",       M_Bind_QuitGame,       0, MENU_NONE},
+    {ITT_EFUNC, "ATIVAR/DESATIVAR GAMA",    M_Bind_ToggleGamma,    0, MENU_NONE},
+    {ITT_EFUNC, "ESPIÃO MULTIJOGADOR", M_Bind_MultiplayerSpy, 0, MENU_NONE}
 };
 
 static Menu_t ID_Def_Keybinds_7 = {
@@ -2809,7 +2809,7 @@ static void M_Draw_ID_Keybinds_7 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("FUNCTION KEYS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("TECLAS DE FUNÇÃO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_menu_help);
     M_DrawBindKey(1, 30, key_menu_save);
@@ -2893,15 +2893,15 @@ static void M_Bind_MultiplayerSpy (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Keybinds_8[] = {
-    {ITT_EFUNC, "PAUSE GAME",            M_Bind_Pause,          0, MENU_NONE},
-    {ITT_EFUNC, "SAVE A SCREENSHOT",     M_Bind_SaveScreenshot, 0, MENU_NONE},
-    {ITT_EFUNC, "DISPLAY LAST MESSAGE",  M_Bind_LastMessage,    0, MENU_NONE},
-    {ITT_EFUNC, "FINISH DEMO RECORDING", M_Bind_FinishDemo,     0, MENU_NONE},
-	{ITT_EFUNC, "SWITCH SOUNDTRACK",     M_Bind_SwitchOST,      0, MENU_NONE},
+    {ITT_EFUNC, "PAUSAR JOGO",            M_Bind_Pause,          0, MENU_NONE},
+    {ITT_EFUNC, "SALVAR CAPTURA DE TELA",     M_Bind_SaveScreenshot, 0, MENU_NONE},
+    {ITT_EFUNC, "EXIBIR ÚLTIMA MENSAGEM",  M_Bind_LastMessage,    0, MENU_NONE},
+    {ITT_EFUNC, "FINALIZAR GRAVAÇÃO DE DEMO", M_Bind_FinishDemo,     0, MENU_NONE},
+	{ITT_EFUNC, "TROCAR TRILHA SONORA",     M_Bind_SwitchOST,      0, MENU_NONE},
     {ITT_EMPTY, NULL,                    NULL,                  0, MENU_NONE},
-    {ITT_EFUNC, "SEND MESSAGE",          M_Bind_SendMessage,    0, MENU_NONE},
+    {ITT_EFUNC, "ENVIAR MENSAGEM",          M_Bind_SendMessage,    0, MENU_NONE},
     {ITT_EMPTY, NULL,                    NULL,                  0, MENU_NONE},
-    {ITT_EFUNC, "RESET BINDINGS TO DEFAULT", M_Bind_Reset,      0, MENU_NONE},
+    {ITT_EFUNC, "REDEFINIR ATALHOS PARA O PADRÃO", M_Bind_Reset,      0, MENU_NONE},
     /*
     {ITT_EFUNC, "- TO PLAYER 1",         M_Bind_ToPlayer1,      0, MENU_NONE},
     {ITT_EFUNC, "- TO PLAYER 2",         M_Bind_ToPlayer2,      0, MENU_NONE},
@@ -2929,7 +2929,7 @@ static void M_Draw_ID_Keybinds_8 (void)
 
     M_FillBackground();
 
-    MN_DrTextACentered("SHORTCUT KEYS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("TECLAS DE ATALHO", 10, cr[CR_YELLOW]);
 
     M_DrawBindKey(0, 20, key_pause);
     M_DrawBindKey(1, 30, key_menu_screenshot);
@@ -2937,11 +2937,11 @@ static void M_Draw_ID_Keybinds_8 (void)
     M_DrawBindKey(3, 50, key_demo_quit);
 	M_DrawBindKey(4, 60, key_switch_ost);
 
-    MN_DrTextACentered("MULTIPLAYER", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("MULTIJOGADOR", 70, cr[CR_YELLOW]);
 
     M_DrawBindKey(6, 80, key_multi_msg);
 
-    MN_DrTextACentered("RESET", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("REDEFINIR", 90, cr[CR_YELLOW]);
     
     /*
     M_DrawBindKey(6, 80, key_multi_msgplayer[0]);
@@ -3017,22 +3017,22 @@ static void M_Bind_Reset (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_MouseBinds[] = {
-    { ITT_EFUNC, "FIRE/ATTACK",               M_Bind_M_FireAttack,     0, MENU_NONE },
-    { ITT_EFUNC, "MOVE FORWARD",              M_Bind_M_MoveForward,    0, MENU_NONE },
-    { ITT_EFUNC, "MOVE BACKWARD",             M_Bind_M_MoveBackward,   0, MENU_NONE },
-    { ITT_EFUNC, "USE",                       M_Bind_M_Use,            0, MENU_NONE },
-    { ITT_EFUNC, "JUMP",                      M_Bind_M_Jump,           0, MENU_NONE },    
-    { ITT_EFUNC, "SPEED ON",                  M_Bind_M_SpeedOn,        0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE ON",                 M_Bind_M_StrafeOn,       0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE LEFT",               M_Bind_M_StrafeLeft,     0, MENU_NONE },
-    { ITT_EFUNC, "STRAFE RIGHT",              M_Bind_M_StrafeRight,    0, MENU_NONE },
+    { ITT_EFUNC, "ATIRAR/ATACAR",               M_Bind_M_FireAttack,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA FRENTE",              M_Bind_M_MoveForward,    0, MENU_NONE },
+    { ITT_EFUNC, "MOVER PARA TRÁS",             M_Bind_M_MoveBackward,   0, MENU_NONE },
+    { ITT_EFUNC, "USAR",                       M_Bind_M_Use,            0, MENU_NONE },
+    { ITT_EFUNC, "PULAR",                      M_Bind_M_Jump,           0, MENU_NONE },    
+    { ITT_EFUNC, "ATIVAR CORRIDA",                  M_Bind_M_SpeedOn,        0, MENU_NONE },
+    { ITT_EFUNC, "ATIVAR STRAFE",                 M_Bind_M_StrafeOn,       0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ ESQUERDA",               M_Bind_M_StrafeLeft,     0, MENU_NONE },
+    { ITT_EFUNC, "MOVER P/ DIREITA",              M_Bind_M_StrafeRight,    0, MENU_NONE },
     { ITT_EFUNC, "PREV WEAPON",               M_Bind_M_PrevWeapon,     0, MENU_NONE },
-    { ITT_EFUNC, "NEXT WEAPON",               M_Bind_M_NextWeapon,     0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY LEFT",            M_Bind_M_InventoryLeft,  0, MENU_NONE },
-    { ITT_EFUNC, "INVENTORY RIGHT",           M_Bind_M_InventoryRight, 0, MENU_NONE },
-    { ITT_EFUNC, "USE ARTIFACT",              M_Bind_M_UseArtifact,    0, MENU_NONE },
+    { ITT_EFUNC, "PRÓXIMA ARMA",               M_Bind_M_NextWeapon,     0, MENU_NONE },
+    { ITT_EFUNC, "INVENTÁRIO ESQUERDA",            M_Bind_M_InventoryLeft,  0, MENU_NONE },
+    { ITT_EFUNC, "INVENTÁRIO DIREITA",           M_Bind_M_InventoryRight, 0, MENU_NONE },
+    { ITT_EFUNC, "USAR ARTEFATO",              M_Bind_M_UseArtifact,    0, MENU_NONE },
     { ITT_EMPTY, NULL,                        NULL,                    0, MENU_NONE },
-    { ITT_EFUNC, "RESET BINDINGS TO DEFAULT", M_Bind_M_Reset,          0, MENU_NONE },
+    { ITT_EFUNC, "REDEFINIR ATALHOS PARA O PADRÃO", M_Bind_M_Reset,          0, MENU_NONE },
 };
 
 static Menu_t ID_Def_MouseBinds = {
@@ -3048,7 +3048,7 @@ static void M_Draw_ID_MouseBinds (void)
 {
     M_FillBackground();
 
-    MN_DrTextACentered("MOUSE BINDINGS", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ATALHOS DO MOUSE", 10, cr[CR_YELLOW]);
 
     M_DrawBindButton(0, 20, mousebfire);
     M_DrawBindButton(1, 30, mousebforward);
@@ -3065,7 +3065,7 @@ static void M_Draw_ID_MouseBinds (void)
     M_DrawBindButton(12, 140, mousebinvright);
     M_DrawBindButton(13, 150, mousebuseartifact);
 
-    MN_DrTextACentered("RESET", 160, cr[CR_YELLOW]);
+    MN_DrTextACentered("REDEFINIR", 160, cr[CR_YELLOW]);
 
     M_DrawBindFooter(NULL, false);
 }
@@ -3152,16 +3152,16 @@ static void M_Bind_M_Reset (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Widgets[] = {
-    { ITT_LRFUNC2, "COLOR SCHEME",     M_ID_Widget_Colors,    0, MENU_NONE },
-    { ITT_LRFUNC2, "PLACEMENT",        M_ID_Widget_Placement, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ALIGNMENT",        M_ID_Widget_Alignment, 0, MENU_NONE },
-    { ITT_LRFUNC2, "TOTAL KILLS",      M_ID_Widget_Kills,     0, MENU_NONE },
-    { ITT_LRFUNC2, "TOTAL TIME",       M_ID_Widget_TotalTime, 0, MENU_NONE },
-    { ITT_LRFUNC2, "LEVEL NAME",       M_ID_Widget_LevelName, 0, MENU_NONE },
-    { ITT_LRFUNC2, "PLAYER COORDS",    M_ID_Widget_Coords,    0, MENU_NONE },
-    { ITT_LRFUNC2, "PLAYER SPEED",     M_ID_Widget_Speed,     0, MENU_NONE },
-    { ITT_LRFUNC2, "RENDER COUNTERS",  M_ID_Widget_Render,    0, MENU_NONE },
-    { ITT_LRFUNC2, "TARGET'S HEALTH",  M_ID_Widget_Health,    0, MENU_NONE },
+    { ITT_LRFUNC2, "ESQUEMA DE CORES",     M_ID_Widget_Colors,    0, MENU_NONE },
+    { ITT_LRFUNC2, "POSICIONAMENTO",        M_ID_Widget_Placement, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ALINHAMENTO",        M_ID_Widget_Alignment, 0, MENU_NONE },
+    { ITT_LRFUNC2, "TOTAL DE MORTES",      M_ID_Widget_Kills,     0, MENU_NONE },
+    { ITT_LRFUNC2, "TEMPO TOTAL",       M_ID_Widget_TotalTime, 0, MENU_NONE },
+    { ITT_LRFUNC2, "NOME DO NÍVEL",       M_ID_Widget_LevelName, 0, MENU_NONE },
+    { ITT_LRFUNC2, "COORD. DO JOGADOR",    M_ID_Widget_Coords,    0, MENU_NONE },
+    { ITT_LRFUNC2, "VELOC. DO JOGADOR",     M_ID_Widget_Speed,     0, MENU_NONE },
+    { ITT_LRFUNC2, "CONTADORES DE RENDER.",  M_ID_Widget_Render,    0, MENU_NONE },
+    { ITT_LRFUNC2, "SAÚDE DO ALVO",  M_ID_Widget_Health,    0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Widgets = {
@@ -3197,7 +3197,7 @@ static void M_Draw_ID_Widgets (void)
                                 LINE_ALPHA(1));
 
     // Alignment
-    sprintf(str, widget_alignment == 1 ? "STATUS BAR" :
+    sprintf(str, widget_alignment == 1 ? "BARRA DE STATUS" :
                  widget_alignment == 2 ? "AUTO" : "LEFT");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 40,
                         widget_alignment ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
@@ -3206,21 +3206,21 @@ static void M_Draw_ID_Widgets (void)
 
     // Total kills
     sprintf(str, widget_kis == 1 ? "ALWAYS"  :
-                 widget_kis == 2 ? "AUTOMAP" : "OFF");
+                 widget_kis == 2 ? "AUTOMAPA" : "OFF");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 50,
                         widget_kis ? cr[CR_GREEN_HX] : cr[CR_DARKRED], 
                             widget_kis ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT], 
                                 LINE_ALPHA(3));
 
     // Total time
-    sprintf(str, widget_totaltime ? "ALWAYS" : "AUTOMAP");
+    sprintf(str, widget_totaltime ? "ALWAYS" : "AUTOMAPA");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 60,
                         widget_time ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_time ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
     // Level name
-    sprintf(str, widget_levelname ? "ALWAYS" : "AUTOMAP");
+    sprintf(str, widget_levelname ? "ALWAYS" : "AUTOMAPA");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 70,
                         widget_levelname ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_levelname ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3228,7 +3228,7 @@ static void M_Draw_ID_Widgets (void)
 
     // Player coords
     sprintf(str, widget_coords == 1 ? "ALWAYS"  :
-                 widget_coords == 2 ? "AUTOMAP" : "OFF");
+                 widget_coords == 2 ? "AUTOMAPA" : "OFF");
     MN_DrTextAGlow(str, M_ItemRightAlign(str), 80,
                         widget_coords ? cr[CR_GREEN_HX] : cr[CR_DARKRED],
                             widget_coords ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
@@ -3314,15 +3314,15 @@ static void M_ID_Widget_Health (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Automap[] = {
-    { ITT_LRFUNC2, "LINE SMOOTHING",        M_ID_Automap_Smooth,   0, MENU_NONE },
-    { ITT_LRFUNC1, "LINE THICKNESS",        M_ID_Automap_Thick,    0, MENU_NONE },
-    { ITT_LRFUNC2, "SQUARE ASPECT RATIO",   M_ID_Automap_Square,   0, MENU_NONE },
-    { ITT_LRFUNC2, "BACKGROUND STYLE",      M_ID_Automap_TexturedBg, 0, MENU_NONE },
-    { ITT_LRFUNC2, "SCROLL BACKGROUND",     M_ID_Automap_ScrollBg, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ROTATE MODE",           M_ID_Automap_Rotate,   0, MENU_NONE },
-    { ITT_LRFUNC2, "OVERLAY MODE",          M_ID_Automap_Overlay,  0, MENU_NONE },
-    { ITT_LRFUNC1, "OVERLAY SHADING LEVEL", M_ID_Automap_Shading,  0, MENU_NONE },
-    { ITT_LRFUNC2, "MOUSE PANNING MODE",    M_ID_Automap_Pan,      0, MENU_NONE },
+    { ITT_LRFUNC2, "SUAVIZAÇÃO DE LINHA",        M_ID_Automap_Smooth,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ESPESSURA DA LINHA",        M_ID_Automap_Thick,    0, MENU_NONE },
+    { ITT_LRFUNC2, "PROPORÇÃO DE TELA QUADRADA",   M_ID_Automap_Square,   0, MENU_NONE },
+    { ITT_LRFUNC2, "ESTILO DE FUNDO",      M_ID_Automap_TexturedBg, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ROLAR FUNDO",     M_ID_Automap_ScrollBg, 0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO ROTAÇÃO",           M_ID_Automap_Rotate,   0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO SOBREPOSIÇÃO",          M_ID_Automap_Overlay,  0, MENU_NONE },
+    { ITT_LRFUNC1, "NÍVEL DE SOMBREAMENTO", M_ID_Automap_Shading,  0, MENU_NONE },
+    { ITT_LRFUNC2, "MODO DE PANORÂMICA COM MOUSE",    M_ID_Automap_Pan,      0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Automap = {
@@ -3341,7 +3341,7 @@ static void M_Draw_ID_Automap (void)
         "DEFAULT","2X","3X","4X","5X","6X","AUTO"
     };
 
-    MN_DrTextACentered("AUTOMAP", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUTOMAPA", 10, cr[CR_YELLOW]);
 
     // Line smoothing
     sprintf(str, automap_smooth_hr ? "ON" : "OFF");
@@ -3466,15 +3466,15 @@ static void M_ID_Automap_Pan (int choice)
 
 static MenuItem_t ID_Menu_Gameplay_1[] = {
     { ITT_LRFUNC1, "BRIGHTMAPS",                M_ID_Brightmaps,      0, MENU_NONE },
-    { ITT_LRFUNC2, "EXTRA TRANSLUCENCY",        M_ID_Translucency,    0, MENU_NONE },
-    { ITT_LRFUNC1, "DIMINISHED LIGHTING",       M_ID_SmoothLighting,  0, MENU_NONE },
-    { ITT_LRFUNC1, "PALETTE FADING EFFECT",     M_ID_SmoothPalette,   0, MENU_NONE },
-    { ITT_LRFUNC1, "LIQUIDS ANIMATION",         M_ID_SwirlingLiquids, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SKY DRAWING MODE",          M_ID_LinearSky,       0, MENU_NONE },
-    { ITT_LRFUNC1, "RANDOMLY MIRRORED CORPSES", M_ID_FlipCorpses,     0, MENU_NONE },
+    { ITT_LRFUNC2, "TRANSLUCIDEZ EXTRA",        M_ID_Translucency,    0, MENU_NONE },
+    { ITT_LRFUNC1, "ILUMINAÇÃO DIMINUÍDA",       M_ID_SmoothLighting,  0, MENU_NONE },
+    { ITT_LRFUNC1, "EFEITO DE TRANSIÇÃO DE PALETA",     M_ID_SmoothPalette,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ANIMAÇÃO DE LÍQUIDOS",         M_ID_SwirlingLiquids, 0, MENU_NONE },
+    { ITT_LRFUNC1, "MODO DE DESENHO DO CÉU",          M_ID_LinearSky,       0, MENU_NONE },
+    { ITT_LRFUNC1, "CORPOS ESPELHADOS ALEATORIAMENTE", M_ID_FlipCorpses,     0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
-    { ITT_LRFUNC2, "SHAPE",                     M_ID_Crosshair,       0, MENU_NONE },
-    { ITT_LRFUNC2, "INDICATION",                M_ID_CrosshairColor,  0, MENU_NONE },
+    { ITT_LRFUNC2, "FORMA",                     M_ID_Crosshair,       0, MENU_NONE },
+    { ITT_LRFUNC2, "INDICAÇÃO",                M_ID_CrosshairColor,  0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
     { ITT_EMPTY,  NULL,                        NULL,                 0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */      M_ScrollGameplay,     0, MENU_NONE },
@@ -3546,7 +3546,7 @@ static void M_Draw_ID_Gameplay_1 (void)
                             vis_flip_corpses ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("CROSSHAIR", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("MIRA", 90, cr[CR_YELLOW]);
 
     // Crosshair shape
     sprintf(str, xhair_draw == 1 ? "CROSS 1" :
@@ -3647,16 +3647,16 @@ static void M_ID_CrosshairColor (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Gameplay_2[] = {
-    { ITT_LRFUNC1, "FULL SCREEN LAYOUT",          M_ID_Layout,       0, MENU_NONE },
-    { ITT_LRFUNC1, "COLORED ELEMENTS",            M_ID_ColoredSBar,  0, MENU_NONE },
-    { ITT_LRFUNC2, "4TH WEAPON WIDGET",           M_ID_WeaponWidget, 0, MENU_NONE },
-    { ITT_LRFUNC2, "ARMOR ICON",                  M_ID_ArmorIcon,    0, MENU_NONE },
-    { ITT_LRFUNC2, "ARMOR VALUE",                 M_ID_ArmorValue,   0, MENU_NONE },
+    { ITT_LRFUNC1, "LAYOUT DE TELA CHEIA",          M_ID_Layout,       0, MENU_NONE },
+    { ITT_LRFUNC1, "ELEMENTOS COLORIDOS",            M_ID_ColoredSBar,  0, MENU_NONE },
+    { ITT_LRFUNC2, "WIDGET DA 4ª ARMA",           M_ID_WeaponWidget, 0, MENU_NONE },
+    { ITT_LRFUNC2, "ÍCONE DE ARMADURA",                  M_ID_ArmorIcon,    0, MENU_NONE },
+    { ITT_LRFUNC2, "VALOR DA ARMADURA",                 M_ID_ArmorValue,   0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
-    { ITT_LRFUNC1, "SFX ATTENUATION AXISES",      M_ID_ZAxisSfx,     0, MENU_NONE },
+    { ITT_LRFUNC1, "EIXOS DE ATENUAÇÃO SFX",      M_ID_ZAxisSfx,     0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
-    { ITT_LRFUNC1, "CORPSES SLIDING FROM LEDGES", M_ID_Torque,       0, MENU_NONE },
-    { ITT_LRFUNC1, "IMITATE PLAYER'S BREATHING",  M_ID_Breathing,    0, MENU_NONE },
+    { ITT_LRFUNC1, "CORPOS DESLIZANDO DE BEIRADAS", M_ID_Torque,       0, MENU_NONE },
+    { ITT_LRFUNC1, "IMITAR RESPIRAÇÃO DO JOGADOR",  M_ID_Breathing,    0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
     { ITT_EMPTY,   NULL,                          NULL,              0, MENU_NONE },
@@ -3677,7 +3677,7 @@ static void M_Draw_ID_Gameplay_2 (void)
     char str[32];
     Gameplay_Cur = (MenuType_t)MENU_ID_GAMEPLAY2;
 
-    MN_DrTextACentered("STATUS BAR", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("BARRA DE STATUS", 10, cr[CR_YELLOW]);
 
     // Full screen layout
     sprintf(str, st_fullscreen_layout == 1 ? "REMASTER" : "ORIGINAL");
@@ -3715,7 +3715,7 @@ static void M_Draw_ID_Gameplay_2 (void)
                             st_armor_value ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
-    MN_DrTextACentered("AUDIBLE", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("AUDÍVEL", 70, cr[CR_YELLOW]);
 
     // Sfx Attenuation Axises
     sprintf(str, aud_z_axis_sfx ? "X/Y/Z" : "X/Y");
@@ -3724,7 +3724,7 @@ static void M_Draw_ID_Gameplay_2 (void)
                             aud_z_axis_sfx ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("PHYSICAL", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("FÍSICO", 90, cr[CR_YELLOW]);
 
     // Corpses sliding from ledges
     sprintf(str, phys_torque ? "ON" : "OFF");
@@ -3791,17 +3791,17 @@ static void M_ID_Breathing (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Gameplay_3[] = {
-    { ITT_LRFUNC2, "DEFAULT PLAYER CLASS",         M_ID_DefaultClass,   0, MENU_NONE },
-    { ITT_LRFUNC2, "DEFAULT SKILL LEVEL",          M_ID_DefaultSkill,   0, MENU_NONE },
-    { ITT_LRFUNC1, "FLIP LEVELS HORIZONTALLY",     M_ID_FlipLevels,     0, MENU_NONE },
-    { ITT_LRFUNC2, "ON DEATH ACTION",              M_ID_OnDeathAction,  0, MENU_NONE },
+    { ITT_LRFUNC2, "CLASSE DE JOGADOR PADRÃO",         M_ID_DefaultClass,   0, MENU_NONE },
+    { ITT_LRFUNC2, "NÍVEL DE DIFICULDADE PADRÃO",          M_ID_DefaultSkill,   0, MENU_NONE },
+    { ITT_LRFUNC1, "ESPELHAR NÍVEIS HORIZONTALMENTE",     M_ID_FlipLevels,     0, MENU_NONE },
+    { ITT_LRFUNC2, "AÇÃO AO MORRER",              M_ID_OnDeathAction,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
-    { ITT_LRFUNC2, "SHOW DEMO TIMER",              M_ID_DemoTimer,      0, MENU_NONE },
-    { ITT_LRFUNC1, "TIMER DIRECTION",              M_ID_TimerDirection, 0, MENU_NONE },
-    { ITT_LRFUNC1, "SHOW PROGRESS BAR",            M_ID_ProgressBar,    0, MENU_NONE },
-    { ITT_LRFUNC1, "PLAY INTERNAL DEMOS",          M_ID_InternalDemos,  0, MENU_NONE },
+    { ITT_LRFUNC2, "MOSTRAR CRONÔMETRO DA DEMO",              M_ID_DemoTimer,      0, MENU_NONE },
+    { ITT_LRFUNC1, "DIREÇÃO DO CRONÔMETRO",              M_ID_TimerDirection, 0, MENU_NONE },
+    { ITT_LRFUNC1, "MOSTRAR BARRA DE PROGRESSO",            M_ID_ProgressBar,    0, MENU_NONE },
+    { ITT_LRFUNC1, "TOCAR DEMOS INTERNAS",          M_ID_InternalDemos,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
-    { ITT_LRFUNC1, "AUTOMATIC STRAFE 50",          M_ID_AutomaticSR50,  0, MENU_NONE },
+    { ITT_LRFUNC1, "STRAFE 50 AUTOMÁTICO",          M_ID_AutomaticSR50,  0, MENU_NONE },
     { ITT_EMPTY,   NULL,                           NULL,                0, MENU_NONE },
     { ITT_LRFUNC2, "", /* SCROLLS PAGES */         M_ScrollGameplay,    0, MENU_NONE },
 };
@@ -3818,12 +3818,12 @@ static Menu_t ID_Def_Gameplay_3 = {
 static void M_Draw_ID_Gameplay_3 (void)
 {
     char str[32];
-    const char *const DefClassName[3] = { "FIGHTER", "CLERIC", "MAGE", };
-    const char *const DefSkillName[5] = { "EASIEST", "EASY", "NORMAL", "HARD", "HARDEST" };
+    const char *const DefClassName[3] = { "GUERREIRO", "CLÉRIGO", "MAGO", };
+    const char *const DefSkillName[5] = { "MUITO FÁCIL", "FÁCIL", "NORMAL", "DIFÍCIL", "MUITO DIFÍCIL" };
 
     Gameplay_Cur = (MenuType_t)MENU_ID_GAMEPLAY3;
 
-    MN_DrTextACentered("GAMEPLAY", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("JOGABILIDADE", 10, cr[CR_YELLOW]);
 
     // Default player class
     M_snprintf(str, sizeof(str), "%s", DefClassName[gp_default_class]);
@@ -3896,7 +3896,7 @@ static void M_Draw_ID_Gameplay_3 (void)
                             demo_internal ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(8));
 
-    MN_DrTextACentered("COMPATIBILITY-BREAKING", 110, cr[CR_YELLOW]);
+    MN_DrTextACentered("QUEBRA DE COMPATIBILIDADE", 110, cr[CR_YELLOW]);
 
     // Automatic strafe 50
     sprintf(str, compat_auto_sr50 ? "ON" : "OFF");
@@ -3983,16 +3983,16 @@ static void M_ScrollGameplay (int choice)
 // -----------------------------------------------------------------------------
 
 static MenuItem_t ID_Menu_Misc[] = {
-    { ITT_LRFUNC2, "PALETTE FLASH EFFECTS", M_ID_Misc_A11yPalFlash,   0, MENU_NONE },
-    { ITT_LRFUNC1, "MOVEMENT BOBBING",      M_ID_Misc_A11yMoveBob,    0, MENU_NONE },
-    { ITT_LRFUNC1, "WEAPON BOBBING",        M_ID_Misc_A11yWeaponBob,  0, MENU_NONE },
-    { ITT_LRFUNC1, "QUAKE INTENSITY",       M_ID_Misc_A11yQuakeInten, 0, MENU_NONE },
-    { ITT_LRFUNC2, "COLORBLIND FILTER",     M_ID_Misc_A11yColorblind, 0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITOS DE FLASH DE PALETA", M_ID_Misc_A11yPalFlash,   0, MENU_NONE },
+    { ITT_LRFUNC1, "BALANÇO DE MOVIMENTO",      M_ID_Misc_A11yMoveBob,    0, MENU_NONE },
+    { ITT_LRFUNC1, "BALANÇO DA ARMA",        M_ID_Misc_A11yWeaponBob,  0, MENU_NONE },
+    { ITT_LRFUNC1, "INTENSIDADE DE TREMOR",       M_ID_Misc_A11yQuakeInten, 0, MENU_NONE },
+    { ITT_LRFUNC2, "FILTRO PARA DALTONISMO",     M_ID_Misc_A11yColorblind, 0, MENU_NONE },
     { ITT_EMPTY,   NULL,                    NULL,                     0, MENU_NONE },
-    { ITT_LRFUNC2, "AUTOLOAD WAD FILES",    M_ID_Misc_AutoloadWAD,    0, MENU_NONE },
+    { ITT_LRFUNC2, "CARREGAR ARQUIVOS WAD AUTO.",    M_ID_Misc_AutoloadWAD,    0, MENU_NONE },
     { ITT_EMPTY,   NULL,                    NULL,                     0, MENU_NONE },
-    { ITT_LRFUNC2, "HIGHLIGHTING EFFECT",   M_ID_Misc_Hightlight,     0, MENU_NONE },
-    { ITT_LRFUNC1, "ESC KEY BEHAVIOUR",     M_ID_Misc_MenuEscKey,     0, MENU_NONE },
+    { ITT_LRFUNC2, "EFEITO DE DESTAQUE",   M_ID_Misc_Hightlight,     0, MENU_NONE },
+    { ITT_LRFUNC1, "COMPORTAMENTO DA TECLA ESC",     M_ID_Misc_MenuEscKey,     0, MENU_NONE },
 };
 
 static Menu_t ID_Def_Misc = {
@@ -4016,7 +4016,7 @@ static void M_Draw_ID_Misc (void)
         "TRITANOPIA","TRITANOMALY","ACHROMATOPSIA","ACHROMATOMALY"
     };
 
-    MN_DrTextACentered("ACCESSIBILITY", 10, cr[CR_YELLOW]);
+    MN_DrTextACentered("ACESSIBILIDADE", 10, cr[CR_YELLOW]);
 
     // Palette flash effects
     sprintf(str, a11y_pal_flash == 1 ? "HALVED" :
@@ -4065,7 +4065,7 @@ static void M_Draw_ID_Misc (void)
                             a11y_colorblind ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(4));
 
-    MN_DrTextACentered("AUTOLOAD", 70, cr[CR_YELLOW]);
+    MN_DrTextACentered("CARREGAMENTO AUTO.", 70, cr[CR_YELLOW]);
 
     // Autoload WAD files
     sprintf(str, autoload_wad == 1 ? "IWAD ONLY" :
@@ -4077,7 +4077,7 @@ static void M_Draw_ID_Misc (void)
                             autoload_wad == 2 ? cr[CR_GREEN_HX_BRIGHT] : cr[CR_RED_BRIGHT],
                                 LINE_ALPHA(6));
 
-    MN_DrTextACentered("MENU SETTINGS", 90, cr[CR_YELLOW]);
+    MN_DrTextACentered("CONFIGS. DO MENU", 90, cr[CR_YELLOW]);
 
     // Highlighting effect
     sprintf(str, menu_highlight == 1 ? "ANIMATED" :
@@ -4866,14 +4866,14 @@ static void M_ID_HandleSliderMouseControl (int x, int y, int width, void *value,
 //---------------------------------------------------------------------------
 
 static const char *QuitEndMsg[] = {
-    "ARE YOU SURE YOU WANT TO QUIT?",
-    "ARE YOU SURE YOU WANT TO END THE GAME?",
-    "DO YOU WANT TO QUICKSAVE THE GAME NAMED",
-    "DO YOU WANT TO QUICKLOAD THE GAME NAMED",
-    "ARE YOU SURE YOU WANT TO SUICIDE?",
-    "DO YOU WANT TO DELETE THE GAME NAMED",        // [crispy] typeofask 6 (delete a savegame)
-    "RESET KEYBOARD BINDINGS TO DEFAULT VALUES?",  // [JN] typeofask 7 (reset keyboard binds)
-    "RESET MOUSE BINDINGS TO DEFAULT VALUES?",     // [JN] typeofask 8 (reset mouse binds)
+    "TEM CERTEZA QUE DESEJA SAIR?",
+    "TEM CERTEZA QUE DESEJA ENCERRAR O JOGO?",
+    "DESEJA FAZER UM SALVAMENTO RÁPIDO NO JOGO CHAMADO",
+    "DESEJA FAZER UM CARREGAMENTO RÁPIDO DO JOGO CHAMADO",
+    "TEM CERTEZA QUE QUER COMETER SUICÍDIO?",
+    "DESEJA APAGAR O JOGO SALVO CHAMADO",        // [crispy] typeofask 6 (delete a savegame)
+    "REDEFINIR ATALHOS DO TECLADO PARA OS VALORES PADRÃO?",  // [JN] typeofask 7 (reset keyboard binds)
+    "REDEFINIR ATALHOS DO MOUSE PARA OS VALORES PADRÃO?",     // [JN] typeofask 8 (reset mouse binds)
     "",                                            // [JN] typeofask 9 (setting reset), full text in drawer below
 };
 
@@ -5046,7 +5046,7 @@ static void DrawClassMenu(void)
         "m_mwalk1"
     };
 
-    MN_DrTextB("CHOOSE CLASS:", 34, 24, NULL);
+    MN_DrTextB("ESCOLHA A CLASSE:", 34, 24, NULL);
     class = (pclass_t) CurrentMenu->items[CurrentItPos].choice;
     if (class < 3)
     {
@@ -5065,7 +5065,7 @@ static void DrawClassMenu(void)
 
 static void DrawSkillMenu(void)
 {
-    MN_DrTextB("CHOOSE SKILL LEVEL:", 74, 16, NULL);
+    MN_DrTextB("ESCOLHA O NÍVEL DE DIFICULDADE:", 74, 16, NULL);
 }
 
 //---------------------------------------------------------------------------
@@ -5135,7 +5135,7 @@ static void DrawLoadMenu(void)
 {
     const char *title;
 
-    title = quickloadTitle ? "QUICK LOAD GAME" : "LOAD GAME";
+    title = quickloadTitle ? "CARREGAMENTO RÁPIDO" : "CARREGAR JOGO";
 
     if (!slottextloaded)
     {
@@ -5156,7 +5156,7 @@ static void DrawSaveMenu(void)
 {
     const char *title;
 
-    title = quicksaveTitle ? "QUICK SAVE GAME" : "SAVE GAME";
+    title = quicksaveTitle ? "SALVAMENTO RÁPIDO" : "SALVAR JOGO";
 
     if (!slottextloaded)
     {
@@ -5396,15 +5396,15 @@ static boolean SCNetCheck(int choice)
     {
         case 1:                // new game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T START A NEW GAME IN NETPLAY!", true, NULL);
+                          "VOCÊ NÃO PODE INICIAR UM NOVO JOGO EM REDE!", true, NULL);
             break;
         case 2:                // load game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T LOAD A GAME IN NETPLAY!", true, NULL);
+                          "VOCÊ NÃO PODE CARREGAR UM JOGO EM REDE!", true, NULL);
             break;
         case 3:                // end game
             CT_SetMessage(&players[consoleplayer],
-                          "YOU CAN'T END A GAME IN NETPLAY!", true, NULL);
+                          "VOCÊ NÃO PODE ENCERRAR UM JOGO EM REDE!", true, NULL);
             break;
     }
     MenuActive = false;
@@ -5508,9 +5508,9 @@ static void SetDefaultSaveName(int slot)
 
 static const char *const class_str[NUMCLASSES] =
 {
-    "FIGHTER",
-    "CLERIC",
-    "MAGE",
+    "GUERREIRO",
+    "CLÉRIGO",
+    "MAGO",
     "PIG",
 };
 
@@ -5520,7 +5520,7 @@ static void SCSaveCheck(int choice)
     if (!usergame)
     {
         CT_SetMessage(&players[consoleplayer],
-                     "YOU CAN'T SAVE IF YOU AREN'T PLAYING", true, NULL);
+                     "VOCÊ NÃO PODE SALVAR SE NÃO ESTIVER JOGANDO", true, NULL);
     }
     else
     {
@@ -5591,7 +5591,7 @@ static void SCClass(int choice)
     if (netgame)
     {
         CT_SetMessage(&players[consoleplayer],
-                      "YOU CAN'T START A NEW GAME FROM WITHIN A NETGAME!",
+                      "VOCÊ NÃO PODE INICIAR UM NOVO JOGO DENTRO DE UMA PARTIDA EM REDE!",
                      true, NULL);
         return;
     }
@@ -5600,35 +5600,35 @@ static void SCClass(int choice)
     {
         case PCLASS_FIGHTER:
             SkillMenu.x = 120;
-            SkillItems[0].text = "SQUIRE";
-            SkillItems[1].text = "KNIGHT";
-            SkillItems[2].text = "WARRIOR";
+            SkillItems[0].text = "ESCUDEIRO";
+            SkillItems[1].text = "CAVALEIRO";
+            SkillItems[2].text = "GUERREIRO";
             SkillItems[3].text = "BERSERKER";
-            SkillItems[4].text = "TITAN";
+            SkillItems[4].text = "TITÃ";
             break;
         case PCLASS_CLERIC:
             SkillMenu.x = 116;
-            SkillItems[0].text = "ALTAR BOY";
-            SkillItems[1].text = "ACOLYTE";
-            SkillItems[2].text = "PRIEST";
-            SkillItems[3].text = "CARDINAL";
-            SkillItems[4].text = "POPE";
+            SkillItems[0].text = "COROINHA";
+            SkillItems[1].text = "ACÓLITO";
+            SkillItems[2].text = "SACERDOTE";
+            SkillItems[3].text = "CARDEAL";
+            SkillItems[4].text = "PAPA";
             break;
         case PCLASS_MAGE:
             SkillMenu.x = 112;
-            SkillItems[0].text = "APPRENTICE";
-            SkillItems[1].text = "ENCHANTER";
-            SkillItems[2].text = "SORCERER";
-            SkillItems[3].text = "WARLOCK";
-            SkillItems[4].text = "ARCHIMAGE";
+            SkillItems[0].text = "APRENDIZ";
+            SkillItems[1].text = "ENCANTADOR";
+            SkillItems[2].text = "FEITICEIRO";
+            SkillItems[3].text = "BRUXO";
+            SkillItems[4].text = "ARQUIMAGO";
             break;
         case PCLASS_RANDOM:
             SkillMenu.x = 38;
-            SkillItems[0].text = "THOU NEEDETH A WET-NURSE";
-            SkillItems[1].text = "YELLOWBELLIES-R-US";
-            SkillItems[2].text = "BRINGEST THEM ONETH";
-            SkillItems[3].text = "THOU ART A SMITE-MEISTER";
-            SkillItems[4].text = "BLACK PLAGUE POSSESSES THEE";
+            SkillItems[0].text = "VOCÊ PRECISA DE UMA BABÁ";
+            SkillItems[1].text = "COVARDES-R-US";
+            SkillItems[2].text = "PODE VIR QUENTE";
+            SkillItems[3].text = "VOCÊ É O MESTRE DA PUNIÇÃO";
+            SkillItems[4].text = "A PESTE NEGRA TE POSSUI";
             break;
     }
     SetMenu(MENU_SKILL);
@@ -7549,7 +7549,7 @@ static void M_DrawBindKey (int itemNum, int yPos, int keyBind)
 
 static void M_DrawBindFooter (char *pagenum, boolean drawPages)
 {
-    const char *string = "PRESS ENTER TO BIND, DEL TO CLEAR";
+    const char *string = "PRESSIONE ENTER PARA VINCULAR, DEL PARA LIMPAR";
 
     if (drawPages)
     {
@@ -7723,3 +7723,5 @@ static void M_ResetMouseBinds (void)
     mousebinvright = -1;
     mousebuseartifact = -1;
 }
+
+
